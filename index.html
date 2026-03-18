@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partzilla Arenacross — 2025–2026 Sponsorship</title>
+<style>
+@font-face { font-family:'BringRace'; src:url('Bring Race.otf') format('opentype'); }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#E8001D;--red-dk:#A80015;--red-glow:rgba(232,0,29,.35);
+  --blk:#080808;--d1:#111;--d2:#181818;--d3:#202020;
+  --wh:#fff;--gr:#666;--gr2:#999;--gold:#F5A623;--silver:#A0A0A0;
+  --race:'BringRace','Impact',sans-serif;
+  --body:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  --ease:cubic-bezier(0.16,1,0.3,1);--dur:880ms;
+}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--blk);color:var(--wh);font-family:var(--body);cursor:none}
+::selection{background:var(--red);color:#fff}
+
+/* ── CURSOR ──────────────────────────────────── */
+#cur{position:fixed;width:10px;height:10px;background:var(--red);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s}
+#cur-ring{position:fixed;width:34px;height:34px;border:1px solid rgba(232,0,29,.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .11s ease-out,top .11s ease-out,width .25s,height .25s,border-color .2s}
+body.chov #cur{width:18px;height:18px}
+body.chov #cur-ring{width:54px;height:54px}
+
+/* ── LOADER ──────────────────────────────────── */
+#loader{position:fixed;inset:0;z-index:9500;background:var(--blk);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;transition:transform var(--dur) var(--ease)}
+#loader.out{transform:translateY(-100%)}
+.ld-img{width:260px;opacity:0;animation:ldImgIn .7s .2s var(--ease) forwards}
+@keyframes ldImgIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+.ld-bar-wrap{width:200px;height:1px;background:rgba(255,255,255,.08);overflow:hidden;position:relative}
+.ld-bar{position:absolute;left:-100%;top:0;bottom:0;width:100%;background:var(--red);animation:ldFill 1.1s .4s var(--ease) forwards}
+@keyframes ldFill{to{left:0}}
+
+/* ── GLOBAL LOGO (fixed, all slides) ─────────── */
+#g-logo{position:fixed;top:26px;left:36px;z-index:1000;width:118px;opacity:0;transition:opacity .5s ease;pointer-events:none}
+#g-logo.vis{opacity:.9}
+#g-logo img{width:100%;display:block;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
+
+/* ── FLASH LINE (transition fx) ──────────────── */
+#flash{position:fixed;inset:0;pointer-events:none;z-index:8000;overflow:hidden}
+#flash::after{content:'';position:absolute;top:0;bottom:0;left:-8px;width:3px;background:linear-gradient(to bottom,transparent,rgba(232,0,29,.8),transparent);box-shadow:0 0 18px var(--red-glow);opacity:0;transition:none}
+#flash.go::after{animation:flashLine .7s ease-in-out}
+@keyframes flashLine{0%{left:-8px;opacity:0}15%{opacity:1}100%{left:110%;opacity:0}}
+
+/* ── SLIDE SYSTEM ────────────────────────────── */
+#slides{position:fixed;inset:0}
+.slide{position:absolute;inset:0;overflow:hidden;will-change:transform;transition:transform var(--dur) var(--ease),opacity .7s ease}
+.slide[data-s="below"]{transform:translateY(100%);opacity:0;pointer-events:none}
+.slide[data-s="above"]{transform:translateY(-100%);opacity:0;pointer-events:none}
+.slide[data-s="active"]{transform:translateY(0);opacity:1;pointer-events:all}
+
+/* ── CONTENT ENTRANCE (per-slide items) ───────── */
+.si{opacity:0;transform:translateY(16px);transition:opacity .55s ease var(--d,.3s),transform .55s ease var(--d,.3s)}
+.slide[data-s="active"] .si{opacity:1;transform:translateY(0)}
+
+/* ── SLIDE BG SYSTEM ─────────────────────────── */
+.s-bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0;transition:transform 8s ease}
+.slide[data-s="active"] .s-bg{transform:scale(1.04)}
+.s-ov{position:absolute;inset:0;z-index:1}
+
+/* ── SIDE NAV ────────────────────────────────── */
+#snav{position:fixed;right:38px;top:50%;transform:translateY(-50%);z-index:1000;display:flex;flex-direction:column;align-items:flex-end;gap:20px}
+.sn-track{position:absolute;right:2px;top:10px;bottom:10px;width:1px;background:rgba(255,255,255,.05);z-index:-1}
+.sni{display:flex;align-items:center;gap:10px;cursor:none}
+.sni-lbl{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0);transition:color .3s,transform .3s;transform:translateX(8px);white-space:nowrap;pointer-events:none;font-weight:600}
+.sni:hover .sni-lbl{color:rgba(255,255,255,.55);transform:translateX(0)}
+.sni.on .sni-lbl{color:var(--red);transform:translateX(0)}
+.sni-pip{width:5px;height:5px;border-radius:50%;border:1px solid rgba(255,255,255,.2);transition:all .3s;flex-shrink:0;background:transparent}
+.sni.on .sni-pip{background:var(--red);border-color:var(--red);box-shadow:0 0 10px rgba(232,0,29,.7);transform:scale(1.7)}
+.sni:hover:not(.on) .sni-pip{border-color:rgba(255,255,255,.45);background:rgba(255,255,255,.08)}
+
+/* ── SLIDE COUNTER ───────────────────────────── */
+#scount{position:fixed;bottom:36px;left:64px;z-index:1000;display:flex;align-items:baseline;gap:7px}
+.sc-n{font-family:var(--race);font-size:30px;color:var(--wh);letter-spacing:.04em;transition:opacity .3s}
+.sc-sep{font-size:11px;color:rgba(255,255,255,.18)}
+.sc-tot{font-family:var(--race);font-size:13px;color:rgba(255,255,255,.22);letter-spacing:.06em}
+
+/* ── NAV ARROWS ──────────────────────────────── */
+#narrows{position:fixed;bottom:32px;right:120px;z-index:1000;display:flex;gap:6px}
+.na{width:38px;height:38px;border:1px solid rgba(255,255,255,.1);border-radius:2px;display:flex;align-items:center;justify-content:center;cursor:none;transition:all .2s;background:transparent;color:rgba(255,255,255,.35);font-size:13px}
+.na:hover{border-color:var(--red);color:var(--red);background:rgba(232,0,29,.06)}
+.na:active{transform:scale(.94)}
+
+/* ── COMMON INNER ────────────────────────────── */
+.si-wrap{position:relative;z-index:2;height:100%;width:100%;padding:56px 56px 52px 72px;display:flex;flex-direction:column}
+.si-wrap.rpad{padding-right:152px}
+.s-label{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--red);font-weight:700;display:flex;align-items:center;gap:9px}
+.s-label::before{content:'';width:18px;height:1px;background:var(--red)}
+.s-title{font-family:var(--race);font-size:clamp(30px,4.2vw,62px);line-height:.95;letter-spacing:.02em;text-transform:uppercase}
+.s-title em{color:var(--red);font-style:normal}
+.s-bnum{position:absolute;right:152px;bottom:-20px;font-family:var(--race);font-size:210px;color:rgba(255,255,255,.022);pointer-events:none;letter-spacing:.02em;line-height:1;z-index:1;user-select:none}
+
+/* ── TICKER ──────────────────────────────────── */
+#ticker{position:fixed;bottom:0;left:0;right:0;z-index:700;height:34px;background:var(--red);overflow:hidden;display:flex;align-items:center;opacity:0;transition:opacity .4s;pointer-events:none}
+#ticker.vis{opacity:1}
+.tk-track{display:inline-flex;white-space:nowrap;animation:tkScroll 28s linear infinite}
+.tki{display:inline-flex;align-items:center;gap:8px;font-family:var(--race);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:0 22px;color:#fff}
+.tkd{width:3px;height:3px;background:rgba(255,255,255,.5);border-radius:50%}
+@keyframes tkScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ════════════════════════════════════════════════
+   SLIDE 01 — COVER
+════════════════════════════════════════════════ */
+#s01{background:var(--blk)}
+/* Subtle arena photo texture */
+.cv-photo{position:absolute;inset:0;z-index:0;background:url('Photos/Arena (1 of 1).jpg') center 35%/cover no-repeat;opacity:.08;filter:saturate(.4)}
+/* Barely-visible grid */
+.cv-grid{position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(232,0,29,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(232,0,29,.025) 1px,transparent 1px);background-size:72px 72px;animation:cvGrid 22s linear infinite}
+@keyframes cvGrid{to{background-position:72px 72px}}
+/* Radial vignette — pulls eye to center */
+.cv-vignette{position:absolute;inset:0;z-index:2;background:radial-gradient(ellipse at 50% 46%,transparent 22%,rgba(8,8,8,.75) 78%)}
+/* Center content */
+.cv-center{position:relative;z-index:3;height:100%;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 150px 60px 60px;gap:0}
+.cv-logo-c{width:clamp(210px,22vw,300px);filter:drop-shadow(0 6px 40px rgba(0,0,0,.6))}
+/* Thin horizontal rule under logo */
+.cv-rule{display:flex;align-items:center;gap:16px;margin:32px 0 28px;width:fit-content;align-self:center}
+.cv-rule-line{width:60px;height:1px;background:rgba(255,255,255,.12)}
+.cv-rule-diamond{width:5px;height:5px;background:var(--red);transform:rotate(45deg);flex-shrink:0;box-shadow:0 0 8px rgba(232,0,29,.5)}
+/* Year */
+.cv-year{font-family:var(--race);font-size:clamp(68px,9vw,108px);line-height:.9;letter-spacing:.02em;color:#FFE100;text-shadow:0 0 60px rgba(255,225,0,.12)}
+.cv-year-dash{color:var(--red)}
+/* Sponsorship label */
+.cv-spons{font-family:var(--race);font-size:clamp(16px,2vw,26px);letter-spacing:.18em;color:var(--wh);margin-top:10px;text-shadow:0 2px 16px rgba(0,0,0,.5)}
+/* Small credential line */
+.cv-creds{display:flex;align-items:center;gap:14px;margin-top:36px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.28)}
+.cv-cred-pip{width:3px;height:3px;background:var(--red);border-radius:50%}
+/* Ticker embedded in S02 */
+.s-ticker{position:absolute;bottom:0;left:0;right:0;height:34px;background:var(--red);overflow:hidden;display:flex;align-items:center;z-index:10}
+
+/* ════════════════════════════════════════════════
+   SLIDE 02 — OPPORTUNITY
+════════════════════════════════════════════════ */
+#s02{background:var(--d1)}
+#s02 .si-wrap{flex-direction:row;gap:56px;align-items:center}
+.s02-l{width:42%;display:flex;flex-direction:column;justify-content:center;gap:0}
+.s02-r{width:58%;display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.s02-q{font-family:var(--race);font-size:clamp(22px,2.6vw,38px);color:var(--wh);line-height:1.05;letter-spacing:.02em;margin:14px 0 18px}
+.s02-q em{color:var(--red);font-style:normal}
+.s02-body{font-size:12px;line-height:1.8;color:rgba(255,255,255,.52);margin-bottom:18px}
+.s02-tags{display:flex;flex-wrap:wrap;gap:7px}
+.s02-tag{padding:5px 13px;border:1px solid rgba(255,255,255,.1);border-radius:2px;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.42);transition:all .2s}
+.s02-tag:hover{border-color:var(--red);color:var(--red)}
+.p-card{padding:26px 22px;background:var(--d2);transition:background .3s;position:relative;overflow:hidden}
+.p-card::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:var(--red);transition:width .4s}
+.p-card:hover{background:var(--d3)}
+.p-card:hover::before{width:100%}
+.p-icon{font-size:20px;margin-bottom:10px}
+.p-num{font-family:var(--race);font-size:34px;color:var(--wh)}
+.p-num span{color:var(--red)}
+.p-lbl{font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--gr2);margin-top:4px}
+.p-desc{font-size:10px;color:rgba(255,255,255,.38);margin-top:7px;line-height:1.5}
+
+/* ════════════════════════════════════════════════
+   SLIDE 03 — BROADCAST
+════════════════════════════════════════════════ */
+#s03{background:var(--blk)}
+#s03 .si-wrap{flex-direction:row;padding:0;gap:0}
+.s03-photo{width:50%;position:relative;overflow:hidden;flex-shrink:0}
+.s03-photo img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.65) saturate(1.3);transition:filter .6s,transform .6s}
+.slide[data-s="active"] .s03-photo img{filter:brightness(.8) saturate(1.4);transform:scale(1.04)}
+.s03-photo-ov{position:absolute;inset:0;background:linear-gradient(to right,transparent 55%,var(--blk))}
+.s03-badge{position:absolute;bottom:36px;left:36px;background:rgba(8,8,8,.88);border:1px solid rgba(232,0,29,.22);padding:13px 18px;border-radius:3px;backdrop-filter:blur(10px)}
+.s03-bt{font-family:var(--race);font-size:17px;letter-spacing:.06em}
+.s03-bs{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-top:3px}
+.s03-r{width:50%;padding:60px 52px 52px 52px;padding-right:150px;display:flex;flex-direction:column;justify-content:center}
+.s03-body{font-size:12px;line-height:1.8;color:rgba(255,255,255,.5);margin:12px 0 22px}
+.s03-metrics{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.mc{background:var(--d2);padding:20px 18px;border:1px solid rgba(255,255,255,.04);transition:border-color .3s,background .3s}
+.mc:hover{border-color:rgba(232,0,29,.22);background:var(--d3)}
+.mc-n{font-family:var(--race);font-size:clamp(22px,2.4vw,36px);color:var(--wh)}
+.mc-n .r{color:var(--red)}
+.mc-l{font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--gr);margin-top:5px}
+.mc-s{font-size:10px;color:rgba(255,255,255,.28);margin-top:3px}
+.mc-yoy{display:inline-flex;align-items:center;gap:3px;background:rgba(232,0,29,.1);color:var(--red);padding:3px 7px;border-radius:100px;font-size:9px;font-weight:700;margin-top:5px}
+
+/* ════════════════════════════════════════════════
+   SLIDE 04 — AUDIENCE
+════════════════════════════════════════════════ */
+#s04{background:var(--d1)}
+#s04 .si-wrap{gap:0}
+.s04-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin:18px 0;flex:1}
+.dc{background:var(--d2);padding:26px 22px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;transition:background .3s}
+.dc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.dc:hover{background:var(--d3)}
+.dc:hover::after{transform:scaleX(1)}
+.dc-big{font-family:var(--race);font-size:clamp(34px,4.2vw,58px);color:var(--wh);line-height:1}
+.dc-big .r{color:var(--red)}
+.dc-lbl{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--gr);margin-top:7px}
+.dc-note{font-size:10px;color:rgba(255,255,255,.3);margin-top:9px;line-height:1.5}
+.s04-insight{padding:18px 26px;background:linear-gradient(135deg,rgba(232,0,29,.08),rgba(232,0,29,.02));border:1px solid rgba(232,0,29,.14);border-radius:2px;display:flex;align-items:center;gap:18px;flex-shrink:0}
+.s04-ins-icon{font-size:26px;flex-shrink:0}
+.s04-ins-text{font-size:12px;color:rgba(255,255,255,.58);line-height:1.65}
+.s04-ins-text strong{color:var(--wh)}
+
+/* ════════════════════════════════════════════════
+   SLIDE 05 — SOCIAL
+════════════════════════════════════════════════ */
+#s05 .si-wrap{flex-direction:row;padding:0;gap:0}
+.s05c{width:50%;padding:64px 56px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.s05c.ig{background:linear-gradient(148deg,#6c1f9a 0%,#c9133a 48%,#f0932b 100%)}
+.s05c.fb{background:linear-gradient(148deg,#1a73e8 0%,#0c47a1 100%);padding-right:148px}
+.s05c::before{content:'';position:absolute;top:-30%;right:-15%;width:340px;height:340px;border-radius:50%;background:rgba(255,255,255,.04);pointer-events:none}
+.s05c::after{content:'';position:absolute;bottom:-20%;left:-10%;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.03);pointer-events:none}
+.s05-plat{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:18px}
+.s05-num{font-family:var(--race);font-size:clamp(48px,7vw,86px);color:#fff;letter-spacing:.02em;line-height:1}
+.s05-nlbl{font-size:13px;color:rgba(255,255,255,.72);margin-top:9px}
+.s05-growth{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.14);padding:6px 15px;border-radius:100px;font-size:12px;font-weight:700;color:#fff;margin-top:18px;width:fit-content}
+.s05-detail{margin-top:20px;font-size:12px;color:rgba(255,255,255,.58);line-height:1.75}
+.s05-org{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:4px 13px;border-radius:100px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.88);margin-top:12px;width:fit-content}
+
+/* ════════════════════════════════════════════════
+   SLIDE 06 — HIGHLIGHTS
+════════════════════════════════════════════════ */
+#s06{background:var(--d1)}
+#s06 .s-bg{background-image:url('Photos/83 battle (1 of 1).jpg');opacity:.1}
+.hl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:18px;flex:1}
+.hl{padding:22px;background:rgba(17,17,17,.92);position:relative;overflow:hidden;transition:background .3s;display:flex;flex-direction:column;gap:9px}
+.hl:hover{background:rgba(22,22,22,.96)}
+.hl-n{font-family:var(--race);position:absolute;top:-8px;right:10px;font-size:60px;color:rgba(255,255,255,.04);pointer-events:none}
+.hl-icon{font-size:20px}
+.hl-txt{font-size:12px;line-height:1.65;color:rgba(255,255,255,.68)}
+.hl-txt strong{color:var(--wh)}
+
+/* ════════════════════════════════════════════════
+   SLIDE 07 — SCHEDULE
+════════════════════════════════════════════════ */
+#s07{background:var(--blk)}
+.sched{width:100%;border-collapse:collapse;margin-top:14px;flex:1}
+.sched th{text-align:left;padding:9px 14px;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.28);border-bottom:1px solid rgba(255,255,255,.06);font-weight:500}
+.sched td{padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px;color:rgba(255,255,255,.68);vertical-align:middle}
+.sched tbody tr{transition:background .2s}
+.sched tbody tr:hover{background:rgba(232,0,29,.04)}
+.rd{display:inline-flex;align-items:center;justify-content:center;min-width:38px;height:21px;padding:0 7px;background:rgba(232,0,29,.1);border:1px solid rgba(232,0,29,.2);border-radius:2px;font-size:9px;font-weight:700;color:var(--red);letter-spacing:.06em}
+.vn{color:var(--wh);font-weight:500}
+.stb{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:100px;font-size:8px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.st-done{background:rgba(255,255,255,.05);color:rgba(255,255,255,.3)}
+.st-live{background:rgba(232,0,29,.12);color:var(--red)}
+.st-dot{width:4px;height:4px;border-radius:50%}
+.st-done .st-dot{background:rgba(255,255,255,.25)}
+.st-live .st-dot{background:var(--red);animation:hPulse 2s infinite}
+
+/* ════════════════════════════════════════════════
+   SLIDE 08 — ROSTER
+════════════════════════════════════════════════ */
+#s08{background:var(--d1)}
+.roster-g{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:14px;flex:1;min-height:0}
+.rc{position:relative;overflow:hidden;background:var(--d2);display:flex;flex-direction:column;transition:transform .3s}
+.rc:hover{transform:translateY(-3px);z-index:2}
+.rc-img{width:100%;flex:1;object-fit:cover;object-position:top;display:block;filter:saturate(.6) brightness(.68);transition:filter .4s,transform .4s;min-height:0}
+.rc:hover .rc-img{filter:saturate(1) brightness(.85);transform:scale(1.04)}
+.rc-info{padding:12px 14px;background:var(--d2);border-top:2px solid var(--red);flex-shrink:0}
+.rc-num{position:absolute;top:6px;right:8px;font-family:var(--race);font-size:32px;color:rgba(255,255,255,.06);pointer-events:none;line-height:1}
+.rc-name{font-family:var(--race);font-size:14px;letter-spacing:.05em}
+.rc-team{font-size:9px;color:var(--gr);margin-top:2px}
+.rc-cls{display:inline-flex;background:rgba(232,0,29,.1);color:var(--red);padding:3px 8px;border-radius:2px;font-size:8px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-top:6px}
+.roster-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;flex-shrink:0}
+.rs-item{padding:14px 18px;background:var(--d2);border-left:2px solid rgba(232,0,29,.3)}
+.rs-n{font-family:var(--race);font-size:24px;color:var(--wh)}
+.rs-n span{color:var(--red)}
+.rs-l{font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--gr);margin-top:3px}
+.rs-d{font-size:10px;color:rgba(255,255,255,.35);margin-top:5px;line-height:1.5}
+
+/* ════════════════════════════════════════════════
+   SLIDE 09 — TIERS
+════════════════════════════════════════════════ */
+#s09{background:var(--d1)}
+#s09::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 60%,rgba(232,0,29,.045),transparent 65%);z-index:1}
+#s09 .si-wrap{position:relative;z-index:2}
+.tiers-hd{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:14px;flex-shrink:0}
+.tiers-note{font-size:11px;color:rgba(255,255,255,.4);max-width:320px;line-height:1.6;text-align:right}
+.tg{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;flex:1}
+.tc{background:var(--d2);padding:20px 16px;position:relative;overflow:hidden;display:flex;flex-direction:column;transition:background .3s,transform .3s}
+.tc:hover{background:var(--d3);transform:translateY(-3px)}
+.tc.tf{background:linear-gradient(160deg,rgba(232,0,29,.14),rgba(232,0,29,.04));border:1px solid rgba(232,0,29,.24)}
+.tc.tf:hover{transform:translateY(-5px)}
+.tc-rib{position:absolute;top:0;left:0;right:0;height:2px}
+.tc-rib.rr{background:linear-gradient(90deg,var(--red),transparent)}
+.tc-rib.rg{background:linear-gradient(90deg,var(--gold),transparent)}
+.tc-rib.rs{background:linear-gradient(90deg,var(--silver),transparent)}
+.tc-rib.rw{background:linear-gradient(90deg,rgba(255,255,255,.3),transparent)}
+.tc-name{font-family:var(--race);font-size:16px;letter-spacing:.05em;margin:12px 0 3px}
+.tc.tf .tc-name{color:var(--red)}
+.tc-sub{font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:14px}
+.tc-feats{list-style:none;flex:1}
+.tc-feats li{font-size:10px;color:rgba(255,255,255,.58);padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);display:flex;align-items:flex-start;gap:6px;line-height:1.4}
+.tc-feats li::before{content:'—';color:var(--red);font-weight:700;flex-shrink:0}
+.tc-feats li.off::before{color:rgba(255,255,255,.1)}
+.tc-feats li.off{color:rgba(255,255,255,.15)}
+.tc-btn{margin-top:14px;padding:9px;border:1px solid rgba(255,255,255,.1);border-radius:2px;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.38);text-align:center;cursor:none;transition:all .2s}
+.tc.tf .tc-btn{background:var(--red);border-color:var(--red);color:#fff;font-weight:700}
+.tc:hover .tc-btn{border-color:rgba(232,0,29,.35);color:rgba(255,255,255,.7)}
+
+/* ════════════════════════════════════════════════
+   SLIDE 10 — EXPERIENCE
+════════════════════════════════════════════════ */
+#s10{background:var(--blk)}
+#s10 .si-wrap{padding:0;gap:0}
+.s10-hd{padding:52px 72px 22px;padding-right:150px;flex-shrink:0;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;position:relative;z-index:3}
+.s10-hd-r{font-size:12px;color:rgba(255,255,255,.4);line-height:1.7;max-width:320px;text-align:right}
+.s10-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;flex:1;min-height:0}
+.s10p{position:relative;overflow:hidden}
+.s10p img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.6) brightness(.65);transition:filter .5s,transform .5s}
+.s10p:hover img{filter:saturate(1.1) brightness(.88);transform:scale(1.07)}
+.s10p-lbl{position:absolute;bottom:0;left:0;right:0;padding:36px 20px 18px;background:linear-gradient(to top,rgba(8,8,8,.88),transparent);font-family:var(--race);font-size:14px;letter-spacing:.05em}
+.s10p-sub{font-family:var(--body);font-size:9px;color:rgba(255,255,255,.42);letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
+
+/* ════════════════════════════════════════════════
+   SLIDE 11 — CTA
+════════════════════════════════════════════════ */
+#s11 .s-bg{background-image:url('Photos/351 pack air (1 of 1).jpg');background-position:center 40%;filter:brightness(.22) saturate(1.4)}
+#s11 .s-ov{background:radial-gradient(ellipse at 50% 55%,rgba(232,0,29,.12),rgba(8,8,8,.65) 70%)}
+#s11 .si-wrap{align-items:center;justify-content:center;text-align:center;padding-right:150px}
+.cta-eye{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:16px}
+.cta-h{font-family:var(--race);font-size:clamp(48px,8vw,96px);line-height:.9;letter-spacing:.02em;text-transform:uppercase;margin-bottom:20px}
+.cta-h em{color:var(--red);font-style:normal}
+.cta-body{font-size:14px;color:rgba(255,255,255,.48);max-width:480px;margin:0 auto 28px;line-height:1.75}
+.cta-stats{display:inline-flex;gap:36px;padding:18px 32px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:3px;margin-bottom:28px}
+.cs-n{font-family:var(--race);font-size:26px;color:var(--wh)}
+.cs-n .r{color:var(--red)}
+.cs-l{font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--gr);margin-top:3px}
+.cta-btns{display:flex;gap:10px;justify-content:center;margin-bottom:32px}
+.btn-r{background:var(--red);color:#fff;padding:14px 32px;border:none;border-radius:2px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;font-weight:700;cursor:none;text-decoration:none;transition:background .2s,transform .15s,box-shadow .2s}
+.btn-r:hover{background:var(--red-dk);transform:translateY(-2px);box-shadow:0 12px 28px rgba(232,0,29,.3)}
+.btn-o{background:transparent;color:rgba(255,255,255,.62);padding:14px 32px;border:1px solid rgba(255,255,255,.14);border-radius:2px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;font-weight:600;cursor:none;text-decoration:none;transition:all .2s}
+.btn-o:hover{border-color:rgba(255,255,255,.38);color:#fff;transform:translateY(-2px)}
+.cta-contact{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;padding-top:22px;border-top:1px solid rgba(255,255,255,.06)}
+.cci{text-align:center}
+.cci-l{font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:4px}
+.cci-v{font-size:12px;color:rgba(255,255,255,.62)}
+.cci-v a{color:inherit;text-decoration:none;transition:color .2s}
+.cci-v a:hover{color:var(--red)}
+.cta-foot{position:absolute;bottom:0;left:0;right:0;background:rgba(8,8,8,.7);border-top:1px solid rgba(255,255,255,.06);padding:10px 72px;padding-right:150px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(8px)}
+.cf-badges{display:flex;gap:8px}
+.cf-b{font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.18);padding:3px 9px;border:1px solid rgba(255,255,255,.06);border-radius:2px}
+
+/* ── RESPONSIVE ──────────────────────────────── */
+@media(max-width:900px){
+  #snav,#scount,#narrows{display:none}
+  html,body{overflow:auto}
+  #slides{position:relative;height:auto}
+  .slide{position:relative!important;transform:none!important;opacity:1!important;height:auto;min-height:100vh;pointer-events:all!important}
+  .slide[data-s="active"] .si,.slide[data-s="below"] .si,.slide[data-s="above"] .si{opacity:1!important;transform:none!important}
+  #s02 .si-wrap,#s05 .si-wrap{flex-direction:column}
+  .s02-l,.s02-r,.s05c{width:100%}
+  .s05c.fb{padding-right:32px}
+  #s03 .si-wrap{flex-direction:column;padding:0}
+  .s03-photo{width:100%;height:45vh}
+  .s03-r{width:100%;padding:36px 24px;padding-right:24px}
+  .s04-grid{grid-template-columns:1fr 1fr}
+  .tg{grid-template-columns:1fr 1fr}
+  .roster-g{grid-template-columns:1fr 1fr}
+  .hl-grid{grid-template-columns:1fr 1fr}
+  .cv-content{flex-direction:column}
+  .cv-col-l,.cv-col-r{width:100%;padding:24px 24px 16px}
+  .cv-col-l{padding-bottom:0}
+  .cv-col-r{padding-top:0}
+  .cv-logo-img{width:160px}
+  .cv-year{font-size:clamp(72px,18vw,130px)}
+  .cv-divider{margin:14px 0 12px}
+  .cv-bar{padding:0 24px;gap:8px}
+  .cv-bar-seg{font-size:7px}
+  .s10-photos{grid-template-columns:1fr 1fr}
+  .si-wrap{padding:40px 24px 36px}
+  .si-wrap.rpad{padding-right:24px}
+  .cta-stats{flex-wrap:wrap;gap:16px;padding:16px 20px}
+  .cta-btns{flex-direction:column;align-items:center}
+  .s10-hd{padding:36px 24px 16px;flex-direction:column;align-items:flex-start}
+  .s10-hd-r{text-align:left}
+  .cta-foot{padding:10px 24px;flex-direction:column;gap:6px;text-align:center}
+  .cf-badges{flex-wrap:wrap;justify-content:center}
+  .roster-strip{grid-template-columns:1fr 1fr 1fr}
+  #ticker{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <img src="Partzilla Logo lite.png" alt="Partzilla Arenacross" class="ld-img">
+  <div class="ld-bar-wrap"><div class="ld-bar"></div></div>
+</div>
+
+<!-- CURSOR -->
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- FLASH TRANSITION LINE -->
+<div id="flash"></div>
+
+<!-- GLOBAL BRAND MARK -->
+<div id="g-logo"><img src="Partzilla Logo lite.png" alt="Partzilla Arenacross"></div>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     SLIDES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div id="slides">
+
+  <!-- S01 — COVER -->
+  <div class="slide" id="s01" data-s="active">
+    <div class="cv-photo"></div>
+    <div class="cv-grid"></div>
+    <div class="cv-vignette"></div>
+    <div class="cv-center">
+      <img src="Partzilla Logo lite.png" alt="Partzilla Arenacross" class="cv-logo-c si" style="--d:.3s">
+      <div class="cv-rule si" style="--d:.48s">
+        <div class="cv-rule-line"></div>
+        <div class="cv-rule-diamond"></div>
+        <div class="cv-rule-line"></div>
+      </div>
+      <div class="cv-year si" style="--d:.56s">25<span class="cv-year-dash">–</span>26</div>
+      <div class="cv-spons si" style="--d:.66s">SPONSORSHIP OPPORTUNITIES</div>
+      <div class="cv-creds si" style="--d:.78s">
+        <span>AMA Sanctioned</span>
+        <span class="cv-cred-pip"></span>
+        <span>Fox Sports FS1 / FS2</span>
+        <span class="cv-cred-pip"></span>
+        <span>Season 3</span>
+        <span class="cv-cred-pip"></span>
+        <span>partzillaarenacross.com</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- S02 — OPPORTUNITY -->
+  <div class="slide" id="s02" data-s="below">
+    <div class="s-bnum">02</div>
+    <div class="si-wrap rpad" style="flex-direction:row;gap:56px;align-items:center;padding-bottom:80px">
+      <div class="s02-l">
+        <div class="s-label si" style="--d:.3s">The Opportunity</div>
+        <div class="s02-q si" style="--d:.42s">Built by <em>Racers</em>,<br>for Racers</div>
+        <p class="s02-body si" style="--d:.54s">"The most exciting racing series you've never heard of — until now." Partzilla Arenacross is an AMA-sanctioned indoor motocross championship broadcast nationally on Fox Sports. Now in its third season.</p>
+        <p class="s02-body si" style="--d:.62s;color:rgba(255,255,255,.3);font-size:10px;font-style:italic">Founded 2022 · Shelbyville, Tennessee</p>
+        <div class="s02-tags si" style="--d:.7s">
+          <span class="s02-tag">AMA Sanctioned</span>
+          <span class="s02-tag">FS1 / FS2</span>
+          <span class="s02-tag">9 Markets</span>
+          <span class="s02-tag">Season 3</span>
+          <span class="s02-tag">All 5 OEMs</span>
+        </div>
+      </div>
+      <div class="s02-r">
+        <div class="p-card si" style="--d:.38s"><div class="p-icon">📺</div><div class="p-num"><span>346</span></div><div class="p-lbl">TV Airings</div><div class="p-desc">FS1 &amp; FS2 — same distribution as NFL &amp; NASCAR</div></div>
+        <div class="p-card si" style="--d:.48s"><div class="p-icon">📱</div><div class="p-num"><span>1M</span>+</div><div class="p-lbl">Instagram / Month</div><div class="p-desc">+87.5% accounts reached growth in January alone</div></div>
+        <div class="p-card si" style="--d:.58s"><div class="p-icon">🏟️</div><div class="p-num"><span>9</span></div><div class="p-lbl">Arena Events</div><div class="p-desc">8 states, 18 rounds, basketball &amp; hockey arenas</div></div>
+        <div class="p-card si" style="--d:.68s"><div class="p-icon">🔧</div><div class="p-num"><span>5</span></div><div class="p-lbl">Major OEMs in Pits</div><div class="p-desc">Honda, Kawasaki, Yamaha, KTM, Suzuki</div></div>
+      </div>
+    </div>
+    <!-- Marquee ticker at the bottom of this slide -->
+    <div class="s-ticker">
+      <div class="tk-track">
+        <span class="tki">346 Fox Sports Airings <span class="tkd"></span></span>
+        <span class="tki">13.2M Facebook Views <span class="tkd"></span></span>
+        <span class="tki">1M+ Instagram Monthly <span class="tkd"></span></span>
+        <span class="tki">92% Organic Reach <span class="tkd"></span></span>
+        <span class="tki">9 Arena Events · 8 States <span class="tkd"></span></span>
+        <span class="tki">18 Rounds of Racing <span class="tkd"></span></span>
+        <span class="tki">AMA Sanctioned <span class="tkd"></span></span>
+        <span class="tki">Season 3 · Year of Growth <span class="tkd"></span></span>
+        <span class="tki">346 Fox Sports Airings <span class="tkd"></span></span>
+        <span class="tki">13.2M Facebook Views <span class="tkd"></span></span>
+        <span class="tki">1M+ Instagram Monthly <span class="tkd"></span></span>
+        <span class="tki">92% Organic Reach <span class="tkd"></span></span>
+        <span class="tki">9 Arena Events · 8 States <span class="tkd"></span></span>
+        <span class="tki">18 Rounds of Racing <span class="tkd"></span></span>
+        <span class="tki">AMA Sanctioned <span class="tkd"></span></span>
+        <span class="tki">Season 3 · Year of Growth <span class="tkd"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- S03 — BROADCAST -->
+  <div class="slide" id="s03" data-s="below">
+    <div class="s-bnum" style="right:155px">03</div>
+    <div class="si-wrap" style="flex-direction:row;padding:0;gap:0">
+      <div class="s03-photo si" style="--d:.3s">
+        <img src="Photos/TRACK (1 of 1)-5.jpg" alt="Track">
+        <div class="s03-photo-ov"></div>
+        <div class="s03-badge">
+          <div class="s03-bt">FOX SPORTS</div>
+          <div class="s03-bs">FS1 · FS2 · National Broadcast</div>
+        </div>
+      </div>
+      <div class="s03-r">
+        <div class="s-label si" style="--d:.38s">Broadcast</div>
+        <div class="s-title si" style="--d:.48s;margin:10px 0">National <em>Television</em></div>
+        <p class="s03-body si" style="--d:.58s">FS1 reaches ~90M U.S. households — the same platform as NFL and NASCAR. 346 airings means 346 impressions on national cable TV. Your logo on-air every round across all 18 telecasts.</p>
+        <div class="s03-metrics">
+          <div class="mc si" style="--d:.65s"><div class="mc-n"><span class="ctr r" data-t="346">346</span></div><div class="mc-l">Total Airings</div><div class="mc-s">FS1 &amp; FS2 combined</div></div>
+          <div class="mc si" style="--d:.72s"><div class="mc-n"><span class="ctr" data-t="79">79</span><span class="r">K</span></div><div class="mc-l">Avg HH / Premiere</div><div class="mc-s">Premiere episode avg</div></div>
+          <div class="mc si" style="--d:.79s"><div class="mc-n"><span class="ctr" data-t="1.8" data-s="M">1.8M</span></div><div class="mc-l">TV Views</div><div class="mc-yoy">↑ +50% YOY</div></div>
+          <div class="mc si" style="--d:.86s"><div class="mc-n"><span class="r">~90</span>M</div><div class="mc-l">FS1 Households</div><div class="mc-s">Same reach as NFL &amp; NASCAR</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S04 — AUDIENCE -->
+  <div class="slide" id="s04" data-s="below">
+    <div class="s-bnum">04</div>
+    <div class="si-wrap rpad">
+      <div class="s-label si" style="--d:.3s">Audience</div>
+      <div class="s-title si" style="--d:.4s;margin-top:10px">Who's <em>Watching</em></div>
+      <div class="s04-grid">
+        <div class="dc si" style="--d:.48s"><div><div class="dc-big"><span class="ctr" data-t="64">64</span><span class="r">%</span></div><div class="dc-lbl">Under 44</div></div><div class="dc-note">Young, energetic fanbase primed for brand adoption</div></div>
+        <div class="dc si" style="--d:.56s"><div><div class="dc-big"><span class="r">$</span><span class="ctr" data-t="85">85</span><span style="font-size:.55em">K</span></div><div class="dc-lbl">Avg HH Income</div></div><div class="dc-note">Above-average purchasing power audience</div></div>
+        <div class="dc si" style="--d:.64s"><div><div class="dc-big"><span class="ctr" data-t="72">72</span><span class="r">%</span></div><div class="dc-lbl">College Educated</div></div><div class="dc-note">Educated consumers with strong brand loyalty</div></div>
+        <div class="dc si" style="--d:.72s"><div><div class="dc-big"><span class="ctr" data-t="13.3">13.3</span><span class="r">%</span></div><div class="dc-lbl">Hispanic Audience</div></div><div class="dc-note">Growing multicultural fanbase, 18–34 core demo</div></div>
+      </div>
+      <div class="s04-insight si" style="--d:.82s">
+        <div class="s04-ins-icon">💡</div>
+        <div class="s04-ins-text"><strong>Why this matters:</strong> 346 airings = 346 impressions on national cable TV. FS1 reaches ~90M U.S. households — same scale as NFL and NASCAR coverage. Your brand in front of a young, affluent, brand-receptive audience, every single round.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S05 — SOCIAL -->
+  <div class="slide" id="s05" data-s="below">
+    <div class="si-wrap" style="flex-direction:row;padding:0;gap:0">
+      <div class="s05c ig si" style="--d:.32s">
+        <div class="s05-plat">Instagram</div>
+        <div class="s05-num"><span class="ctr" data-t="1" data-s="M+">1M+</span></div>
+        <div class="s05-nlbl">Monthly Reach</div>
+        <div class="s05-growth">↑ +87.5% accounts reached (Jan 2026)</div>
+        <div class="s05-detail">1,048,415 total views in January 2026 alone.<br>91.9% organic — zero paid amplification.</div>
+        <div class="s05-org">✓ 91.9% Organic</div>
+      </div>
+      <div class="s05c fb si" style="--d:.42s">
+        <div class="s05-plat">Facebook</div>
+        <div class="s05-num"><span class="ctr" data-t="13.2" data-s="M">13.2M</span></div>
+        <div class="s05-nlbl">Total Views · Oct '25–Jan '26</div>
+        <div class="s05-growth">↑ +2,432% YOY Growth</div>
+        <div class="s05-detail">Record single-event reach: 2.1M (Macon, GA).<br>The audience is accelerating in real time.</div>
+        <div class="s05-org">✓ 92% Organic</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S06 — HIGHLIGHTS -->
+  <div class="slide" id="s06" data-s="below">
+    <div class="s-bg"></div>
+    <div class="s-bnum">06</div>
+    <div class="si-wrap rpad">
+      <div class="s-label si" style="--d:.3s">Season Highlights</div>
+      <div class="s-title si" style="--d:.4s;margin-top:10px">Standout <em>Moments</em></div>
+      <div class="hl-grid">
+        <div class="hl si" style="--d:.48s"><div class="hl-n">01</div><div class="hl-icon">🏆</div><div class="hl-txt"><strong>Gage Linville</strong> defending dual-class championship — the series' defining rivalry is in full swing.</div></div>
+        <div class="hl si" style="--d:.54s"><div class="hl-n">02</div><div class="hl-icon">🥇</div><div class="hl-txt"><strong>Luke Neese</strong> captures first pro win at Crown Coliseum — new talent rising through the ranks.</div></div>
+        <div class="hl si" style="--d:.60s"><div class="hl-n">03</div><div class="hl-icon">📊</div><div class="hl-txt">Record single-event Facebook reach: <strong>2.1M views</strong> from Macon, GA alone.</div></div>
+        <div class="hl si" style="--d:.66s"><div class="hl-n">04</div><div class="hl-icon">📺</div><div class="hl-txt">Season 3 premiere drew the <strong>highest TV ratings</strong> in series history — growth is undeniable.</div></div>
+        <div class="hl si" style="--d:.72s"><div class="hl-n">05</div><div class="hl-icon">🗺️</div><div class="hl-txt"><strong>15+ states represented</strong> every race weekend — national draw, regional passion.</div></div>
+        <div class="hl si" style="--d:.78s"><div class="hl-n">06</div><div class="hl-icon">🔧</div><div class="hl-txt"><strong>All 5 major OEMs</strong> in pit lane: Honda, Kawasaki, Yamaha, KTM, Suzuki — full industry validation.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S07 — SCHEDULE -->
+  <div class="slide" id="s07" data-s="below">
+    <div class="s-bnum">07</div>
+    <div class="si-wrap rpad">
+      <div class="s-label si" style="--d:.3s">2025–2026 Season</div>
+      <div class="s-title si" style="--d:.4s;margin-top:10px">Race <em>Schedule</em></div>
+      <table class="sched si" style="--d:.5s">
+        <thead><tr><th>Rounds</th><th>Date</th><th>Venue</th><th>City / State</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><span class="rd">1–2</span></td><td>Oct 17–18, 2025</td><td class="vn">F&amp;M Bank Arena</td><td>Clarksville, TN</td><td><span class="stb st-done"><span class="st-dot"></span>Complete</span></td></tr>
+          <tr><td><span class="rd">3–4</span></td><td>Nov 7–8, 2025</td><td class="vn">Garrett Coliseum</td><td>Montgomery, AL</td><td><span class="stb st-done"><span class="st-dot"></span>Complete</span></td></tr>
+          <tr><td><span class="rd">5–6</span></td><td>Nov 14–15, 2025</td><td class="vn">RP Funding Center</td><td>Lakeland, FL</td><td><span class="stb st-done"><span class="st-dot"></span>Complete</span></td></tr>
+          <tr><td><span class="rd">7–8</span></td><td>Dec 5–6, 2025</td><td class="vn">Crown Coliseum</td><td>Fayetteville, NC</td><td><span class="stb st-done"><span class="st-dot"></span>Complete</span></td></tr>
+          <tr><td><span class="rd">9–10</span></td><td>Dec 12–13, 2025</td><td class="vn">Macon Coliseum</td><td>Macon, GA</td><td><span class="stb st-done"><span class="st-dot"></span>Complete</span></td></tr>
+          <tr><td><span class="rd">11–12</span></td><td>Dec 19–20, 2025</td><td class="vn">Sudduth Coliseum</td><td>Lake Charles, LA</td><td><span class="stb st-done"><span class="st-dot"></span>Complete</span></td></tr>
+          <tr><td><span class="rd">13–14</span></td><td>Jan 9–10, 2026</td><td class="vn">Salem Civic Center</td><td>Salem, VA</td><td><span class="stb st-done"><span class="st-dot"></span>Complete</span></td></tr>
+          <tr><td><span class="rd">15–16</span></td><td>Jan 16–17, 2026</td><td class="vn">Huntington Center</td><td>Toledo, OH</td><td><span class="stb st-done"><span class="st-dot"></span>Complete</span></td></tr>
+          <tr><td><span class="rd">17–18</span></td><td>Jan 30–31, 2026</td><td class="vn">Florence Center</td><td>Florence, SC</td><td><span class="stb st-live"><span class="st-dot"></span>Final Round</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- S08 — ROSTER -->
+  <div class="slide" id="s08" data-s="below">
+    <div class="s-bnum">08</div>
+    <div class="si-wrap rpad" style="gap:0">
+      <div class="s-label si" style="--d:.3s">Pro Roster</div>
+      <div class="s-title si" style="--d:.4s;margin:8px 0 12px">Who's <em>Racing</em></div>
+      <div class="roster-g">
+        <div class="rc si" style="--d:.48s"><img src="Photos/1 (1 of 1)-9.jpg" class="rc-img" alt="Gage Linville"><div class="rc-num">1</div><div class="rc-info"><div class="rc-name">Gage Linville</div><div class="rc-team">Dirt Bike Depot KTM</div><div class="rc-cls">Dual-Class Defending Champ</div></div></div>
+        <div class="rc si" style="--d:.54s"><img src="Photos/32 (1 of 1)-2.jpg" class="rc-img" alt="Luke Neese"><div class="rc-num">32</div><div class="rc-info"><div class="rc-name">Luke Neese</div><div class="rc-team">Storm Lake Honda / Buddy Brooks Racing</div><div class="rc-cls">250 Pro</div></div></div>
+        <div class="rc si" style="--d:.60s"><img src="Photos/69 (1 of 1).jpg" class="rc-img" alt="Rider 69"><div class="rc-num">69</div><div class="rc-info"><div class="rc-name">Open Pro</div><div class="rc-team">Partzilla Blaster Power PRMX Kawasaki</div><div class="rc-cls">Open Pro</div></div></div>
+        <div class="rc si" style="--d:.66s"><img src="Photos/74 (1 of 1)-4.jpg" class="rc-img" alt="Rider 74"><div class="rc-num">74</div><div class="rc-info"><div class="rc-name">250 Pro</div><div class="rc-team">Muc-Off / FXR / Club MX Yamaha</div><div class="rc-cls">250 Pro</div></div></div>
+        <div class="rc si" style="--d:.72s"><img src="Photos/188 (1 of 1)-9.jpg" class="rc-img" alt="Rider 188"><div class="rc-num">188</div><div class="rc-info"><div class="rc-name">Open Pro</div><div class="rc-team">MotoNation Suzuki Racing</div><div class="rc-cls">Open Pro</div></div></div>
+        <div class="rc si" style="--d:.78s"><img src="Photos/422 (1 of 1)-3.jpg" class="rc-img" alt="Rider 422"><div class="rc-num">422</div><div class="rc-info"><div class="rc-name">250 Pro</div><div class="rc-team">TiLube Honda Racing</div><div class="rc-cls">250 Pro</div></div></div>
+      </div>
+      <div class="roster-strip si" style="--d:.86s">
+        <div class="rs-item"><div class="rs-n"><span>15</span>+ States</div><div class="rs-l">National Draw</div><div class="rs-d">Competitors from across the country every race weekend</div></div>
+        <div class="rs-item"><div class="rs-n"><span>5</span> OEMs</div><div class="rs-l">Major Manufacturers</div><div class="rs-d">Honda, Kawasaki, Yamaha, KTM, Suzuki — all in pit lane</div></div>
+        <div class="rs-item"><div class="rs-n"><span>→</span> SX</div><div class="rs-l">Supercross Pipeline</div><div class="rs-d">Direct path to 250 East SX — tomorrow's stars race here today</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S09 — TIERS -->
+  <div class="slide" id="s09" data-s="below">
+    <div class="s-bnum">09</div>
+    <div class="si-wrap rpad">
+      <div class="tiers-hd">
+        <div>
+          <div class="s-label si" style="--d:.3s">Sponsorship</div>
+          <div class="s-title si" style="--d:.4s;margin-top:10px">Partner <em>Tiers</em></div>
+        </div>
+        <div class="tiers-note si" style="--d:.48s">All tiers include broadcast visibility, on-site activation &amp; social media. Pricing negotiable based on category exclusivity &amp; multi-year commitment.</div>
+      </div>
+      <div class="tg">
+        <div class="tc tf si" style="--d:.5s">
+          <div class="tc-rib rr"></div>
+          <div class="tc-name">Title</div><div class="tc-sub">Premier Partner</div>
+          <ul class="tc-feats"><li>Series name rights</li><li>All broadcast mentions</li><li>All activation rights</li><li>Official designation</li><li>On-track signage all venues</li><li>Season-long social media</li><li>VIP tickets + pit passes</li><li>Podium logo placement</li><li>Post-season recap video</li></ul>
+          <div class="tc-btn">Inquire Now</div>
+        </div>
+        <div class="tc si" style="--d:.58s">
+          <div class="tc-rib rr"></div>
+          <div class="tc-name">Presenting</div><div class="tc-sub">Top-Level Partner</div>
+          <ul class="tc-feats"><li>TV broadcast mentions</li><li>Broadcast logo graphics</li><li>On-track signage all venues</li><li>Pit lane banners</li><li>Series website presence</li><li>Season-long social media</li><li>VIP tickets + pit passes</li><li>Podium logo placement</li><li class="off">Post-season recap video</li></ul>
+          <div class="tc-btn">Learn More</div>
+        </div>
+        <div class="tc si" style="--d:.66s">
+          <div class="tc-rib rg"></div>
+          <div class="tc-name" style="color:var(--gold)">Gold</div><div class="tc-sub">Core Partner</div>
+          <ul class="tc-feats"><li>On-track signage all venues</li><li>Pit lane banners</li><li>Series website presence</li><li>Season-long social media</li><li>VIP tickets + pit passes</li><li class="off">TV broadcast mentions</li><li class="off">Broadcast logo graphics</li><li class="off">Podium logo placement</li><li class="off">Post-season recap video</li></ul>
+          <div class="tc-btn">Learn More</div>
+        </div>
+        <div class="tc si" style="--d:.74s">
+          <div class="tc-rib rs"></div>
+          <div class="tc-name" style="color:var(--silver)">Silver</div><div class="tc-sub">Supporting Partner</div>
+          <ul class="tc-feats"><li>Pit lane banners all venues</li><li>Series website presence</li><li>Per-round social media</li><li>VIP tickets + pit passes</li><li class="off">On-track signage</li><li class="off">TV broadcast mentions</li><li class="off">Season-long social media</li><li class="off">Podium logo placement</li><li class="off">Post-season recap video</li></ul>
+          <div class="tc-btn">Learn More</div>
+        </div>
+        <div class="tc si" style="--d:.82s">
+          <div class="tc-rib rw"></div>
+          <div class="tc-name">Event</div><div class="tc-sub">Round Sponsor</div>
+          <ul class="tc-feats"><li>Per-round activation space</li><li>Event banners</li><li>Social media mention</li><li>VIP and pit passes</li><li class="off">Season-long TV visibility</li><li class="off">On-track signage</li><li class="off">Series website presence</li><li class="off">Podium logo placement</li><li class="off">Post-season recap video</li></ul>
+          <div class="tc-btn">Learn More</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S10 — EXPERIENCE -->
+  <div class="slide" id="s10" data-s="below">
+    <div class="si-wrap" style="padding:0;gap:0">
+      <div class="s10-hd si" style="--d:.3s">
+        <div>
+          <div class="s-label">At The Event</div>
+          <div class="s-title" style="margin-top:10px">Fan <em>Experience</em></div>
+        </div>
+        <div class="s10-hd-r">Professional arenas with Jumbotrons · $25 pit passes · $30 track walk · Podium ceremonies · Fan zones &amp; brand activation</div>
+      </div>
+      <div class="s10-photos">
+        <div class="s10p si" style="--d:.4s"><img src="Photos/Gate (1 of 1)-2.jpg" alt="Gate Drop"><div class="s10p-lbl">Gate Drop<div class="s10p-sub">18 Rounds · 3 Classes</div></div></div>
+        <div class="s10p si" style="--d:.5s"><img src="Photos/32 with crowd (1 of 1)-2.jpg" alt="Fan Access"><div class="s10p-lbl">Fan Access<div class="s10p-sub">$25 Pit Passes · $30 Track Walk</div></div></div>
+        <div class="s10p si" style="--d:.6s"><img src="Photos/Pits (1 of 1)-2.jpg" alt="Pit Lane"><div class="s10p-lbl">Pit Lane<div class="s10p-sub">Brand Activation · Sponsor Visibility</div></div></div>
+        <div class="s10p si" style="--d:.68s"><img src="Photos/351 pack air (1 of 1).jpg" alt="Racing Action"><div class="s10p-lbl">Racing Action<div class="s10p-sub">Jumbotron Coverage · PA Announcements</div></div></div>
+        <div class="s10p si" style="--d:.76s"><img src="Photos/Merch (1 of 1)-8.jpg" alt="Merch"><div class="s10p-lbl">Merch &amp; Brand<div class="s10p-sub">Direct Fan Engagement</div></div></div>
+        <div class="s10p si" style="--d:.84s"><img src="Photos/PZ Pits (1 of 1)-4.jpg" alt="Partzilla Pits"><div class="s10p-lbl">Partzilla Pits<div class="s10p-sub">Official Title Sponsor Presence</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S11 — CTA -->
+  <div class="slide" id="s11" data-s="below">
+    <div class="s-bg"></div>
+    <div class="s-ov"></div>
+    <div class="si-wrap" style="align-items:center;justify-content:center;text-align:center;padding-right:150px">
+      <img src="Partzilla Logo lite.png" alt="Partzilla Arenacross" class="si" style="--d:.2s;width:170px;margin-bottom:20px;filter:drop-shadow(0 4px 24px rgba(0,0,0,.7))">
+      <div class="cta-eye si" style="--d:.32s">East Coast's Premier Motocross Championship</div>
+      <div class="cta-h si" style="--d:.4s">Your Brand<br><em>Belongs Here</em></div>
+      <p class="cta-body si" style="--d:.52s">The infrastructure is built. The audience is engaged. The television deal is signed. Join us as we expand to new markets and build the most exciting motorsports property on the East Coast.</p>
+      <div class="cta-stats si" style="--d:.62s">
+        <div><div class="cs-n">346</div><div class="cs-l">FS1/FS2 Airings</div></div>
+        <div><div class="cs-n">13.2<span class="r">M</span></div><div class="cs-l">Facebook Views</div></div>
+        <div><div class="cs-n">92<span class="r">%</span></div><div class="cs-l">Organic Reach</div></div>
+      </div>
+      <div class="cta-btns si" style="--d:.72s">
+        <a href="mailto:info@partzillaarenacross.com" class="btn-r">Get Sponsorship Info</a>
+        <a href="tel:9312787775" class="btn-o">Call (931) 278-7775</a>
+      </div>
+      <div class="cta-contact si" style="--d:.82s">
+        <div class="cci"><div class="cci-l">Email</div><div class="cci-v"><a href="mailto:info@partzillaarenacross.com">info@partzillaarenacross.com</a></div></div>
+        <div class="cci"><div class="cci-l">Phone</div><div class="cci-v"><a href="tel:9312787775">(931) 278-7775</a></div></div>
+        <div class="cci"><div class="cci-l">Location</div><div class="cci-v">Shelbyville, Tennessee</div></div>
+        <div class="cci"><div class="cci-l">Website</div><div class="cci-v"><a href="https://partzillaarenacross.com" target="_blank">partzillaarenacross.com</a></div></div>
+      </div>
+    </div>
+    <div class="cta-foot">
+      <img src="Partzilla Logo lite.png" alt="Partzilla Arenacross" style="height:44px;opacity:.65;filter:drop-shadow(0 1px 4px rgba(0,0,0,.5))">
+      <div class="cf-badges">
+        <span class="cf-b">AMA Sanctioned</span>
+        <span class="cf-b">FS1 / FS2</span>
+        <span class="cf-b">Official Manufacturer: Honda</span>
+        <span class="cf-b">Title Sponsor: Partzilla</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /slides -->
+
+<!-- ── SIDE NAV ──────────────────────────────── -->
+<nav id="snav">
+  <div class="sn-track"></div>
+  <div class="sni on" data-g="0"><span class="sni-lbl">Hero</span><span class="sni-pip"></span></div>
+  <div class="sni" data-g="1"><span class="sni-lbl">Opportunity</span><span class="sni-pip"></span></div>
+  <div class="sni" data-g="2"><span class="sni-lbl">Broadcast</span><span class="sni-pip"></span></div>
+  <div class="sni" data-g="3"><span class="sni-lbl">Audience</span><span class="sni-pip"></span></div>
+  <div class="sni" data-g="4"><span class="sni-lbl">Social</span><span class="sni-pip"></span></div>
+  <div class="sni" data-g="5"><span class="sni-lbl">Highlights</span><span class="sni-pip"></span></div>
+  <div class="sni" data-g="6"><span class="sni-lbl">Schedule</span><span class="sni-pip"></span></div>
+  <div class="sni" data-g="7"><span class="sni-lbl">Roster</span><span class="sni-pip"></span></div>
+  <div class="sni" data-g="8"><span class="sni-lbl">Tiers</span><span class="sni-pip"></span></div>
+  <div class="sni" data-g="9"><span class="sni-lbl">Experience</span><span class="sni-pip"></span></div>
+  <div class="sni" data-g="10"><span class="sni-lbl">Contact</span><span class="sni-pip"></span></div>
+</nav>
+
+<!-- ── SLIDE COUNTER ────────────────────────── -->
+<div id="scount">
+  <span class="sc-n" id="sc-n">01</span>
+  <span class="sc-sep">/</span>
+  <span class="sc-tot">11</span>
+</div>
+
+<!-- ── NAV ARROWS ───────────────────────────── -->
+<div id="narrows">
+  <button class="na" id="na-up" title="Previous (↑)">↑</button>
+  <button class="na" id="na-dn" title="Next (↓)">↓</button>
+</div>
+
+<!-- ── TICKER (slide 01 only) ───────────────── -->
+<div id="ticker">
+  <div class="tk-track" id="tkt">
+    <span class="tki">346 Fox Sports Airings <span class="tkd"></span></span>
+    <span class="tki">13.2M Facebook Views <span class="tkd"></span></span>
+    <span class="tki">1M+ Instagram Monthly <span class="tkd"></span></span>
+    <span class="tki">92% Organic Reach <span class="tkd"></span></span>
+    <span class="tki">9 Arena Events · 8 States <span class="tkd"></span></span>
+    <span class="tki">18 Rounds of Racing <span class="tkd"></span></span>
+    <span class="tki">AMA Sanctioned <span class="tkd"></span></span>
+    <span class="tki">Season 3 · Third Year <span class="tkd"></span></span>
+    <span class="tki">346 Fox Sports Airings <span class="tkd"></span></span>
+    <span class="tki">13.2M Facebook Views <span class="tkd"></span></span>
+    <span class="tki">1M+ Instagram Monthly <span class="tkd"></span></span>
+    <span class="tki">92% Organic Reach <span class="tkd"></span></span>
+    <span class="tki">9 Arena Events · 8 States <span class="tkd"></span></span>
+    <span class="tki">18 Rounds of Racing <span class="tkd"></span></span>
+    <span class="tki">AMA Sanctioned <span class="tkd"></span></span>
+    <span class="tki">Season 3 · Third Year <span class="tkd"></span></span>
+  </div>
+</div>
+
+<!-- ── S10 PHOTO GRID (6-up) override ──────── -->
+<style>
+.s10-photos{grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr}
+</style>
+
+<script>
+// ─── CURSOR ──────────────────────────────────
+const cur = document.getElementById('cur');
+const ring = document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX; my=e.clientY;
+  cur.style.left=mx+'px'; cur.style.top=my+'px';
+});
+(function rafLoop(){
+  rx+=(mx-rx)*.12; ry+=(my-ry)*.12;
+  ring.style.left=rx+'px'; ring.style.top=ry+'px';
+  requestAnimationFrame(rafLoop);
+})();
+document.querySelectorAll('a,button,.sni,.tc,.dc,.p-card,.mc,.rc,.s10p,.hl,.hst').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('chov'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('chov'));
+});
+
+// ─── SLIDE ENGINE ─────────────────────────────
+const slides = Array.from(document.querySelectorAll('.slide'));
+const N = slides.length;
+let cur_s = 0;
+let busy = false;
+const DUR = 920;
+
+// initialise all slides to correct state
+slides.forEach((s,i)=>{ s.dataset.s = i===0?'active':'below'; });
+
+function goTo(idx){
+  if(busy || idx===cur_s || idx<0 || idx>=N) return;
+  busy=true;
+
+  // flash line
+  const fl=document.getElementById('flash');
+  fl.classList.add('go');
+  setTimeout(()=>fl.classList.remove('go'),750);
+
+  const dir = idx>cur_s ? 1 : -1;
+  const prev_s = cur_s;
+
+  // reset si items on incoming slide (no transition so it's instant)
+  slides[idx].querySelectorAll('.si').forEach(el=>{
+    el.style.transition='none';
+    el.style.opacity='0';
+    el.style.transform='translateY(16px)';
+  });
+
+  // set state
+  slides[prev_s].dataset.s = dir>0 ? 'above' : 'below';
+  slides[idx].dataset.s = 'active';
+
+  // re-enable si transitions after a frame
+  requestAnimationFrame(()=>{
+    requestAnimationFrame(()=>{
+      slides[idx].querySelectorAll('.si').forEach(el=>{
+        el.style.transition='';
+        el.style.opacity='';
+        el.style.transform='';
+      });
+    });
+  });
+
+  cur_s = idx;
+  updateUI();
+
+  // fire counters for this slide
+  setTimeout(()=>fireCounters(slides[idx]), 400);
+
+  setTimeout(()=>{ busy=false; }, DUR+60);
+}
+
+// ─── UI UPDATES ───────────────────────────────
+const navItems = document.querySelectorAll('.sni');
+const scN = document.getElementById('sc-n');
+
+function updateUI(){
+  navItems.forEach((ni,i)=>ni.classList.toggle('on', i===cur_s));
+  scN.textContent = String(cur_s+1).padStart(2,'0');
+  // global logo: hide on cover (has its own), show everywhere else
+  document.getElementById('g-logo').style.opacity = cur_s===0 ? '0' : '';
+}
+updateUI();
+
+// ─── INPUT HANDLING ───────────────────────────
+let lastWh = 0;
+window.addEventListener('wheel',e=>{
+  e.preventDefault();
+  const now=Date.now();
+  if(now-lastWh<300) return;
+  lastWh=now;
+  if(e.deltaY>0) goTo(cur_s+1);
+  else goTo(cur_s-1);
+},{passive:false});
+
+window.addEventListener('keydown',e=>{
+  if(e.key==='ArrowDown'||e.key==='PageDown'||e.key===' ') goTo(cur_s+1);
+  if(e.key==='ArrowUp'||e.key==='PageUp') goTo(cur_s-1);
+});
+
+document.getElementById('na-dn').addEventListener('click',()=>goTo(cur_s+1));
+document.getElementById('na-up').addEventListener('click',()=>goTo(cur_s-1));
+
+navItems.forEach(ni=>{
+  ni.addEventListener('click',()=>goTo(parseInt(ni.dataset.g)));
+});
+
+// Touch
+let tStart=0, tStartX=0;
+document.addEventListener('touchstart',e=>{tStart=e.touches[0].clientY; tStartX=e.touches[0].clientX;},{passive:true});
+document.addEventListener('touchend',e=>{
+  const dy=tStart-e.changedTouches[0].clientY;
+  const dx=Math.abs(tStartX-e.changedTouches[0].clientX);
+  if(Math.abs(dy)>50 && Math.abs(dy)>dx){
+    if(dy>0) goTo(cur_s+1); else goTo(cur_s-1);
+  }
+},{passive:true});
+
+// ─── COUNTER ANIMATION ────────────────────────
+const fired = new Set();
+function fireCounters(slide){
+  slide.querySelectorAll('.ctr').forEach(el=>{
+    if(fired.has(el)) return;
+    fired.add(el);
+    const target = parseFloat(el.dataset.t);
+    const suffix = el.dataset.s||'';
+    const isFloat = target%1!==0;
+    const dur = 1600;
+    const t0 = performance.now();
+    function upd(now){
+      const p=Math.min((now-t0)/dur,1);
+      const ease=1-Math.pow(1-p,3);
+      const v=target*ease;
+      el.textContent=(isFloat?v.toFixed(1):Math.floor(v))+suffix;
+      if(p<1) requestAnimationFrame(upd);
+      else el.textContent=(isFloat?target.toFixed(1):target)+suffix;
+    }
+    requestAnimationFrame(upd);
+  });
+}
+// Fire on first slide immediately after loader
+setTimeout(()=>fireCounters(slides[0]), 1500);
+
+// ─── LOADER ───────────────────────────────────
+setTimeout(()=>{
+  document.getElementById('loader').classList.add('out');
+  document.getElementById('g-logo').classList.add('vis');
+  setTimeout(()=>{ document.getElementById('loader').style.display='none'; }, 1000);
+}, 1400);
+</script>
+</body>
+</html>
