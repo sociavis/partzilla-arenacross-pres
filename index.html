@@ -473,16 +473,50 @@ body.chov #cur-ring{width:54px;height:54px}
   .contact-form{grid-template-columns:1fr!important}
   .cta-foot{flex-direction:column!important;gap:16px!important;text-align:center!important;padding-right:24px!important}
   .cf-checkbox-group{grid-template-columns:1fr!important}
+  .s07-watermark svg{width:80px;height:80px}
+  .s03-logo{width:clamp(100px,30vw,160px)}
 }
+
+/* ── AUTH GATE ───────────────────────────────── */
+#auth-gate{position:fixed;inset:0;background:var(--blk);z-index:9200;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:40px;opacity:1;transition:opacity .5s}
+#auth-gate.unlocked{opacity:0;pointer-events:none}
+.ag-logo{width:clamp(180px,40vw,280px);filter:drop-shadow(0 4px 12px rgba(0,0,0,.5))}
+.ag-box{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:36px;width:90%;max-width:380px;text-align:center;box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.ag-title{font-family:var(--race);font-size:16px;letter-spacing:.08em;color:rgba(255,255,255,.6);margin-bottom:24px}
+#ag-form{display:flex;flex-direction:column;gap:12px}
+#ag-form input{background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.1);border-radius:2px;padding:14px;color:#fff;font-family:var(--body);font-size:14px;outline:none;transition:border-color .3s}
+#ag-form input:focus{border-color:var(--red)}
+.ag-btn{background:var(--red);color:#fff;border:none;border-radius:2px;padding:16px;font-family:var(--race);font-size:12px;letter-spacing:.15em;text-transform:uppercase;cursor:none;margin-top:8px;transition:background .2s, transform .2s}
+.ag-btn:hover{background:var(--red-dk);transform:translateY(-2px)}
+#ag-err{color:var(--red);font-size:11px;margin-top:8px;min-height:14px;letter-spacing:.05em}
+
 @media(max-width:600px){
   .roster-g{grid-template-columns:1fr!important}
   .s10-photos{grid-template-columns:1fr!important}
   .s02-q{font-size:clamp(16px,5vw,24px)}
   .cta-h{font-size:clamp(28px,10vw,52px)}
+  #ag-form input:focus{border-color:var(--red)}
+  .ag-btn{background:var(--red);color:#fff;border:none;border-radius:2px;padding:16px;font-family:var(--race);font-size:12px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;margin-top:8px;transition:background .2s, transform .2s}
+  .ag-btn:hover{background:var(--red-dk);transform:translateY(-2px)}
+  #ag-err{color:var(--red);font-size:11px;margin-top:8px;min-height:14px}
 }
 </style>
 </head>
 <body>
+
+<!-- AUTH GATE -->
+<div id="auth-gate">
+  <img src="Partzilla Logo lite.png" alt="Partzilla Arenacross" class="ag-logo">
+  <div class="ag-box">
+    <div class="ag-title">PRESENTATION ACCESS</div>
+    <form id="ag-form">
+      <input type="email" id="ag-email" placeholder="Email Address" required>
+      <input type="password" id="ag-pass" placeholder="Password" required>
+      <button type="submit" class="ag-btn">Unlock Presentation</button>
+      <div id="ag-err"></div>
+    </form>
+  </div>
+</div>
 
 <!-- FRAME BORDERS -->
 <div id="frame-top"></div>
@@ -1096,6 +1130,28 @@ document.addEventListener('mousemove',e=>{
 document.querySelectorAll('a,button,.sni,.tc,.dc,.p-card,.mc,.rc,.s04p,.hl,.spot-card,.alc-support').forEach(el=>{
   el.addEventListener('mouseenter',()=>document.body.classList.add('chov'));
   el.addEventListener('mouseleave',()=>document.body.classList.remove('chov'));
+});
+
+// ─── AUTH GATE LOGIC ─────────────────────────
+const authGate = document.getElementById('auth-gate');
+const authForm = document.getElementById('ag-form');
+const authErr = document.getElementById('ag-err');
+
+if(localStorage.getItem('pz_auth')==='1') {
+  authGate.classList.add('unlocked');
+}
+
+authForm.addEventListener('submit',e=>{
+  e.preventDefault();
+  const em = document.getElementById('ag-email').value;
+  const pw = document.getElementById('ag-pass').value;
+  if(pw === 'zilla26') {
+    localStorage.setItem('pz_auth','1');
+    localStorage.setItem('pz_email',em);
+    authGate.classList.add('unlocked');
+  } else {
+    authErr.textContent = 'Incorrect Password';
+  }
 });
 
 // ─── LOADER ──────────────────────────────────
