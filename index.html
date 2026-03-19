@@ -32,6 +32,7 @@
 <link rel="icon" type="image/png" href="Partzilla Logo lite.png">
 <link rel="apple-touch-icon" href="Partzilla Logo lite.png">
 
+
 <style>
 @font-face { font-family:'BringRace'; src:url('Bring Race.otf') format('opentype'); }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -1493,7 +1494,12 @@ body.chov #cur-ring{width:54px;height:54px}
       <img src="Partzilla Logo lite.png" alt="Partzilla Arenacross" class="si" style="--d:.2s;width:240px;margin-bottom:14px;filter:drop-shadow(0 4px 24px rgba(0,0,0,.7))">
       <div class="cta-eye si" style="--d:.32s">The Most Televised · Deepest Field · Fastest-Growing</div>
       <div class="cta-h si" style="--d:.4s">YOUR BRAND<br><em>BELONGS HERE</em></div>
-      <form class="contact-form si" style="--d:.62s" action="mailto:info@partzillaarenacross.com" method="post" enctype="text/plain">
+      <form class="contact-form si" style="--d:.62s" id="contactForm" action="https://formsubmit.co/info@partzillaarenacross.com" method="POST">
+        <input type="hidden" name="_subject" value="New Sponsorship Inquiry — Partzilla Arenacross">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://partzilla-arenacross.vercel.app">
+        <input type="text" name="_honey" style="display:none">
         <div class="cf-field">
           <label>Name</label>
           <input type="text" name="name" placeholder="Your name" required>
@@ -1851,6 +1857,8 @@ function fireCounters(slide){
     requestAnimationFrame(upd);
   });
 }
+
+
 </script>
 </body>
 </html>
