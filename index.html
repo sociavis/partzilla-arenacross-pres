@@ -10,10 +10,11 @@
 :root{
   --red:#E8001D;--red-dk:#A80015;--red-glow:rgba(232,0,29,.35);
   --blk:#080808;--d1:#111;--d2:#181818;--d3:#202020;
-  --wh:#fff;--gr:#666;--gr2:#999;--gold:#F5A623;--silver:#A0A0A0;
+  --wh:#fff;--gr:#666;--gr2:#999;--gold:#FFD700;--silver:#C0C0C0;--bronze:#CD7F32;
+  --yellow:#f5ff00;--green:#22c55e;
   --race:'BringRace','Impact',sans-serif;
   --body:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
-  --ease:cubic-bezier(0.16,1,0.3,1);--dur:880ms;
+  --ease:cubic-bezier(0.16,1,0.3,1);--dur:880ms;--frame:6px;
 }
 html,body{width:100%;height:100%;overflow:hidden;background:var(--blk);color:var(--wh);font-family:var(--body);cursor:none}
 ::selection{background:var(--red);color:#fff}
@@ -34,9 +35,14 @@ body.chov #cur-ring{width:54px;height:54px}
 @keyframes ldFill{to{left:0}}
 
 /* ── GLOBAL LOGO ─────────────────────────────── */
-#g-logo{position:fixed;top:26px;left:36px;z-index:1000;width:118px;opacity:0;transition:opacity .5s ease;pointer-events:none}
+#g-logo{position:fixed;top:calc(var(--frame) + 20px);left:calc(var(--frame) + 28px);z-index:1000;width:118px;opacity:0;transition:opacity .5s ease;pointer-events:none}
 #g-logo.vis{opacity:.9}
 #g-logo img{width:100%;display:block;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
+
+/* ── FRAME BORDERS ───────────────────────────── */
+#frame-top{position:fixed;top:0;left:0;right:0;height:var(--frame);background:var(--red);z-index:1002}
+#frame-left{position:fixed;top:0;bottom:0;left:0;width:var(--frame);background:var(--red);z-index:1002}
+#frame-right{position:fixed;top:0;bottom:0;right:0;width:var(--frame);background:var(--red);z-index:1002}
 
 /* ── FLASH LINE ──────────────────────────────── */
 #flash{position:fixed;inset:0;pointer-events:none;z-index:8000;overflow:hidden}
@@ -45,8 +51,8 @@ body.chov #cur-ring{width:54px;height:54px}
 @keyframes flashLine{0%{left:-8px;opacity:0}15%{opacity:1}100%{left:110%;opacity:0}}
 
 /* ── SLIDE SYSTEM ────────────────────────────── */
-#slides{position:fixed;inset:0}
-.slide{position:absolute;inset:0;overflow:hidden;will-change:transform;transition:transform var(--dur) var(--ease),opacity .7s ease}
+#slides{position:fixed;top:var(--frame);left:var(--frame);right:var(--frame);bottom:38px}
+.slide{position:absolute;inset:0;overflow:hidden;will-change:transform;transition:transform var(--dur) var(--ease),opacity .7s ease;display:flex;flex-direction:column}
 .slide[data-s="below"]{transform:translateY(100%);opacity:0;pointer-events:none}
 .slide[data-s="above"]{transform:translateY(-100%);opacity:0;pointer-events:none}
 .slide[data-s="active"]{transform:translateY(0);opacity:1;pointer-events:all}
@@ -61,7 +67,7 @@ body.chov #cur-ring{width:54px;height:54px}
 .s-ov{position:absolute;inset:0;z-index:1}
 
 /* ── SIDE NAV ────────────────────────────────── */
-#snav{position:fixed;right:38px;top:50%;transform:translateY(-50%);z-index:1000;display:flex;flex-direction:column;align-items:flex-end;gap:16px}
+#snav{position:fixed;right:calc(var(--frame) + 30px);top:50%;transform:translateY(-50%);z-index:1000;display:flex;flex-direction:column;align-items:flex-end;gap:16px}
 .sn-track{position:absolute;right:2px;top:10px;bottom:10px;width:1px;background:rgba(255,255,255,.05);z-index:-1}
 .sni{display:flex;align-items:center;gap:10px;cursor:none}
 .sni-lbl{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0);transition:color .3s,transform .3s;transform:translateX(8px);white-space:nowrap;pointer-events:none;font-weight:600}
@@ -71,20 +77,10 @@ body.chov #cur-ring{width:54px;height:54px}
 .sni.on .sni-pip{background:var(--red);border-color:var(--red);box-shadow:0 0 10px rgba(232,0,29,.7);transform:scale(1.7)}
 .sni:hover:not(.on) .sni-pip{border-color:rgba(255,255,255,.45);background:rgba(255,255,255,.08)}
 
-/* ── SLIDE COUNTER ───────────────────────────── */
-#scount{position:fixed;bottom:36px;left:64px;z-index:1000;display:flex;align-items:baseline;gap:7px}
-.sc-n{font-family:var(--race);font-size:30px;color:var(--wh);letter-spacing:.04em;transition:opacity .3s}
-.sc-sep{font-size:11px;color:rgba(255,255,255,.18)}
-.sc-tot{font-family:var(--race);font-size:13px;color:rgba(255,255,255,.22);letter-spacing:.06em}
-
-/* ── NAV ARROWS ──────────────────────────────── */
-#narrows{position:fixed;bottom:32px;right:120px;z-index:1000;display:flex;gap:6px}
-.na{width:38px;height:38px;border:1px solid rgba(255,255,255,.1);border-radius:2px;display:flex;align-items:center;justify-content:center;cursor:none;transition:all .2s;background:transparent;color:rgba(255,255,255,.35);font-size:13px}
-.na:hover{border-color:var(--red);color:var(--red);background:rgba(232,0,29,.06)}
-.na:active{transform:scale(.94)}
+/* (old arrows removed — now in #bottombar) */
 
 /* ── COMMON INNER ────────────────────────────── */
-.si-wrap{position:relative;z-index:2;height:100%;width:100%;padding:56px 56px 52px 72px;display:flex;flex-direction:column}
+.si-wrap{position:relative;z-index:2;flex:1;min-height:0;width:100%;padding:56px 56px 52px 72px;display:flex;flex-direction:column}
 .si-wrap.rpad{padding-right:152px}
 .s-label{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--red);font-weight:700;display:flex;align-items:center;gap:9px}
 .s-label::before{content:'';width:18px;height:1px;background:var(--red)}
@@ -92,42 +88,66 @@ body.chov #cur-ring{width:54px;height:54px}
 .s-title em{color:var(--red);font-style:normal}
 .s-bnum{position:absolute;right:152px;bottom:-20px;font-family:var(--race);font-size:210px;color:rgba(255,255,255,.022);pointer-events:none;letter-spacing:.02em;line-height:1;z-index:1;user-select:none}
 
-/* ── TICKER ──────────────────────────────────── */
-.s-ticker{position:absolute;bottom:0;left:0;right:0;height:34px;background:var(--red);overflow:hidden;display:flex;align-items:center;z-index:10}
-.tk-track{display:inline-flex;white-space:nowrap;animation:tkScroll 32s linear infinite}
-.tki{display:inline-flex;align-items:center;gap:8px;font-family:var(--race);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:0 22px;color:#fff}
-.tkd{width:3px;height:3px;background:rgba(255,255,255,.5);border-radius:50%}
-@keyframes tkScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* ── BOTTOM BAR ──────────────────────────────── */
+#bottombar{position:fixed;bottom:0;left:0;right:0;z-index:1003;height:38px;background:var(--red);display:flex;align-items:center;justify-content:space-between;padding:0 24px;box-shadow:0 -2px 16px rgba(0,0,0,.35)}
+.bb-section{display:flex;align-items:center;gap:12px}
+.bb-page{font-family:var(--race);font-size:12px;color:#fff;letter-spacing:.06em;display:flex;align-items:baseline;gap:3px}
+.bb-page .bb-sep{color:rgba(255,255,255,.4);font-size:9px}
+.bb-page .bb-tot{color:rgba(255,255,255,.4);font-size:9px}
+.bb-btn{padding:4px 12px;border:1px solid rgba(255,255,255,.3);border-radius:2px;font-family:var(--race);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:transparent;cursor:pointer;transition:all .2s;text-decoration:none;display:flex;align-items:center}
+.bb-btn:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.5)}
+.bb-btn:active{transform:scale(.96)}
+.bb-arrows{display:flex;gap:3px}
+.bb-arrows button{width:28px;height:26px;border:1px solid rgba(255,255,255,.3);border-radius:2px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:transparent;color:#fff;font-size:11px;transition:all .2s;font-family:inherit}
+.bb-arrows button:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.5)}
+.bb-arrows button:active{transform:scale(.94)}
+.bb-divider{width:1px;height:18px;background:rgba(255,255,255,.25)}
+.bb-link{font-family:var(--race);font-size:8px;letter-spacing:.1em;color:#fff;text-decoration:none;opacity:.7;transition:opacity .2s;text-transform:lowercase}
+.bb-link:hover{opacity:1}
+.bb-social{display:flex;gap:8px;align-items:center}
+.bb-social a{color:rgba(255,255,255,.65);display:flex;transition:color .2s}
+.bb-social a:hover{color:#fff}
+.bb-social svg{width:14px;height:14px}
 
 /* ════════════════════════════════════════════════
    SLIDE 01 — COVER
 ════════════════════════════════════════════════ */
 #s01{background:var(--blk)}
-.cv-photo{position:absolute;inset:0;z-index:0;background:url('Photos/Arena (1 of 1).jpg') center 35%/cover no-repeat;opacity:.09;filter:saturate(.4)}
+.cv-photo{position:absolute;inset:0;z-index:0;overflow:hidden;opacity:.35;filter:saturate(.5)}
+.cv-photo iframe{position:absolute;top:50%;left:50%;width:180%;height:180%;transform:translate(-50%,-50%);pointer-events:none;border:0}
 .cv-grid{position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(232,0,29,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(232,0,29,.025) 1px,transparent 1px);background-size:72px 72px;animation:cvGrid 22s linear infinite}
 @keyframes cvGrid{to{background-position:72px 72px}}
 .cv-vignette{position:absolute;inset:0;z-index:2;background:radial-gradient(ellipse at 50% 46%,transparent 22%,rgba(8,8,8,.78) 78%)}
-.cv-center{position:relative;z-index:3;height:100%;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 150px 60px 60px;gap:0}
-.cv-logo-c{width:clamp(200px,20vw,280px);filter:drop-shadow(0 6px 40px rgba(0,0,0,.6))}
+.cv-center{position:relative;z-index:3;height:100%;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:50px 140px 50px 50px;gap:0}
+.cv-logo-c{width:clamp(240px,24vw,340px);filter:drop-shadow(0 6px 40px rgba(0,0,0,.6))}
 .cv-series{font-family:var(--race);font-size:clamp(9px,1vw,13px);letter-spacing:.3em;color:rgba(255,255,255,.45);margin-top:22px;text-transform:uppercase}
 .cv-rule{display:flex;align-items:center;gap:16px;margin:20px 0 18px;width:fit-content;align-self:center}
 .cv-rule-line{width:60px;height:1px;background:rgba(255,255,255,.12)}
 .cv-rule-diamond{width:5px;height:5px;background:var(--red);transform:rotate(45deg);flex-shrink:0;box-shadow:0 0 8px rgba(232,0,29,.5)}
-.cv-year{font-family:var(--race);font-size:clamp(60px,8.5vw,100px);line-height:.9;letter-spacing:.02em;color:#FFE100;text-shadow:0 0 60px rgba(255,225,0,.12)}
-.cv-year-dash{color:var(--red)}
+.cv-year{font-family:var(--race);font-size:clamp(50px,7vw,80px);line-height:.9;letter-spacing:.02em;color:var(--yellow);text-shadow:0 0 60px rgba(245,255,0,.15)}
+.cv-year-dash{color:#fff}
 .cv-spons{font-family:var(--race);font-size:clamp(14px,1.8vw,22px);letter-spacing:.22em;color:var(--wh);margin-top:10px;text-shadow:0 2px 16px rgba(0,0,0,.5)}
 .cv-stats{display:flex;align-items:stretch;gap:1px;margin-top:28px;width:fit-content;align-self:center}
 .cv-stat{padding:10px 18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);text-align:center;min-width:90px}
 .cv-stat-n{font-family:var(--race);font-size:clamp(13px,1.6vw,18px);color:var(--wh);letter-spacing:.03em}
-.cv-stat-n .r{color:var(--red)}
+.cv-stat-n .r{color:var(--wh)}
 .cv-stat-l{font-size:7px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.32);margin-top:3px}
-.cv-creds{display:flex;align-items:center;gap:14px;margin-top:22px;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.22)}
-.cv-cred-pip{width:3px;height:3px;background:var(--red);border-radius:50%}
+.cv-creds{display:flex;align-items:center;justify-content:center;gap:22px;margin-top:22px}
+.cv-cred-logo{height:110px;width:auto;opacity:.85;transition:opacity .3s}
+.cv-cred-logo:hover{opacity:1}
+.cv-website{font-family:var(--race);font-size:clamp(10px,1.2vw,14px);letter-spacing:.22em;color:rgba(255,255,255,.45);margin-top:14px;text-transform:lowercase}
+.cv-website a{color:rgba(255,255,255,.45);text-decoration:none;transition:color .3s}
+.cv-website a:hover{color:var(--yellow)}
+.cv-social{display:flex;gap:14px;margin-top:18px;align-items:center}
+.cv-social a{color:rgba(255,255,255,.4);transition:color .3s;display:flex}
+.cv-social a:hover{color:var(--yellow)}
+.cv-social svg{width:20px;height:20px}
 
 /* ════════════════════════════════════════════════
    SLIDE 02 — THE SERIES
 ════════════════════════════════════════════════ */
-#s02{background:var(--d1)}
+#s02{background:var(--blk)}
+#s02 .s-bg{background-image:url('Photos/Pack (1 of 1)-4.jpg');opacity:.15;filter:brightness(.8)}
 .s02-body{font-size:12px;line-height:1.85;color:rgba(255,255,255,.52);margin-bottom:16px}
 .s02-q{font-family:var(--race);font-size:clamp(20px,2.4vw,34px);color:var(--wh);line-height:1.05;letter-spacing:.02em;margin:14px 0 18px}
 .s02-q em{color:var(--red);font-style:normal}
@@ -138,10 +158,11 @@ body.chov #cur-ring{width:54px;height:54px}
 .p-card::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:var(--red);transition:width .4s}
 .p-card:hover{background:var(--d3)}
 .p-card:hover::before{width:100%}
-.p-icon{font-size:20px;margin-bottom:10px}
+.p-icon{font-size:20px;margin-bottom:14px;color:var(--red)}
+.p-icon svg{width:36px;height:36px}
 .p-num{font-family:var(--race);font-size:34px;color:var(--wh)}
-.p-num span{color:var(--red)}
-.p-lbl{font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--gr2);margin-top:4px}
+.p-num span{color:var(--wh)}
+.p-lbl{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--wh);margin-top:6px;font-weight:600}
 .p-desc{font-size:10px;color:rgba(255,255,255,.38);margin-top:7px;line-height:1.5}
 
 /* ════════════════════════════════════════════════
@@ -158,6 +179,7 @@ body.chov #cur-ring{width:54px;height:54px}
 .s03-ft-name{font-family:var(--race);font-size:16px;letter-spacing:.06em}
 .s03-ft-title{font-size:9px;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
 .s03-r{width:58%;padding:52px 52px 48px 52px;padding-right:148px;display:flex;flex-direction:column;justify-content:center;gap:0;overflow:hidden}
+.s03-logo{width:clamp(180px,26vw,340px);margin:24px 0;filter:drop-shadow(0 4px 16px rgba(0,0,0,.5))}
 .s03-body{font-size:11.5px;line-height:1.85;color:rgba(255,255,255,.5);margin:10px 0 20px}
 .s03-milestones{display:flex;flex-direction:column;gap:1px;margin-bottom:22px}
 .ms-item{display:flex;align-items:flex-start;gap:14px;padding:11px 14px;background:var(--d2)}
@@ -177,7 +199,7 @@ body.chov #cur-ring{width:54px;height:54px}
 .s04-hd-stats{display:flex;gap:24px}
 .s04-hs{text-align:right}
 .s04-hs-n{font-family:var(--race);font-size:22px;color:var(--wh)}
-.s04-hs-n .r{color:var(--red)}
+.s04-hs-n .r{color:var(--wh)}
 .s04-hs-l{font-size:7px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:2px}
 .s04-panels{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;flex:1;min-height:0}
 .s04p{position:relative;overflow:hidden}
@@ -198,14 +220,15 @@ body.chov #cur-ring{width:54px;height:54px}
 #s05{background:var(--d1)}
 #s05 .s-bg{background-image:url('Photos/83 battle (1 of 1).jpg');opacity:.07}
 .hl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:18px;flex:1}
-.hl{padding:24px 22px;background:rgba(17,17,17,.94);position:relative;overflow:hidden;transition:background .3s;display:flex;flex-direction:column;gap:8px}
+.hl{padding:30px 24px;background:rgba(17,17,17,.94);position:relative;overflow:hidden;transition:background .3s;display:flex;flex-direction:column;gap:12px;justify-content:center}
 .hl:hover{background:rgba(22,22,22,.98)}
-.hl-n{font-family:var(--race);position:absolute;top:-8px;right:10px;font-size:60px;color:rgba(255,255,255,.04);pointer-events:none}
-.hl-icon{font-size:18px}
-.hl-stat{font-family:var(--race);font-size:clamp(26px,3vw,40px);color:var(--wh);line-height:1;letter-spacing:.02em}
-.hl-stat .r{color:var(--red)}
-.hl-txt{font-size:11px;line-height:1.65;color:rgba(255,255,255,.58)}
-.hl-txt strong{color:var(--wh)}
+.hl-n{font-family:var(--race);position:absolute;top:-12px;right:8px;font-size:90px;color:rgba(255,255,255,.03);pointer-events:none}
+.hl-icon{font-size:32px;color:var(--red)}
+.hl-icon svg{width:36px;height:36px}
+.hl-stat{font-family:var(--race);font-size:clamp(40px,4.5vw,56px);color:var(--wh);line-height:1;letter-spacing:.02em}
+.hl-stat .r{color:var(--wh)}
+.hl-title{font-family:var(--race);font-size:18px;color:var(--wh);letter-spacing:.03em;line-height:1.1;margin-bottom:2px}
+.hl-txt{font-size:12px;line-height:1.6;color:rgba(255,255,255,.6)}
 
 /* ════════════════════════════════════════════════
    SLIDE 06 — BROADCAST
@@ -217,6 +240,8 @@ body.chov #cur-ring{width:54px;height:54px}
 .slide[data-s="active"] .s06-photo img{filter:brightness(.8) saturate(1.4);transform:scale(1.04)}
 .s06-photo-ov{position:absolute;inset:0;background:linear-gradient(to right,transparent 55%,var(--blk))}
 .s06-badge{position:absolute;bottom:36px;left:36px;background:rgba(8,8,8,.88);border:1px solid rgba(232,0,29,.22);padding:13px 18px;border-radius:3px;backdrop-filter:blur(10px)}
+.s06-fs-logos{display:flex;gap:10px;margin-top:8px}
+.s06-fs-logo{font-family:var(--race);font-size:13px;letter-spacing:.06em;padding:5px 12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:2px;color:var(--wh)}
 .s06-bt{font-family:var(--race);font-size:17px;letter-spacing:.06em}
 .s06-bs{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-top:3px}
 .s06-r{width:50%;padding:60px 52px 52px 52px;padding-right:150px;display:flex;flex-direction:column;justify-content:center}
@@ -225,10 +250,10 @@ body.chov #cur-ring{width:54px;height:54px}
 .mc{background:var(--d2);padding:20px 18px;border:1px solid rgba(255,255,255,.04);transition:border-color .3s,background .3s}
 .mc:hover{border-color:rgba(232,0,29,.22);background:var(--d3)}
 .mc-n{font-family:var(--race);font-size:clamp(22px,2.4vw,36px);color:var(--wh)}
-.mc-n .r{color:var(--red)}
+.mc-n .r{color:var(--wh)}
 .mc-l{font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--gr);margin-top:5px}
 .mc-s{font-size:10px;color:rgba(255,255,255,.28);margin-top:3px}
-.mc-yoy{display:inline-flex;align-items:center;gap:3px;background:rgba(232,0,29,.1);color:var(--red);padding:3px 7px;border-radius:100px;font-size:9px;font-weight:700;margin-top:5px}
+.mc-yoy{display:inline-flex;align-items:center;gap:3px;background:rgba(34,197,94,.12);color:var(--green);padding:3px 7px;border-radius:100px;font-size:9px;font-weight:700;margin-top:5px}
 
 /* ════════════════════════════════════════════════
    SLIDE 07 — SOCIAL MEDIA
@@ -242,9 +267,11 @@ body.chov #cur-ring{width:54px;height:54px}
 .s07-plat{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:16px}
 .s07-num{font-family:var(--race);font-size:clamp(48px,7vw,86px);color:#fff;letter-spacing:.02em;line-height:1}
 .s07-nlbl{font-size:13px;color:rgba(255,255,255,.72);margin-top:9px}
-.s07-growth{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.14);padding:6px 15px;border-radius:100px;font-size:12px;font-weight:700;color:#fff;margin-top:18px;width:fit-content}
+.s07-growth{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,.18);padding:6px 15px;border-radius:100px;font-size:12px;font-weight:700;color:#22c55e;margin-top:18px;width:fit-content}
 .s07-detail{margin-top:20px;font-size:12px;color:rgba(255,255,255,.58);line-height:1.75}
-.s07-org{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:4px 13px;border-radius:100px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.88);margin-top:12px;width:fit-content}
+.s07-org{display:inline-flex;align-items:center;gap:5px;background:rgba(34,197,94,.18);border:1px solid rgba(34,197,94,.35);padding:6px 16px;border-radius:100px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#22c55e;margin-top:14px;width:fit-content}
+.s07-watermark{position:absolute;right:30px;bottom:30px;opacity:.07;pointer-events:none}
+.s07-watermark svg{width:140px;height:140px}
 
 /* ════════════════════════════════════════════════
    SLIDE 08 — SCHEDULE
@@ -259,17 +286,17 @@ body.chov #cur-ring{width:54px;height:54px}
 .vn{color:var(--wh);font-weight:500}
 .stb{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:100px;font-size:8px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
 .st-done{background:rgba(255,255,255,.05);color:rgba(255,255,255,.3)}
-.st-finale{background:rgba(232,0,29,.12);color:var(--red)}
+.st-finale{background:rgba(245,255,0,.12);color:var(--yellow);border:1px solid rgba(245,255,0,.18)}
 .st-dot{width:4px;height:4px;border-radius:50%}
 .st-done .st-dot{background:rgba(255,255,255,.25)}
-.st-finale .st-dot{background:var(--red)}
+.st-finale .st-dot{background:var(--yellow)}
 .sched-note{margin-top:12px;font-size:10px;color:rgba(255,255,255,.3);line-height:1.6;flex-shrink:0}
 
 /* ════════════════════════════════════════════════
    SLIDE 09 — ROSTER
 ════════════════════════════════════════════════ */
 #s09{background:var(--d1)}
-.roster-g{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:14px;flex:1;min-height:0}
+.roster-g{display:grid;grid-template-columns:repeat(3,1fr);column-gap:2px;row-gap:24px;margin-top:14px;flex:1;min-height:0}
 .rc{position:relative;overflow:hidden;background:var(--d2);display:flex;flex-direction:column;transition:transform .3s}
 .rc:hover{transform:translateY(-3px);z-index:2}
 .rc-img{width:100%;flex:1;object-fit:cover;object-position:top;display:block;filter:saturate(.6) brightness(.68);transition:filter .4s,transform .4s;min-height:0}
@@ -279,12 +306,12 @@ body.chov #cur-ring{width:54px;height:54px}
 .rc-name{font-family:var(--race);font-size:14px;letter-spacing:.05em}
 .rc-team{font-size:9px;color:var(--gr);margin-top:2px}
 .rc-cls{display:inline-flex;background:rgba(232,0,29,.1);color:var(--red);padding:3px 8px;border-radius:2px;font-size:8px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-top:6px}
-.roster-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;flex-shrink:0}
-.rs-item{padding:14px 18px;background:var(--d2);border-left:2px solid rgba(232,0,29,.3)}
+.roster-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;flex-shrink:0;margin-top:36px}
+.rs-item{padding:14px 18px;background:var(--red);border-left:none}
 .rs-n{font-family:var(--race);font-size:22px;color:var(--wh)}
-.rs-n span{color:var(--red)}
-.rs-l{font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--gr);margin-top:3px}
-.rs-d{font-size:10px;color:rgba(255,255,255,.35);margin-top:5px;line-height:1.5}
+.rs-n span{color:var(--wh)}
+.rs-l{font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.9);margin-top:3px}
+.rs-d{font-size:10px;color:rgba(255,255,255,.8);margin-top:5px;line-height:1.5}
 
 /* ════════════════════════════════════════════════
    SLIDE 10 — TIERS
@@ -303,6 +330,7 @@ body.chov #cur-ring{width:54px;height:54px}
 .tc-rib.rr{background:linear-gradient(90deg,var(--red),transparent)}
 .tc-rib.rg{background:linear-gradient(90deg,var(--gold),transparent)}
 .tc-rib.rs{background:linear-gradient(90deg,var(--silver),transparent)}
+.tc-rib.rb{background:linear-gradient(90deg,var(--bronze),transparent)}
 .tc-rib.rw{background:linear-gradient(90deg,rgba(255,255,255,.3),transparent)}
 .tc-name{font-family:var(--race);font-size:16px;letter-spacing:.05em;margin:12px 0 3px}
 .tc.tf .tc-name{color:var(--red)}
@@ -324,7 +352,8 @@ body.chov #cur-ring{width:54px;height:54px}
 .alc-left{width:38%;display:flex;flex-direction:column;gap:3px}
 .alc-right{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:3px}
 .alc-support{padding:20px 18px;background:var(--d2);display:flex;flex-direction:column;gap:7px;border-left:2px solid var(--red)}
-.alc-sup-icon{font-size:18px}
+.alc-sup-icon{font-size:18px;color:var(--red)}
+.alc-sup-icon svg{width:24px;height:24px}
 .alc-sup-name{font-family:var(--race);font-size:15px;letter-spacing:.04em}
 .alc-sup-desc{font-size:10px;color:rgba(255,255,255,.42);line-height:1.55}
 .alc-sup-tag{display:inline-flex;margin-top:4px;padding:3px 9px;background:rgba(232,0,29,.1);border:1px solid rgba(232,0,29,.2);border-radius:2px;font-size:7px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);width:fit-content}
@@ -332,6 +361,8 @@ body.chov #cur-ring{width:54px;height:54px}
 .spot-card::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:var(--red);transition:width .4s}
 .spot-card:hover{background:var(--d3)}
 .spot-card:hover::before{width:100%}
+.spot-icon{color:var(--red);margin-bottom:4px}
+.spot-icon svg{width:22px;height:22px}
 .spot-name{font-family:var(--race);font-size:13px;letter-spacing:.04em}
 .spot-desc{font-size:10px;color:rgba(255,255,255,.38);line-height:1.5}
 .spot-badge{display:inline-flex;margin-top:2px;padding:2px 8px;background:rgba(232,0,29,.08);border:1px solid rgba(232,0,29,.15);border-radius:2px;font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:rgba(232,0,29,.7);width:fit-content}
@@ -342,20 +373,20 @@ body.chov #cur-ring{width:54px;height:54px}
 #s12 .s-bg{background-image:url('Photos/351 pack air (1 of 1).jpg');background-position:center 40%;filter:brightness(.22) saturate(1.4)}
 #s12 .s-ov{background:radial-gradient(ellipse at 50% 55%,rgba(232,0,29,.12),rgba(8,8,8,.65) 70%)}
 #s12 .si-wrap{align-items:center;justify-content:center;text-align:center;padding-right:150px}
-.cta-eye{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:16px}
-.cta-h{font-family:var(--race);font-size:clamp(44px,7.5vw,90px);line-height:.9;letter-spacing:.02em;text-transform:uppercase;margin-bottom:20px}
+.cta-eye{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:12px}
+.cta-h{font-family:var(--race);font-size:clamp(32px,5vw,60px);line-height:.9;letter-spacing:.02em;text-transform:uppercase;margin-bottom:12px}
 .cta-h em{color:var(--red);font-style:normal}
-.cta-body{font-size:13px;color:rgba(255,255,255,.48);max-width:520px;margin:0 auto 24px;line-height:1.75}
+.cta-body{font-size:13px;color:rgba(255,255,255,.48);max-width:520px;margin:0 auto 16px;line-height:1.6}
 .cta-stats{display:inline-flex;gap:36px;padding:18px 32px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:3px;margin-bottom:26px}
 .cs-n{font-family:var(--race);font-size:26px;color:var(--wh)}
-.cs-n .r{color:var(--red)}
+.cs-n .r{color:var(--wh)}
 .cs-l{font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--gr);margin-top:3px}
-.cta-btns{display:flex;gap:10px;justify-content:center;margin-bottom:28px}
+.cta-btns{display:flex;gap:10px;justify-content:center;margin-bottom:16px}
 .btn-r{background:var(--red);color:#fff;padding:14px 32px;border:none;border-radius:2px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;font-weight:700;cursor:none;text-decoration:none;transition:background .2s,transform .15s,box-shadow .2s}
 .btn-r:hover{background:var(--red-dk);transform:translateY(-2px);box-shadow:0 12px 28px rgba(232,0,29,.3)}
 .btn-o{background:transparent;color:rgba(255,255,255,.62);padding:14px 32px;border:1px solid rgba(255,255,255,.14);border-radius:2px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;font-weight:600;cursor:none;text-decoration:none;transition:all .2s}
 .btn-o:hover{border-color:rgba(255,255,255,.38);color:#fff;transform:translateY(-2px)}
-.cta-contact{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;padding-top:20px;border-top:1px solid rgba(255,255,255,.06)}
+.cta-contact{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;padding-top:16px;border-top:1px solid rgba(255,255,255,.06)}
 .cci{text-align:center}
 .cci-l{font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:4px}
 .cci-v{font-size:12px;color:rgba(255,255,255,.62)}
@@ -365,39 +396,98 @@ body.chov #cur-ring{width:54px;height:54px}
 .cf-badges{display:flex;gap:8px;flex-wrap:wrap}
 .cf-b{font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.18);padding:3px 9px;border:1px solid rgba(255,255,255,.06);border-radius:2px}
 
+/* ── CONTACT FORM ────────────────────────────── */
+.contact-form{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:520px;margin:0 auto 16px;text-align:left}
+.cf-field{display:flex;flex-direction:column;gap:4px}
+.cf-field.full{grid-column:1/-1}
+.cf-field label{font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+.cf-field input:not([type="checkbox"]),.cf-field textarea,.cf-field select{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:2px;padding:11px 14px;color:#fff;font-family:var(--body);font-size:12px;transition:border-color .3s;outline:none;width:100%;}
+.cf-field input:not([type="checkbox"]):focus,.cf-field textarea:focus,.cf-field select:focus{border-color:var(--red)}
+.cf-field select option{color:#000}
+.cf-field textarea{resize:vertical;min-height:54px}
+.cf-submit{grid-column:1/-1}
+
 /* ── RESPONSIVE ──────────────────────────────── */
 @media(max-width:900px){
   #snav,#scount,#narrows{display:none}
-  html,body{overflow:auto}
-  #slides{position:relative;height:auto}
-  .slide{position:relative!important;transform:none!important;opacity:1!important;height:auto;min-height:100vh;pointer-events:all!important}
-  .slide[data-s="active"] .si,.slide[data-s="below"] .si,.slide[data-s="above"] .si{opacity:1!important;transform:none!important}
-  #s03 .si-wrap,#s06 .si-wrap{flex-direction:column;padding:0}
-  .s03-photo,.s06-photo{width:100%;height:45vh}
-  .s03-r,.s06-r{width:100%;padding:36px 24px;padding-right:24px}
-  #s07 .si-wrap{flex-direction:column;padding:0}
-  .s07c{width:100%;padding:48px 24px!important}
-  .cv-stats{flex-wrap:wrap;justify-content:center}
-  .tg{grid-template-columns:1fr 1fr}
-  .roster-g{grid-template-columns:1fr 1fr}
-  .hl-grid{grid-template-columns:1fr 1fr}
-  .s04-panels{grid-template-columns:1fr}
-  .s04-panels .s04p{min-height:220px}
-  .alc-wrap{flex-direction:column}
-  .alc-left{width:100%}
-  .s10-photos{grid-template-columns:1fr 1fr}
-  .si-wrap{padding:40px 24px 36px}
-  .si-wrap.rpad{padding-right:24px}
-  .cta-stats{flex-wrap:wrap;gap:16px;padding:16px 20px}
-  .cta-btns{flex-direction:column;align-items:center}
-  .cta-foot{padding:10px 24px;flex-direction:column;gap:6px;text-align:center}
-  .roster-strip{grid-template-columns:1fr 1fr}
-  .s06-metrics{grid-template-columns:1fr 1fr}
-  .s04-hd{padding:32px 24px 14px;flex-direction:column;align-items:flex-start}
+  #bottombar{display:none}
+  #frame-top,#frame-left,#frame-right{display:none}
+  #slides{top:0;left:0;right:0;bottom:0}
+  :root{--frame:0px}
+  
+  .si-wrap{padding:50px 24px 50px 24px!important;flex-direction:column!important;gap:24px!important;text-align:center;overflow-y:auto;overflow-x:hidden;justify-content:flex-start}
+  .si-wrap::-webkit-scrollbar{display:none}
+  .si-wrap{-ms-overflow-style:none;scrollbar-width:none}
+  .si-wrap.rpad{padding-right:24px!important}
+  
+  .s-label{justify-content:center}
+  
+  .s-bnum{font-size:32vh!important;right:-4%!important;bottom:-2%!important;opacity:.6!important;display:block!important}
+  
+  .cv-wrap{flex-direction:column;text-align:center;align-items:center}
+  .cv-title{font-size:14vw!important;line-height:.95!important}
+  .cv-year{font-size:6vw!important;letter-spacing:.3em}
+  .cv-spons{font-size:3.5vw!important;letter-spacing:.25em}
+  .cv-creds{flex-direction:column;gap:16px;flex-wrap:nowrap;justify-content:center}
+  .cv-cred-logo{height:60px!important;width:auto!important}
+  .cv-stats{flex-direction:column!important;gap:12px!important;align-items:center}
+  .cv-photo iframe{width:300%;height:300%}
+  #g-logo{width:60px;left:16px;top:16px}
+  
+  #s03 .si-wrap,#s06 .si-wrap{flex-direction:column;padding:50px 24px!important}
+  .s03-r,.s06-r{width:100%!important;padding:0!important}
+  .s03-logo{margin:20px auto!important;width:80%!important}
+  .s03-photo,.s06-photo{display:none}
+  
+  div[style*="width:42%"], div[style*="width:58%"], div[style*="width:54%"], div[style*="width:46%"], div[style*="width:55%"], div[style*="width:45%"]{width:100%!important;display:flex!important;flex-direction:column!important}
+  
+  .p-card{text-align:center;padding:24px 16px!important}
+  .p-icon{margin:0 auto 10px auto!important}
+  
+  .s04-hd{flex-direction:column;align-items:center}
+  .s04-hd-stats{flex-direction:column;gap:16px;align-items:center}
+  .s04-panels{grid-template-columns:1fr;gap:20px}
+  
+  .hl-grid{grid-template-columns:1fr!important;gap:12px!important;margin-top:20px!important}
+  .hl{padding:26px 20px!important}
+  
+  .s06-metrics{flex-direction:column!important;gap:12px!important;align-items:center!important;margin-top:20px!important}
+  .mc{text-align:center;width:100%}
+  
+  #s07 .si-wrap{flex-direction:column;padding:50px 24px!important}
+  .s07c{width:100%!important;padding:24px!important}
+  .s07-watermark svg{width:80px;height:80px}
+  
+  .sch-tbl{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .sch-tbl th, .sch-tbl td{white-space:nowrap;padding:12px 14px!important;font-size:11px}
+  
+  .roster-g{grid-template-columns:1fr 1fr!important;row-gap:16px!important}
+  .roster-strip{grid-template-columns:1fr!important;gap:12px!important;margin-top:20px!important}
+  
+  .tg{grid-template-columns:1fr!important}
+  .tc-wrap{flex-direction:column!important;gap:16px!important;margin:20px 0!important}
+  
+  .alc-wrap{flex-direction:column!important}
+  .alc-left{width:100%!important}
+  
+  .contact-form{grid-template-columns:1fr!important}
+  .cta-foot{flex-direction:column!important;gap:16px!important;text-align:center!important;padding-right:24px!important}
+  .cf-checkbox-group{grid-template-columns:1fr!important}
+}
+@media(max-width:600px){
+  .roster-g{grid-template-columns:1fr!important}
+  .s10-photos{grid-template-columns:1fr!important}
+  .s02-q{font-size:clamp(16px,5vw,24px)}
+  .cta-h{font-size:clamp(28px,10vw,52px)}
 }
 </style>
 </head>
 <body>
+
+<!-- FRAME BORDERS -->
+<div id="frame-top"></div>
+<div id="frame-left"></div>
+<div id="frame-right"></div>
 
 <!-- LOADER -->
 <div id="loader">
@@ -419,101 +509,54 @@ body.chov #cur-ring{width:54px;height:54px}
 
   <!-- S01 — COVER -->
   <div class="slide" id="s01" data-s="active">
-    <div class="cv-photo"></div>
+    <div class="cv-photo"><iframe src="https://www.youtube.com/embed/KNA_izmZXcw?autoplay=1&mute=1&loop=1&playlist=KNA_izmZXcw&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&fs=0&iv_load_policy=3" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
     <div class="cv-grid"></div>
     <div class="cv-vignette"></div>
     <div class="cv-center">
       <img src="Partzilla Logo lite.png" alt="Partzilla Arenacross" class="cv-logo-c si" style="--d:.3s">
-      <div class="cv-series si" style="--d:.44s">AMA Partzilla Arenacross Series</div>
-      <div class="cv-rule si" style="--d:.52s">
+      <div class="cv-rule si" style="--d:.46s">
         <div class="cv-rule-line"></div>
         <div class="cv-rule-diamond"></div>
         <div class="cv-rule-line"></div>
       </div>
-      <div class="cv-year si" style="--d:.58s">25<span class="cv-year-dash">–</span>26</div>
-      <div class="cv-spons si" style="--d:.68s">SPONSORSHIP OPPORTUNITIES</div>
-      <div class="cv-stats si" style="--d:.8s">
-        <div class="cv-stat">
-          <div class="cv-stat-n">13.2<span class="r">M</span></div>
-          <div class="cv-stat-l">FB Views</div>
-        </div>
-        <div class="cv-stat">
-          <div class="cv-stat-n">1.05<span class="r">M</span></div>
-          <div class="cv-stat-l">IG / Month</div>
-        </div>
-        <div class="cv-stat">
-          <div class="cv-stat-n">346</div>
-          <div class="cv-stat-l">TV Airings</div>
-        </div>
-        <div class="cv-stat">
-          <div class="cv-stat-n">2<span class="r">K</span>+</div>
-          <div class="cv-stat-l">Fans / Night</div>
-        </div>
-        <div class="cv-stat">
-          <div class="cv-stat-n">9</div>
-          <div class="cv-stat-l">Doubleheaders</div>
-        </div>
+      <div class="cv-year si" style="--d:.52s">25<span class="cv-year-dash">–</span>26</div>
+      <div class="cv-spons si" style="--d:.62s">SPONSORSHIP OPPORTUNITIES</div>
+      <div class="cv-creds si" style="--d:.72s">
+        <img src="Tristar MX Logo.png" alt="TriStar MX" class="cv-cred-logo" style="height:130px">
+        <img src="AMA-Logo.png" alt="AMA" class="cv-cred-logo" style="height:90px">
       </div>
-      <div class="cv-creds si" style="--d:.92s">
-        <span>TriStar MX Presents</span>
-        <span class="cv-cred-pip"></span>
-        <span>TransWorld Motocross</span>
-        <span class="cv-cred-pip"></span>
-        <span>AMA Sanctioned</span>
-        <span class="cv-cred-pip"></span>
-        <span>partzillaarenacross.com</span>
+      <div class="cv-website si" style="--d:.80s"><a href="https://partzillaarenacross.com" target="_blank">partzillaarenacross.com</a></div>
+      <div class="cv-social si" style="--d:.88s">
+        <a href="https://www.instagram.com/partzillaarenacross/" target="_blank" title="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C16.67.014 16.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+        <a href="https://www.facebook.com/partzillaarenacross" target="_blank" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
       </div>
     </div>
   </div>
 
   <!-- S02 — THE SERIES -->
   <div class="slide" id="s02" data-s="below">
+    <div class="s-bg"></div>
     <div class="s-bnum">02</div>
     <div class="si-wrap rpad" style="flex-direction:row;gap:56px;align-items:center;padding-bottom:80px">
       <div style="width:42%;display:flex;flex-direction:column;justify-content:center">
         <div class="s-label si" style="--d:.3s">The Series</div>
-        <div class="s02-q si" style="--d:.42s">America's <em>Fastest-Growing</em> Arenacross</div>
+        <div class="s02-q si" style="--d:.42s">America's <em>Fastest-Growing</em> Arenacross Series</div>
         <p class="s02-body si" style="--d:.52s">Title-sponsored by Partzilla and presented by TransWorld Motocross, this high-energy series delivers bar-to-bar pro racing, packed arenas, 400+ amateur entries per weekend, and national exposure on FS1 and FS2.</p>
         <p class="s02-body si" style="--d:.60s">Now in its third season, it features the deepest pro fields and most Supercross main-event racers of any Arenacross series, plus the groundbreaking Partzilla Progressive Championship Bonus.</p>
         <div class="s02-tags si" style="--d:.68s">
           <span class="s02-tag">AMA Sanctioned</span>
-          <span class="s02-tag">FS1 / FS2</span>
-          <span class="s02-tag">East Coast #1</span>
-          <span class="s02-tag">Season 3</span>
+          <span class="s02-tag">FS1 / FS2 Coverage</span>
           <span class="s02-tag">Racer-First</span>
         </div>
       </div>
       <div style="width:58%;display:grid;grid-template-columns:1fr 1fr;gap:2px">
-        <div class="p-card si" style="--d:.38s"><div class="p-icon">📺</div><div class="p-num"><span>346</span></div><div class="p-lbl">TV Airings</div><div class="p-desc">FS1 &amp; FS2 — same distribution as NFL &amp; NASCAR</div></div>
-        <div class="p-card si" style="--d:.48s"><div class="p-icon">📱</div><div class="p-num"><span>13.2</span>M</div><div class="p-lbl">Facebook Views</div><div class="p-desc">+2,432% YOY · 92% organic reach</div></div>
-        <div class="p-card si" style="--d:.58s"><div class="p-icon">🏟️</div><div class="p-num"><span>9</span></div><div class="p-lbl">Arena Events</div><div class="p-desc">8 states · basketball &amp; hockey arenas</div></div>
-        <div class="p-card si" style="--d:.68s"><div class="p-icon">🏆</div><div class="p-num"><span>$14</span>K+</div><div class="p-lbl">Pro Purse / Weekend</div><div class="p-desc">+ Progressive Championship Bonus from $10k</div></div>
+        <div class="p-card si" style="--d:.38s"><div class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="1"/><path d="M8 21h8M12 19v2"/></svg></div><div class="p-num">346</div><div class="p-lbl">TV Airings</div><div class="p-desc">FS1 &amp; FS2 — same distribution as NFL &amp; NASCAR</div></div>
+        <div class="p-card si" style="--d:.48s"><div class="p-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div><div class="p-num">13.2M</div><div class="p-lbl">Facebook Views</div><div class="p-desc">+2,432% YOY · 92% organic reach</div></div>
+        <div class="p-card si" style="--d:.58s"><div class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><div class="p-num">2,000+</div><div class="p-lbl">Fans Per Night</div><div class="p-desc">Packed arenas across 8 states every weekend</div></div>
+        <div class="p-card si" style="--d:.68s"><div class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div><div class="p-num">$14K+</div><div class="p-lbl">Pro Purse / Weekend</div><div class="p-desc">+ Progressive Championship Bonus from $10k</div></div>
       </div>
     </div>
-    <div class="s-ticker">
-      <div class="tk-track">
-        <span class="tki">13.2M Facebook Views <span class="tkd"></span></span>
-        <span class="tki">+2,432% Year-Over-Year <span class="tkd"></span></span>
-        <span class="tki">1.05M Instagram Views / Month <span class="tkd"></span></span>
-        <span class="tki">91.9% Organic Reach <span class="tkd"></span></span>
-        <span class="tki">346 FS1 &amp; FS2 Airings <span class="tkd"></span></span>
-        <span class="tki">Most Televised Arenacross in the Nation <span class="tkd"></span></span>
-        <span class="tki">2,000+ Fans Per Night <span class="tkd"></span></span>
-        <span class="tki">9 Doubleheader Rounds · 8 States <span class="tkd"></span></span>
-        <span class="tki">Deepest Pro Field in Arenacross <span class="tkd"></span></span>
-        <span class="tki">AMA Sanctioned · Season 3 <span class="tkd"></span></span>
-        <span class="tki">13.2M Facebook Views <span class="tkd"></span></span>
-        <span class="tki">+2,432% Year-Over-Year <span class="tkd"></span></span>
-        <span class="tki">1.05M Instagram Views / Month <span class="tkd"></span></span>
-        <span class="tki">91.9% Organic Reach <span class="tkd"></span></span>
-        <span class="tki">346 FS1 &amp; FS2 Airings <span class="tkd"></span></span>
-        <span class="tki">Most Televised Arenacross in the Nation <span class="tkd"></span></span>
-        <span class="tki">2,000+ Fans Per Night <span class="tkd"></span></span>
-        <span class="tki">9 Doubleheader Rounds · 8 States <span class="tkd"></span></span>
-        <span class="tki">Deepest Pro Field in Arenacross <span class="tkd"></span></span>
-        <span class="tki">AMA Sanctioned · Season 3 <span class="tkd"></span></span>
-      </div>
-    </div>
+
   </div>
 
   <!-- S03 — OUR STORY -->
@@ -531,26 +574,27 @@ body.chov #cur-ring{width:54px;height:54px}
         </div>
       </div>
       <div class="s03-r">
-        <div class="s-label si" style="--d:.36s">Our Story</div>
-        <div class="s-title si" style="--d:.46s;margin:10px 0 12px">Built by a <em>Dad</em>,<br>Built for Racers</div>
-        <p class="s03-body si" style="--d:.54s">What started as a father's frustration watching his sons spend "three or four hundred bucks just for a two-dollar trophy" became the fastest-growing Arenacross championship in America. Bobby Snyder created TriStar to give kids a true pro-level experience — big trophies, podium interviews, holeshot awards, real respect.</p>
+        <div class="s-label si" style="--d:.36s">About the Company</div>
+        <div class="s-title si" style="--d:.46s;margin:10px 0 4px">Built for <em>Racers</em>,<br>by Racers</div>
+        <img src="Tristar MX Logo.png" alt="TriStar MX" class="s03-logo si" style="--d:.50s">
+        <p class="s03-body si" style="--d:.54s">Bobby Snyder started racing his two young sons at amateur events, frustrated watching kids work so hard for cheap trophies. He created TriStar to give amateur and pro riders alike a professional-caliber experience.</p>
         <div class="s03-milestones si" style="--d:.62s">
           <div class="ms-item">
             <div class="ms-year">YEAR 1</div>
-            <div class="ms-text"><strong>TriStar Indoor Series launches</strong> — full-scale AX track inside Cooper Steel Arena. "Guys were blown away. It was a hit right away."</div>
+            <div class="ms-text"><strong>TriStar Indoor Series launches</strong> — drew competitors from 13–15 states. A hit right out of the gate.</div>
           </div>
           <div class="ms-item">
             <div class="ms-year">YEAR 2</div>
-            <div class="ms-text"><strong>Pro program added · AMA-sanctioned · East Coast #1 plates · FS1/FS2 broadcast debut.</strong> Partzilla joins as title sponsor.</div>
+            <div class="ms-text"><strong>Professional racing added · FS1 broadcast debut.</strong> The series gained national exposure and legitimacy.</div>
           </div>
           <div class="ms-item">
             <div class="ms-year">YEAR 3</div>
-            <div class="ms-text"><strong>346 national TV airings · 13.2M Facebook views · Record attendance &amp; entries.</strong> The most televised Arenacross series in the country.</div>
+            <div class="ms-text"><strong>Partzilla title sponsorship · AMA East Coast Regional plates.</strong> Record attendance, 346 national TV airings, and 13.2M social views.</div>
           </div>
         </div>
         <div class="s03-pull si" style="--d:.74s">
-          <div class="s03-pull-q">"This will be our second year on national TV… We've built something really special."</div>
-          <div class="s03-pull-attr">— Bobby Snyder, TriStar MX</div>
+          <div class="s03-pull-q">"We built something really special — a professional-caliber experience for every rider, from 50cc to Open Pro."</div>
+          <div class="s03-pull-attr">— Bobby Snyder, Founder &amp; Owner, TriStar MX</div>
         </div>
       </div>
     </div>
@@ -566,7 +610,7 @@ body.chov #cur-ring{width:54px;height:54px}
           <div class="s-title" style="margin-top:8px">Full <em>Weekend</em> Experience</div>
         </div>
         <div class="s04-hd-stats">
-          <div class="s04-hs"><div class="s04-hs-n">9</div><div class="s04-hs-l">Doubleheader Rounds</div></div>
+          <div class="s04-hs"><div class="s04-hs-n">17</div><div class="s04-hs-l">Rounds</div></div>
           <div class="s04-hs"><div class="s04-hs-n">8</div><div class="s04-hs-l">States</div></div>
           <div class="s04-hs"><div class="s04-hs-n">2<span class="r">K</span>+</div><div class="s04-hs-l">Fans / Night</div></div>
           <div class="s04-hs"><div class="s04-hs-n">400<span class="r">+</span></div><div class="s04-hs-l">Amateur Entries</div></div>
@@ -582,7 +626,7 @@ body.chov #cur-ring{width:54px;height:54px}
             <ul class="s04p-list">
               <li>Open Pro &amp; 250 Pro bar-to-bar racing</li>
               <li>Deepest field in Arenacross</li>
-              <li>Jumbotrons &amp; PA announcements</li>
+              <li>Fully produced night show with jumbotrons and MC</li>
               <li>Live entertainment &amp; fan zones</li>
             </ul>
             <div class="s04p-badge">Televised</div>
@@ -627,38 +671,44 @@ body.chov #cur-ring{width:54px;height:54px}
     <div class="s-bg"></div>
     <div class="s-bnum">05</div>
     <div class="si-wrap rpad">
-      <div class="s-label si" style="--d:.3s">2025 Season</div>
-      <div class="s-title si" style="--d:.4s;margin-top:10px">Year of <em>Records</em></div>
+      <div class="s-label si" style="--d:.3s">2025–2026 Highlights</div>
+      <div class="s-title si" style="--d:.4s;margin-top:10px">Season <em>Highlights</em></div>
       <div class="hl-grid">
         <div class="hl si" style="--d:.48s">
           <div class="hl-n">01</div>
-          <div class="hl-stat"><span class="ctr r" data-t="2000">2,000</span><span style="font-size:.6em;color:rgba(255,255,255,.5)">+</span></div>
-          <div class="hl-txt"><strong>Fans Per Night</strong> — packed arenas across 8 states every race weekend.</div>
+          <div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M6 9H4a2 2 0 01-2-2V5a2 2 0 012-2h2M18 9h2a2 2 0 002-2V5a2 2 0 00-2-2h-2"/><path d="M6 3h12v8a6 6 0 01-12 0V3z"/><path d="M9 21h6M12 17v4"/></svg></div>
+          <div class="hl-title">Gage Linville Dual-Class Sweep</div>
+          <div class="hl-txt">Dirt Legal / WMR KTM rider swept both Open Pro &amp; 250 Pro championships with multiple 1-1 finishes. AMA East Coast #1 plates in both classes.</div>
         </div>
         <div class="hl si" style="--d:.54s">
           <div class="hl-n">02</div>
-          <div class="hl-stat"><span class="ctr r" data-t="400">400</span><span style="font-size:.6em;color:rgba(255,255,255,.5)">+</span></div>
-          <div class="hl-txt"><strong>Amateur Entries</strong> per event — Saturday program draws riders from 15+ states.</div>
+          <div class="hl-stat"><span class="ctr" data-t="2000">2,000</span><span style="font-size:.6em;color:rgba(255,255,255,.5)">+</span></div>
+          <div class="hl-title">Fans Per Night</div>
+          <div class="hl-txt">Record attendance across packed arenas in 8 states every race weekend.</div>
         </div>
         <div class="hl si" style="--d:.60s">
           <div class="hl-n">03</div>
-          <div class="hl-stat">$<span class="ctr r" data-t="14">14</span><span style="font-size:.6em;color:rgba(255,255,255,.5)">K+</span></div>
-          <div class="hl-txt"><strong>Pro Purse</strong> every weekend + Partzilla Progressive Championship Bonus starting at $10K.</div>
+          <div class="hl-stat"><span class="ctr" data-t="346">346</span></div>
+          <div class="hl-title">National TV Airings</div>
+          <div class="hl-txt">On FS1 &amp; FS2 — the most televised Arenacross series in the country, same platform as NFL &amp; NASCAR.</div>
         </div>
         <div class="hl si" style="--d:.66s">
           <div class="hl-n">04</div>
-          <div class="hl-icon">🏆</div>
-          <div class="hl-txt"><strong>Gage Linville</strong> (Dirt Legal / WMR KTM) swept Open Pro &amp; 250 Pro titles — multiple 1-1 finishes. AMA East Coast #1 plates in both classes.</div>
+          <div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div>
+          <div class="hl-title">Macon, GA Record Breaker</div>
+          <div class="hl-txt">Single-event record of 2.1M Facebook views. Sold-out arena with standing-room-only energy.</div>
         </div>
         <div class="hl si" style="--d:.72s">
           <div class="hl-n">05</div>
-          <div class="hl-icon">📺</div>
-          <div class="hl-txt"><strong>Deepest Pro Field</strong> of any Arenacross series — more Supercross main-event racers than any competitor. All 5 major OEMs in pit lane.</div>
+          <div class="hl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div>
+          <div class="hl-title">Deepest Pro Field in Arenacross</div>
+          <div class="hl-txt">More Supercross main-event racers than any competitor. 7 major OEMs represented in pit lane.</div>
         </div>
         <div class="hl si" style="--d:.78s">
           <div class="hl-n">06</div>
-          <div class="hl-stat"><span class="ctr r" data-t="2432">2,432</span><span style="font-size:.5em;color:rgba(255,255,255,.5)">%</span></div>
-          <div class="hl-txt"><strong>Facebook Growth</strong> YOY — from 522K to 13.2M views. 92% organic. Record single-event: 2.1M (Macon, GA).</div>
+          <div class="hl-stat"><span class="ctr" data-t="2432">2,432</span><span style="font-size:.5em;color:rgba(255,255,255,.5)">%</span></div>
+          <div class="hl-title">Social Media Explosion</div>
+          <div class="hl-txt">Facebook views grew from 522K to 13.2M. 92% organic reach. Instagram up +87.5% accounts reached.</div>
         </div>
       </div>
     </div>
@@ -674,17 +724,21 @@ body.chov #cur-ring{width:54px;height:54px}
         <div class="s06-badge">
           <div class="s06-bt">FOX SPORTS</div>
           <div class="s06-bs">FS1 · FS2 · National Broadcast</div>
+          <div class="s06-fs-logos">
+            <span class="s06-fs-logo">FS1</span>
+            <span class="s06-fs-logo">FS2</span>
+          </div>
         </div>
       </div>
       <div class="s06-r">
         <div class="s-label si" style="--d:.38s">Broadcast</div>
-        <div class="s-title si" style="--d:.48s;margin:10px 0">Most Televised <em>Arenacross</em></div>
+        <div class="s-title si" style="--d:.48s;margin:10px 0;font-size:clamp(24px,3.5vw,46px)">The <em>Most Televised</em><br>Arenacross Series in the Nation</div>
         <p class="s06-body si" style="--d:.56s">FS1 reaches ~90M U.S. households — the same platform as NFL and NASCAR. 346 airings means constant, compounding brand impressions. Avg 79,000 households per premiere with professional multi-camera production, highlights, and integration into Supercross programming.</p>
         <div class="s06-metrics">
-          <div class="mc si" style="--d:.62s"><div class="mc-n"><span class="ctr r" data-t="346">346</span></div><div class="mc-l">Total Airings</div><div class="mc-s">238 Oct–Jan + 108 Jan–present</div></div>
-          <div class="mc si" style="--d:.69s"><div class="mc-n"><span class="ctr" data-t="79">79</span><span class="r">K</span></div><div class="mc-l">Avg HH / Premiere</div><div class="mc-s">Per premiere episode</div></div>
+          <div class="mc si" style="--d:.62s"><div class="mc-n"><span class="ctr" data-t="346">346</span></div><div class="mc-l">Total Airings</div><div class="mc-s">238 Oct–Jan + 108 Jan–present</div></div>
+          <div class="mc si" style="--d:.69s"><div class="mc-n"><span class="ctr" data-t="79">79</span>K</div><div class="mc-l">Avg HH / Premiere</div><div class="mc-s">Per premiere episode</div></div>
           <div class="mc si" style="--d:.76s"><div class="mc-n"><span class="ctr" data-t="1.8" data-s="M">1.8M</span></div><div class="mc-l">Total TV Views</div><div class="mc-yoy">↑ +50% YOY</div></div>
-          <div class="mc si" style="--d:.83s"><div class="mc-n"><span class="r">~90</span>M</div><div class="mc-l">FS1 Households</div><div class="mc-s">Same scale as NFL &amp; NASCAR</div></div>
+          <div class="mc si" style="--d:.83s"><div class="mc-n">~90M</div><div class="mc-l">FS1 Households</div><div class="mc-s">Same scale as NFL &amp; NASCAR</div></div>
         </div>
       </div>
     </div>
@@ -694,6 +748,7 @@ body.chov #cur-ring{width:54px;height:54px}
   <div class="slide" id="s07" data-s="below">
     <div class="si-wrap" style="flex-direction:row;padding:0;gap:0">
       <div class="s07c ig si" style="--d:.32s">
+        <div class="s07-watermark"><svg viewBox="0 0 24 24" fill="currentColor" style="color:#fff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C16.67.014 16.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
         <div class="s07-plat">Instagram · Jan 2026 (Last 30 Days)</div>
         <div class="s07-num"><span class="ctr" data-t="1.05" data-s="M">1.05M</span></div>
         <div class="s07-nlbl">Total Views</div>
@@ -706,6 +761,7 @@ body.chov #cur-ring{width:54px;height:54px}
         <div class="s07-org">✓ 91.9% Organic</div>
       </div>
       <div class="s07c fb si" style="--d:.42s">
+        <div class="s07-watermark"><svg viewBox="0 0 24 24" fill="currentColor" style="color:#fff"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div>
         <div class="s07-plat">Facebook · Oct 1, 2025 – Jan 22, 2026</div>
         <div class="s07-num"><span class="ctr" data-t="13.2" data-s="M">13.2M</span></div>
         <div class="s07-nlbl">Total Views</div>
@@ -737,7 +793,7 @@ body.chov #cur-ring{width:54px;height:54px}
           <tr><td><span class="rd">11–12</span></td><td>Dec 2025</td><td class="vn">LC Event Center</td><td>Lakeland, FL</td><td><span class="stb st-done"><span class="st-dot"></span>Complete</span></td></tr>
           <tr><td><span class="rd">13–14</span></td><td>Jan 2–3, 2026</td><td class="vn">Salem Civic Center</td><td>Salem, VA</td><td><span class="stb st-done"><span class="st-dot"></span>Complete</span></td></tr>
           <tr><td><span class="rd">15–16</span></td><td>Jan 16–17, 2026</td><td class="vn">Huntington Center</td><td>Toledo, OH</td><td><span class="stb st-done"><span class="st-dot"></span>Complete</span></td></tr>
-          <tr><td><span class="rd">Finale</span></td><td>Jan 31, 2026</td><td class="vn">Florence Center</td><td>Florence, SC</td><td><span class="stb st-finale"><span class="st-dot"></span>Season Champion</span></td></tr>
+          <tr><td><span class="rd">Finale</span></td><td>Jan 31, 2026</td><td class="vn">Florence Center</td><td>Florence, SC</td><td><span class="stb st-finale"><span class="st-dot"></span>Season Championship</span></td></tr>
         </tbody>
       </table>
       <div class="sched-note si" style="--d:.7s">Pro / All-Star Classes (Fri &amp; Sat nights): Open Pro · 250 Pro · 65 All-Stars · 85 All-Stars · Schoolboy (12–17) &nbsp;|&nbsp; Amateur Program (Sat): Full class structure 50cc–450cc</div>
@@ -760,7 +816,7 @@ body.chov #cur-ring{width:54px;height:54px}
       </div>
       <div class="roster-strip si" style="--d:.86s">
         <div class="rs-item"><div class="rs-n"><span>+</span> SX</div><div class="rs-l">Supercross Pipeline</div><div class="rs-d">Gibson, Kessler, Ferry, Clason, Hudson &amp; more former or future SX racers</div></div>
-        <div class="rs-item"><div class="rs-n"><span>5</span> OEMs</div><div class="rs-l">Full Industry</div><div class="rs-d">Honda · Kawasaki · Yamaha · KTM · Suzuki all represented</div></div>
+        <div class="rs-item"><div class="rs-n"><span>7</span> OEMs</div><div class="rs-l">Full Industry</div><div class="rs-d">Honda · Kawasaki · Yamaha · KTM · Suzuki · GasGas · Husqvarna</div></div>
         <div class="rs-item"><div class="rs-n"><span>15</span>+</div><div class="rs-l">States Represented</div><div class="rs-d">National draw every weekend — East Coast's premier championship</div></div>
       </div>
     </div>
@@ -792,11 +848,11 @@ body.chov #cur-ring{width:54px;height:54px}
             <li>Podium &amp; winner's circle logo</li>
             <li>Post-season recap video</li>
           </ul>
-          <div class="tc-btn">Inquire Now</div>
+          <div class="tc-btn" onclick="goTo(11)" style="cursor:pointer">Inquire Now</div>
         </div>
         <div class="tc si" style="--d:.58s">
-          <div class="tc-rib rr"></div>
-          <div class="tc-name">Gold</div><div class="tc-sub">Top-Level Partner</div>
+          <div class="tc-rib rg"></div>
+          <div class="tc-name" style="color:var(--gold)">Gold</div><div class="tc-sub">Top-Level Partner</div>
           <ul class="tc-feats">
             <li>TV broadcast mentions</li>
             <li>Broadcast logo graphics</li>
@@ -808,11 +864,11 @@ body.chov #cur-ring{width:54px;height:54px}
             <li>Podium logo placement</li>
             <li class="off">Post-season recap video</li>
           </ul>
-          <div class="tc-btn">Learn More</div>
+          <div class="tc-btn" onclick="goTo(11)" style="cursor:pointer">Inquire Now</div>
         </div>
         <div class="tc si" style="--d:.66s">
-          <div class="tc-rib rg"></div>
-          <div class="tc-name" style="color:var(--gold)">Silver</div><div class="tc-sub">Core Partner</div>
+          <div class="tc-rib rs"></div>
+          <div class="tc-name" style="color:var(--silver)">Silver</div><div class="tc-sub">Core Partner</div>
           <ul class="tc-feats">
             <li>On-track signage all venues</li>
             <li>Pit lane banners</li>
@@ -824,11 +880,11 @@ body.chov #cur-ring{width:54px;height:54px}
             <li class="off">Podium logo placement</li>
             <li class="off">Post-season recap video</li>
           </ul>
-          <div class="tc-btn">Learn More</div>
+          <div class="tc-btn" onclick="goTo(11)" style="cursor:pointer">Inquire Now</div>
         </div>
         <div class="tc si" style="--d:.74s">
-          <div class="tc-rib rs"></div>
-          <div class="tc-name" style="color:var(--silver)">Bronze</div><div class="tc-sub">Supporting Partner</div>
+          <div class="tc-rib rb"></div>
+          <div class="tc-name" style="color:var(--bronze)">Bronze</div><div class="tc-sub">Supporting Partner</div>
           <ul class="tc-feats">
             <li>Pit lane banners all venues</li>
             <li>Series website presence</li>
@@ -840,7 +896,7 @@ body.chov #cur-ring{width:54px;height:54px}
             <li class="off">Podium logo placement</li>
             <li class="off">Post-season recap video</li>
           </ul>
-          <div class="tc-btn">Learn More</div>
+          <div class="tc-btn" onclick="goTo(11)" style="cursor:pointer">Inquire Now</div>
         </div>
         <div class="tc si" style="--d:.82s">
           <div class="tc-rib rw"></div>
@@ -856,7 +912,7 @@ body.chov #cur-ring{width:54px;height:54px}
             <li class="off">Podium logo placement</li>
             <li class="off">Post-season recap video</li>
           </ul>
-          <div class="tc-btn">Learn More</div>
+          <div class="tc-btn" onclick="goTo(11)" style="cursor:pointer">Inquire Now</div>
         </div>
       </div>
     </div>
@@ -867,64 +923,60 @@ body.chov #cur-ring{width:54px;height:54px}
     <div class="s-bnum">11</div>
     <div class="si-wrap rpad">
       <div class="s-label si" style="--d:.3s">Customize Your Package</div>
-      <div class="s-title si" style="--d:.4s;margin-top:10px">À La Carte <em>Spots</em></div>
+      <div class="s-title si" style="--d:.4s;margin-top:10px">Individual <em>Spots</em></div>
       <div class="alc-wrap">
         <div class="alc-left">
-          <div class="alc-support si" style="--d:.5s">
-            <div class="alc-sup-icon">🚛</div>
-            <div class="alc-sup-name">Team Transport</div>
-            <div class="alc-sup-desc">Support team and rider transport costs directly — immediate goodwill with pro teams. Logo on transport vehicle and gear.</div>
-            <div class="alc-sup-tag">White Glove</div>
-          </div>
-          <div class="alc-support si" style="--d:.58s">
-            <div class="alc-sup-icon">🏕️</div>
-            <div class="alc-sup-name">Free Pit Setup</div>
-            <div class="alc-sup-desc">Official team pit setup: branded backdrop, table covers, security barriers. Your logo in every team photo and broadcast pit lane shot.</div>
-            <div class="alc-sup-tag">On-Camera Placement</div>
-          </div>
-          <div class="alc-support si" style="--d:.66s" style="flex:1;background:linear-gradient(135deg,rgba(232,0,29,.07),rgba(232,0,29,.02));border-color:rgba(232,0,29,.18)">
-            <div class="alc-sup-icon">💡</div>
-            <div class="alc-sup-name">Why À La Carte?</div>
-            <div class="alc-sup-desc">Build a targeted package around what matters to your brand — on-track, on-screen, or experiential. Mix and match with any official tier or stand alone.</div>
+          <div class="alc-support si" style="--d:.5s;flex:1;background:var(--red);border:none;color:white;justify-content:center">
+            <div class="alc-sup-icon" style="color:white"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/></svg></div>
+            <div class="alc-sup-name">Why Individual?</div>
+            <div class="alc-sup-desc" style="color:rgba(255,255,255,.9)">Build a targeted package around what matters to your brand — on-track, on-screen, or experiential. Mix and match with any official tier or stand alone.</div>
           </div>
         </div>
         <div class="alc-right">
           <div class="spot-card si" style="--d:.52s">
+            <div class="spot-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/></svg></div>
             <div class="spot-name">Holeshot Sponsor</div>
             <div class="spot-desc">PA announcement every race. Branded award ceremony. Fan-favorite moment of every main event.</div>
             <div class="spot-badge">Every Main Event</div>
           </div>
           <div class="spot-card si" style="--d:.58s">
+            <div class="spot-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
             <div class="spot-name">Fastest Lap Sponsor</div>
             <div class="spot-desc">Announced at every round. Logo on timing displays. Memorable stat tied to speed &amp; performance.</div>
             <div class="spot-badge">Timing Display</div>
           </div>
           <div class="spot-card si" style="--d:.64s">
+            <div class="spot-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
             <div class="spot-name">Fastest Qualifier</div>
             <div class="spot-desc">PA announcement during qualifying. Early broadcast window. First sponsor to air each night.</div>
             <div class="spot-badge">Broadcast Window</div>
           </div>
           <div class="spot-card si" style="--d:.70s">
+            <div class="spot-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="1"/><path d="M8 21h8M12 19v2"/></svg></div>
             <div class="spot-name">On-TV Leaderboard</div>
             <div class="spot-desc">Your logo on the on-screen leaderboard graphic during live broadcast. Maximum TV impressions.</div>
             <div class="spot-badge">National TV</div>
           </div>
           <div class="spot-card si" style="--d:.76s">
+            <div class="spot-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
             <div class="spot-name">Tough Blocks Sponsor</div>
             <div class="spot-desc">Branded barrier blocks visible throughout arena floor and all broadcast camera angles.</div>
             <div class="spot-badge">360° Visibility</div>
           </div>
           <div class="spot-card si" style="--d:.82s">
+            <div class="spot-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div>
             <div class="spot-name">Starting Gate Inserts</div>
             <div class="spot-desc">Logo on gate inserts seen in every start sequence — on TV, on Jumbotron, in every fan photo.</div>
             <div class="spot-badge">Gate Drop Moment</div>
           </div>
           <div class="spot-card si" style="--d:.86s">
+            <div class="spot-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
             <div class="spot-name">Track Walk Sponsor</div>
             <div class="spot-desc">Sponsor the $30 track walk experience. Direct fan interaction, branded signage, premium placement.</div>
             <div class="spot-badge">Fan Activation</div>
           </div>
           <div class="spot-card si" style="--d:.90s">
+            <div class="spot-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
             <div class="spot-name">VIP Ticket Sponsor</div>
             <div class="spot-desc">Brand the VIP package: early qualifying entry, premium seating, pit pass included. Luxury touchpoint.</div>
             <div class="spot-badge">Premium Experience</div>
@@ -938,38 +990,45 @@ body.chov #cur-ring{width:54px;height:54px}
   <div class="slide" id="s12" data-s="below">
     <div class="s-bg"></div>
     <div class="s-ov"></div>
-    <div class="si-wrap" style="align-items:center;justify-content:center;text-align:center;padding-right:150px">
-      <img src="Partzilla Logo lite.png" alt="Partzilla Arenacross" class="si" style="--d:.2s;width:170px;margin-bottom:20px;filter:drop-shadow(0 4px 24px rgba(0,0,0,.7))">
+    <div class="si-wrap" style="align-items:center;justify-content:flex-start;text-align:center;padding-right:150px;overflow-y:auto;padding-bottom:100px;">
+      <div style="margin:auto 0;width:100%;display:flex;flex-direction:column;align-items:center;padding-top:20px;">
+      <img src="Partzilla Logo lite.png" alt="Partzilla Arenacross" class="si" style="--d:.2s;width:240px;margin-bottom:14px;filter:drop-shadow(0 4px 24px rgba(0,0,0,.7))">
       <div class="cta-eye si" style="--d:.32s">The Most Televised · Deepest Field · Fastest-Growing</div>
-      <div class="cta-h si" style="--d:.4s">Let's Grow<br><em>Together</em></div>
-      <p class="cta-body si" style="--d:.52s">The AMA Partzilla Arenacross Series stands alone as the most televised, deepest-field, and fastest-growing Arenacross championship in the country. Partner through official tiers or targeted à la carte spots and enjoy white-glove team support that makes your brand part of the show.</p>
-      <div class="cta-stats si" style="--d:.62s">
-        <div><div class="cs-n">346</div><div class="cs-l">FS1/FS2 Airings</div></div>
-        <div><div class="cs-n">13.2<span class="r">M</span></div><div class="cs-l">Facebook Views</div></div>
-        <div><div class="cs-n">92<span class="r">%</span></div><div class="cs-l">Organic Reach</div></div>
-        <div><div class="cs-n">2<span class="r">K+</span></div><div class="cs-l">Fans / Night</div></div>
-      </div>
-      <div class="cta-btns si" style="--d:.72s">
-        <a href="mailto:info@partzillaarenacross.com" class="btn-r">Get Sponsorship Info</a>
-        <a href="tel:9312787775" class="btn-o">Call (931) 278-7775</a>
-      </div>
+      <div class="cta-h si" style="--d:.4s">YOUR BRAND<br><em>BELONGS HERE</em></div>
+      <form class="contact-form si" style="--d:.62s" action="mailto:info@partzillaarenacross.com" method="post" enctype="text/plain">
+        <div class="cf-field">
+          <label>Name</label>
+          <input type="text" name="name" placeholder="Your name" required>
+        </div>
+        <div class="cf-field">
+          <label>Company</label>
+          <input type="text" name="company" placeholder="Company name">
+        </div>
+        <div class="cf-field">
+          <label>Email</label>
+          <input type="email" name="email" placeholder="your@email.com" required>
+        </div>
+        <div class="cf-field">
+          <label>Phone</label>
+          <input type="tel" name="phone" placeholder="(555) 555-5555">
+        </div>
+        <div class="cf-field full">
+          <label>Message</label>
+          <textarea name="message" placeholder="Tell us about your sponsorship interests..."></textarea>
+        </div>
+        <div class="cf-submit">
+          <button type="submit" class="btn-r" style="width:100%;cursor:pointer">Send Inquiry</button>
+        </div>
+      </form>
       <div class="cta-contact si" style="--d:.82s">
         <div class="cci"><div class="cci-l">Email</div><div class="cci-v"><a href="mailto:info@partzillaarenacross.com">info@partzillaarenacross.com</a></div></div>
         <div class="cci"><div class="cci-l">Phone</div><div class="cci-v"><a href="tel:9312787775">(931) 278-7775</a></div></div>
         <div class="cci"><div class="cci-l">Website</div><div class="cci-v"><a href="https://partzillaarenacross.com" target="_blank">partzillaarenacross.com</a></div></div>
         <div class="cci"><div class="cci-l">Presented By</div><div class="cci-v">TriStar MX · TransWorld Motocross</div></div>
       </div>
-    </div>
-    <div class="cta-foot">
-      <img src="Partzilla Logo lite.png" alt="Partzilla Arenacross" style="height:44px;opacity:.65;filter:drop-shadow(0 1px 4px rgba(0,0,0,.5))">
-      <div class="cf-badges">
-        <span class="cf-b">AMA Sanctioned</span>
-        <span class="cf-b">FS1 / FS2</span>
-        <span class="cf-b">East Coast #1 Plates</span>
-        <span class="cf-b">Title Sponsor: Partzilla</span>
-        <span class="cf-b">Season 3</span>
       </div>
     </div>
+
   </div>
 
 </div><!-- /slides -->
@@ -979,7 +1038,7 @@ body.chov #cur-ring{width:54px;height:54px}
   <div class="sn-track"></div>
   <div class="sni on" data-g="0"><span class="sni-lbl">Cover</span><span class="sni-pip"></span></div>
   <div class="sni" data-g="1"><span class="sni-lbl">The Series</span><span class="sni-pip"></span></div>
-  <div class="sni" data-g="2"><span class="sni-lbl">Our Story</span><span class="sni-pip"></span></div>
+  <div class="sni" data-g="2"><span class="sni-lbl">About the Company</span><span class="sni-pip"></span></div>
   <div class="sni" data-g="3"><span class="sni-lbl">At The Event</span><span class="sni-pip"></span></div>
   <div class="sni" data-g="4"><span class="sni-lbl">Highlights</span><span class="sni-pip"></span></div>
   <div class="sni" data-g="5"><span class="sni-lbl">Broadcast</span><span class="sni-pip"></span></div>
@@ -987,21 +1046,33 @@ body.chov #cur-ring{width:54px;height:54px}
   <div class="sni" data-g="7"><span class="sni-lbl">Schedule</span><span class="sni-pip"></span></div>
   <div class="sni" data-g="8"><span class="sni-lbl">Roster</span><span class="sni-pip"></span></div>
   <div class="sni" data-g="9"><span class="sni-lbl">Tiers</span><span class="sni-pip"></span></div>
-  <div class="sni" data-g="10"><span class="sni-lbl">À La Carte</span><span class="sni-pip"></span></div>
+  <div class="sni" data-g="10"><span class="sni-lbl">Individual Spots</span><span class="sni-pip"></span></div>
   <div class="sni" data-g="11"><span class="sni-lbl">Contact</span><span class="sni-pip"></span></div>
 </nav>
 
-<!-- ── SLIDE COUNTER ────────────────────────── -->
-<div id="scount">
-  <span class="sc-n" id="sc-n">01</span>
-  <span class="sc-sep">/</span>
-  <span class="sc-tot">12</span>
-</div>
-
-<!-- ── NAV ARROWS ───────────────────────────── -->
-<div id="narrows">
-  <button class="na" id="na-up" title="Previous">↑</button>
-  <button class="na" id="na-dn" title="Next">↓</button>
+<!-- ── BOTTOM BAR ─────────────────────────────── -->
+<div id="bottombar">
+  <div class="bb-section">
+    <div class="bb-page"><span id="bb-cur">01</span><span class="bb-sep">/</span><span class="bb-tot">12</span></div>
+    <div class="bb-divider"></div>
+    <button class="bb-btn" id="bb-home" title="Home">⌂ Home</button>
+  </div>
+  <div class="bb-section">
+    <div class="bb-arrows">
+      <button id="bb-up" title="Previous">↑</button>
+      <button id="bb-dn" title="Next">↓</button>
+    </div>
+  </div>
+  <div class="bb-section">
+    <button class="bb-btn" id="bb-contact" title="Contact">✉ Contact</button>
+    <div class="bb-divider"></div>
+    <a href="https://partzillaarenacross.com" target="_blank" class="bb-link">partzillaarenacross.com</a>
+    <div class="bb-divider"></div>
+    <div class="bb-social">
+      <a href="https://www.instagram.com/partzillaarenacross/" target="_blank" title="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C16.67.014 16.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      <a href="https://www.facebook.com/partzillaarenacross" target="_blank" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+    </div>
+  </div>
 </div>
 
 <style>
@@ -1085,7 +1156,7 @@ function goTo(idx){
 
 // ─── UI UPDATES ───────────────────────────────
 const navItems = document.querySelectorAll('.sni');
-const scN = document.getElementById('sc-n');
+const scN = document.getElementById('bb-cur');
 
 function updateUI(){
   navItems.forEach((ni,i)=>ni.classList.toggle('on', i===cur_s));
@@ -1097,12 +1168,22 @@ updateUI();
 // ─── INPUT HANDLING ───────────────────────────
 let lastWh = 0;
 window.addEventListener('wheel',e=>{
-  e.preventDefault();
   const now=Date.now();
   if(now-lastWh<300) return;
-  lastWh=now;
-  if(e.deltaY>0) goTo(cur_s+1);
-  else goTo(cur_s-1);
+  let trg=e.target, isScr=false;
+  while(trg && trg!==document.body){
+    const oY = window.getComputedStyle(trg).overflowY;
+    if((oY==='auto'||oY==='scroll') && trg.scrollHeight>trg.clientHeight+2){
+      if(e.deltaY>0 && Math.ceil(trg.scrollTop+trg.clientHeight)>=trg.scrollHeight-3){}else if(e.deltaY<0 && trg.scrollTop<=3){}else{isScr=true;break;}
+    }
+    trg=trg.parentElement;
+  }
+  if(!isScr) {
+    if(window.innerWidth<=900 && Math.abs(e.deltaY)<5) return;
+    e.preventDefault();
+    lastWh=now;
+    if(e.deltaY>0) goTo(cur_s+1); else goTo(cur_s-1);
+  }
 },{passive:false});
 
 window.addEventListener('keydown',e=>{
@@ -1110,8 +1191,10 @@ window.addEventListener('keydown',e=>{
   if(e.key==='ArrowUp'||e.key==='PageUp') goTo(cur_s-1);
 });
 
-document.getElementById('na-dn').addEventListener('click',()=>goTo(cur_s+1));
-document.getElementById('na-up').addEventListener('click',()=>goTo(cur_s-1));
+document.getElementById('bb-dn').addEventListener('click',()=>goTo(cur_s+1));
+document.getElementById('bb-up').addEventListener('click',()=>goTo(cur_s-1));
+document.getElementById('bb-home').addEventListener('click',()=>goTo(0));
+document.getElementById('bb-contact').addEventListener('click',()=>goTo(11));
 
 navItems.forEach(ni=>{
   ni.addEventListener('click',()=>goTo(parseInt(ni.dataset.g)));
@@ -1122,8 +1205,17 @@ document.addEventListener('touchstart',e=>{tStart=e.touches[0].clientY; tStartX=
 document.addEventListener('touchend',e=>{
   const dy=tStart-e.changedTouches[0].clientY;
   const dx=Math.abs(tStartX-e.changedTouches[0].clientX);
+  
   if(Math.abs(dy)>50 && Math.abs(dy)>dx){
-    if(dy>0) goTo(cur_s+1); else goTo(cur_s-1);
+    let trg=e.target, isScr=false;
+    while(trg && trg!==document.body){
+      const oY = window.getComputedStyle(trg).overflowY;
+      if((oY==='auto'||oY==='scroll') && trg.scrollHeight>trg.clientHeight+2){
+        if(dy>0 && Math.ceil(trg.scrollTop+trg.clientHeight)>=trg.scrollHeight-3){}else if(dy<0 && trg.scrollTop<=3){}else{isScr=true;break;}
+      }
+      trg=trg.parentElement;
+    }
+    if(!isScr) { if(dy>0) goTo(cur_s+1); else goTo(cur_s-1); }
   }
 },{passive:true});
 
