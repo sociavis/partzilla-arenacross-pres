@@ -434,7 +434,7 @@ body.chov #cur-ring{width:54px;height:54px}
 .champ-side::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,.65) 0%,rgba(8,8,8,.2) 30%,transparent 60%);z-index:1}
 
 .champ-info{position:relative;z-index:2;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px}
-.champ-plate{height:clamp(120px,16vw,220px);filter:drop-shadow(0 6px 30px rgba(232,0,29,.25)) drop-shadow(0 2px 10px rgba(0,0,0,.8));transition:transform .4s}
+.champ-plate{height:clamp(120px,16vw,220px);filter:drop-shadow(0 6px 30px rgba(232,0,29,.25)) drop-shadow(0 2px 10px rgba(0,0,0,.8));transition:transform .4s;border-radius:12px}
 .champ-plate:hover{transform:scale(1.06)}
 .champ-num{font-family:var(--race);font-size:clamp(50px,7vw,90px);line-height:.75;color:var(--wh);letter-spacing:.02em;text-shadow:0 0 40px rgba(232,0,29,.3),0 0 80px rgba(232,0,29,.15),0 4px 30px rgba(0,0,0,.6);margin-top:6px}
 .champ-name{font-family:var(--race);font-size:clamp(16px,2.2vw,28px);letter-spacing:.08em;text-transform:uppercase;color:var(--wh);line-height:1}
@@ -444,7 +444,7 @@ body.chov #cur-ring{width:54px;height:54px}
 .champ-center{flex:0 0 auto;width:clamp(200px,22vw,320px);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:3;padding:30px 20px;gap:16px;background:linear-gradient(180deg,rgba(232,0,29,.12),rgba(232,0,29,.04) 40%,rgba(232,0,29,.12))}
 .champ-center::before{content:'';position:absolute;left:0;top:5%;bottom:5%;width:1px;background:linear-gradient(to bottom,transparent,rgba(232,0,29,.6),transparent)}
 .champ-center::after{content:'';position:absolute;right:0;top:5%;bottom:5%;width:1px;background:linear-gradient(to bottom,transparent,rgba(232,0,29,.6),transparent)}
-.champ-nat-plate{height:clamp(140px,18vw,260px);filter:drop-shadow(0 8px 40px rgba(232,0,29,.35)) drop-shadow(0 2px 10px rgba(0,0,0,.6)) brightness(1.1);transition:transform .4s}
+.champ-nat-plate{height:clamp(140px,18vw,260px);filter:drop-shadow(0 8px 40px rgba(232,0,29,.35)) drop-shadow(0 2px 10px rgba(0,0,0,.6)) brightness(1.1);transition:transform .4s;border-radius:12px}
 .champ-nat-plate:hover{transform:scale(1.05)}
 .champ-vs{font-family:var(--race);font-size:clamp(10px,1.2vw,14px);letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.35)}
 
