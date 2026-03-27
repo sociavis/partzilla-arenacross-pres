@@ -1,8 +1,12 @@
 {
   "rewrites": [
     {
-      "source": "/admin/:path*",
-      "destination": "https://gridline-dashboard.vercel.app/admin/:path*"
+      "source": "/admin",
+      "destination": "https://gridline-dashboard.vercel.app/admin"
+    },
+    {
+      "source": "/admin/:path(.*)",
+      "destination": "https://gridline-dashboard.vercel.app/admin/:path"
     }
   ]
 }
