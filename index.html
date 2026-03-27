@@ -549,17 +549,17 @@ body.chov #cur-ring{width:54px;height:54px}
 .cf-b{font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.18);padding:3px 9px;border:1px solid rgba(255,255,255,.06);border-radius:2px}
 
 /* ── CONTACT FORM ────────────────────────────── */
-.contact-form{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:700px;margin:0 auto 16px;text-align:left}
+.contact-form{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:700px;margin:0 auto 10px;text-align:left}
 .cf-field{display:flex;flex-direction:column;gap:4px}
 .cf-field.full{grid-column:1/-1}
 .cf-field label{font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.35)}
-.cf-field input:not([type="checkbox"]),.cf-field textarea,.cf-field select{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:2px;padding:11px 14px;color:#fff;font-family:var(--body);font-size:12px;transition:border-color .3s;outline:none;width:100%;}
+.cf-field input:not([type="checkbox"]),.cf-field textarea,.cf-field select{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:2px;padding:9px 12px;color:#fff;font-family:var(--body);font-size:12px;transition:border-color .3s;outline:none;width:100%;}
 .cf-field input:not([type="checkbox"]):focus,.cf-field textarea:focus,.cf-field select:focus{border-color:var(--red)}
 .cf-field select option{color:#000}
-.cf-field textarea{resize:vertical;min-height:54px}
+.cf-field textarea{resize:vertical;min-height:40px}
 .cf-submit{grid-column:1/-1}
-.cf-goals-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:4px}
-.cf-check{display:flex;align-items:center;gap:7px;padding:8px 10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:2px;cursor:pointer;transition:background .2s,border-color .2s;user-select:none}
+.cf-goals-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:2px}
+.cf-check{display:flex;align-items:center;gap:6px;padding:6px 8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:2px;cursor:pointer;transition:background .2s,border-color .2s;user-select:none}
 .cf-check:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18)}
 .cf-check input[type="checkbox"]{appearance:none;-webkit-appearance:none;width:12px;height:12px;border:1px solid rgba(255,255,255,.25);border-radius:2px;flex-shrink:0;position:relative;cursor:pointer;transition:background .2s,border-color .2s}
 .cf-check input[type="checkbox"]:checked{background:var(--red);border-color:var(--red)}
@@ -1743,9 +1743,9 @@ body.chov #cur-ring{width:54px;height:54px}
   <div class="slide" id="s13" data-s="below">
     <div class="s-bg"></div>
     <div class="s-ov"></div>
-    <div class="si-wrap" style="align-items:center;justify-content:flex-start;text-align:center;padding-right:150px;overflow-y:auto;padding-bottom:100px;">
-      <div style="margin:auto 0;width:100%;display:flex;flex-direction:column;align-items:center;padding-top:20px;">
-      <img src="Partzilla Logo lite.png" alt="Partzilla Arenacross" class="si" style="--d:.2s;width:240px;margin-bottom:14px;filter:drop-shadow(0 4px 24px rgba(0,0,0,.7))">
+    <div class="si-wrap" style="align-items:center;justify-content:flex-start;text-align:center;padding-right:150px;overflow:hidden;padding-bottom:30px;">
+      <div style="margin:auto 0;width:100%;display:flex;flex-direction:column;align-items:center;padding-top:10px;">
+      <img src="Partzilla Logo lite.png" alt="Partzilla Arenacross" class="si" style="--d:.2s;width:180px;margin-bottom:10px;filter:drop-shadow(0 4px 24px rgba(0,0,0,.7))">
       <div class="cta-eye si" style="--d:.32s">The Most Televised · Deepest Field · Fastest-Growing</div>
       <div class="cta-h si" style="--d:.4s">YOUR BRAND<br><em>BELONGS HERE</em></div>
       <form class="contact-form si" style="--d:.62s" id="contactForm" action="https://formsubmit.co/info@tristarmx.com" method="POST">
@@ -1754,10 +1754,7 @@ body.chov #cur-ring{width:54px;height:54px}
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_next" value="https://partzilla-arenacross.vercel.app">
         <input type="text" name="_honey" style="display:none">
-        <div class="cf-field" id="cf-tier-row" style="display:none">
-          <label>Targeted Tier (Auto-Filled)</label>
-          <input type="text" name="Targeted Tier" id="targeted_tier" readonly style="background:rgba(255,255,255,0.02);color:var(--red);font-weight:700;letter-spacing:0.1em;text-transform:uppercase" tabindex="-1">
-        </div>
+        <input type="hidden" name="Targeted Tier" id="targeted_tier" value="">
         <div class="cf-field">
           <label>Name</label>
           <input type="text" name="name" placeholder="Your name" required>
@@ -1773,6 +1770,13 @@ body.chov #cur-ring{width:54px;height:54px}
         <div class="cf-field">
           <label>Phone</label>
           <input type="tel" name="phone" placeholder="(555) 555-5555">
+        </div>
+        <div id="cf-tier-badge" class="full" style="display:none;grid-column:1/-1">
+          <div style="display:inline-flex;flex-direction:column;align-items:center;padding:10px 32px;border-radius:4px;background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.15);position:relative;overflow:hidden">
+            <div style="position:absolute;inset:0;border-radius:4px;padding:1px;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;background:linear-gradient(135deg,rgba(255,255,255,.2),transparent,rgba(255,255,255,.1));pointer-events:none"></div>
+            <span style="font-size:7px;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:4px">SELECTED TIER</span>
+            <span id="tier-badge-name" style="font-family:var(--head);font-size:18px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--red)"></span>
+          </div>
         </div>
         <div class="cf-field full">
           <label>What is your marketing budget?</label>
@@ -1951,11 +1955,17 @@ const DUR = 920;
 slides.forEach((s,i)=>{ s.dataset.s = i===0?'active':'below'; });
 
 function inquireTier(tier, idx) {
-  const row = document.getElementById('cf-tier-row');
-  const input = document.getElementById('targeted_tier');
-  if (row && input) {
-    row.style.display = 'block';
-    input.value = tier;
+  const hiddenInput = document.getElementById('targeted_tier');
+  const badge = document.getElementById('cf-tier-badge');
+  const badgeName = document.getElementById('tier-badge-name');
+  if (hiddenInput) hiddenInput.value = tier;
+  if (badge && badgeName) {
+    badge.style.display = '';
+    badgeName.textContent = tier;
+    const colors = {Title:'#d4af37',Gold:'#d4af37',Silver:'#c0c0c0',Bronze:'#cd7f32',Event:'#e8001d'};
+    const c = colors[tier] || '#e8001d';
+    badgeName.style.color = c;
+    badgeName.style.textShadow = '0 0 18px ' + c + '55, 0 0 6px ' + c + '33';
   }
   goTo(idx);
   setTimeout(() => {
