@@ -428,10 +428,10 @@ body.chov #cur-ring{width:54px;height:54px}
 
 .champ-side{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:30px 28px 24px;gap:10px}
 .champ-side::before{content:'';position:absolute;inset:0;background-size:cover;background-position:center top;transition:opacity .6s;z-index:0}
-.champ-side.west::before{background-image:url('Photos/Prescott Ax 0212.jpg');opacity:.35}
-.champ-side.east::before{background-image:url('Photos/Gage-Linville-at-2026-Partzilla-Arenacross-Final.jpg');opacity:.35;background-position:center center}
-.slide[data-s="active"] .champ-side::before{opacity:.5}
-.champ-side::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,.88) 0%,rgba(8,8,8,.55) 40%,rgba(8,8,8,.3) 100%);z-index:1}
+.champ-side.west::before{background-image:url('Photos/Prescott Ax 0212.jpg');opacity:.55}
+.champ-side.east::before{background-image:url('Photos/Gage-Linville-at-2026-Partzilla-Arenacross-Final.jpg');opacity:.65;background-position:center center}
+.slide[data-s="active"] .champ-side::before{opacity:.8}
+.champ-side::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,.75) 0%,rgba(8,8,8,.3) 35%,rgba(8,8,8,.1) 100%);z-index:1}
 
 .champ-info{position:relative;z-index:2;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px}
 .champ-plate{height:clamp(120px,16vw,220px);filter:drop-shadow(0 6px 30px rgba(232,0,29,.25)) drop-shadow(0 2px 10px rgba(0,0,0,.8));transition:transform .4s}
@@ -441,12 +441,12 @@ body.chov #cur-ring{width:54px;height:54px}
 .champ-title{font-size:clamp(8px,1vw,12px);letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);font-weight:600;line-height:1.4}
 
 /* National plate center column */
-.champ-center{flex:0 0 auto;width:clamp(200px,22vw,320px);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:3;padding:30px 20px;gap:16px;background:linear-gradient(180deg,rgba(232,0,29,.06),rgba(232,0,29,.02) 40%,rgba(232,0,29,.06))}
-.champ-center::before{content:'';position:absolute;left:0;top:10%;bottom:10%;width:1px;background:linear-gradient(to bottom,transparent,rgba(232,0,29,.4),transparent)}
-.champ-center::after{content:'';position:absolute;right:0;top:10%;bottom:10%;width:1px;background:linear-gradient(to bottom,transparent,rgba(232,0,29,.4),transparent)}
-.champ-nat-plate{height:clamp(140px,18vw,260px);filter:drop-shadow(0 8px 40px rgba(232,0,29,.2)) drop-shadow(0 2px 10px rgba(0,0,0,.8));transition:transform .4s}
+.champ-center{flex:0 0 auto;width:clamp(200px,22vw,320px);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:3;padding:30px 20px;gap:16px;background:linear-gradient(180deg,rgba(232,0,29,.12),rgba(232,0,29,.04) 40%,rgba(232,0,29,.12))}
+.champ-center::before{content:'';position:absolute;left:0;top:5%;bottom:5%;width:1px;background:linear-gradient(to bottom,transparent,rgba(232,0,29,.6),transparent)}
+.champ-center::after{content:'';position:absolute;right:0;top:5%;bottom:5%;width:1px;background:linear-gradient(to bottom,transparent,rgba(232,0,29,.6),transparent)}
+.champ-nat-plate{height:clamp(140px,18vw,260px);filter:drop-shadow(0 8px 40px rgba(232,0,29,.35)) drop-shadow(0 2px 10px rgba(0,0,0,.6)) brightness(1.1);transition:transform .4s}
 .champ-nat-plate:hover{transform:scale(1.05)}
-.champ-vs{font-family:var(--race);font-size:clamp(10px,1.2vw,14px);letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.2)}
+.champ-vs{font-family:var(--race);font-size:clamp(10px,1.2vw,14px);letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.35)}
 
 .champ-top{position:absolute;top:0;left:0;right:0;z-index:4;padding:28px 72px 20px;padding-right:152px;background:linear-gradient(to bottom,var(--blk) 0%,var(--blk) 40%,transparent 100%)}
 
