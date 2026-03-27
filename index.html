@@ -448,6 +448,16 @@ body.chov #cur-ring{width:54px;height:54px}
 .champ-nat-plate:hover{transform:scale(1.05)}
 .champ-vs{font-family:var(--race);font-size:clamp(10px,1.2vw,14px);letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.35)}
 
+@media (max-width: 768px) {
+  .champ-body { flex-direction: column; align-items: center; justify-content: flex-start; gap: 20px; overflow-y: auto; overflow-x: hidden; padding-top: 20px; padding-bottom: 20px; }
+  .champ-side { padding: 0 !important; width: 100%; min-height: 250px; justify-content: center; overflow: visible; }
+  .champ-side::after { display: none; }
+  .champ-side::before { background-size: contain; background-repeat: no-repeat; filter: brightness(1) drop-shadow(0 10px 20px #000); }
+  .champ-center { width: auto; margin: 10px 0; padding: 15px; border-radius: 8px; }
+  .champ-plate, .champ-nat-plate { height: auto; width: 60%; max-width: 200px; transform: scale(1.05); }
+  .s07-tab-bar { margin-top: 24px; }
+}
+
 .champ-top{position:absolute;top:0;left:0;right:0;z-index:4;padding:28px 72px 20px;padding-right:152px;background:linear-gradient(to bottom,var(--blk) 0%,var(--blk) 40%,transparent 100%)}
 
 .champ-bottom{position:absolute;bottom:0;left:0;right:0;z-index:4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:20px 72px 28px;background:linear-gradient(180deg,transparent,rgba(8,8,8,.9) 40%,var(--blk) 100%)}
@@ -1325,7 +1335,7 @@ body.chov #cur-ring{width:54px;height:54px}
         </div>
 
         <!-- WEST COAST -->
-        <div class="coast-pane" data-group="broadcast" data-coast="west">
+        <div class="coast-pane active" data-group="broadcast" data-coast="west">
           <p class="s06-body">MAVTV broadcast and RydeTV streaming deliver massive West Coast reach. 3.7M+ TV viewers and 2.5M+ streaming views with 26M+ minutes of watch time across the season.</p>
           <div class="s06-metrics">
             <div class="mc"><div class="mc-n">3.7M</div><div class="mc-l">MAVTV Viewers</div><div class="mc-s">TV &amp; online broadcasts</div></div>
@@ -1353,13 +1363,12 @@ body.chov #cur-ring{width:54px;height:54px}
   <!-- S07 — SOCIAL MEDIA -->
   <div class="slide" id="s07" data-s="below">
     <div class="s07-tab-bar si" style="--d:.25s" data-group="social">
-      <div class="coast-tab active" data-coast="east">East Coast</div>
-      <div class="coast-tab" data-coast="west">West Coast</div>
-      <div class="coast-tab" data-coast="full">Full 25–26 Season</div>
+      <div class="coast-tab active" data-coast="west">West Coast</div>
+      <div class="coast-tab" data-coast="east">East Coast</div>
     </div>
 
     <!-- EAST COAST -->
-    <div class="coast-pane active" data-group="social" data-coast="east">
+    <div class="coast-pane" data-group="social" data-coast="east">
       <div class="si-wrap" style="flex-direction:row;padding:0;gap:0;padding-top:0">
         <div class="s07c ig si" style="--d:.32s">
           <div class="s07-watermark"><svg viewBox="0 0 24 24" fill="currentColor" style="color:#fff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C16.67.014 16.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
@@ -1391,7 +1400,7 @@ body.chov #cur-ring{width:54px;height:54px}
     </div>
 
     <!-- WEST COAST -->
-    <div class="coast-pane" data-group="social" data-coast="west">
+    <div class="coast-pane active" data-group="social" data-coast="west">
       <div class="si-wrap" style="flex-direction:row;padding:0;gap:0;padding-top:0">
         <div class="s07c ig" style="background:linear-gradient(148deg,#6c1f9a 0%,#c9133a 48%,#f0932b 100%)">
           <div class="s07-watermark"><svg viewBox="0 0 24 24" fill="currentColor" style="color:#fff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C16.67.014 16.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
@@ -1583,7 +1592,7 @@ body.chov #cur-ring{width:54px;height:54px}
             <li>Podium &amp; winner's circle logo</li>
             <li>Post-season recap video</li>
           </ul>
-          <div class="tc-btn" onclick="goTo(11)" style="cursor:pointer">Inquire Now</div>
+          <div class="tc-btn" onclick="inquireTier('Title', 12)" style="cursor:pointer">Inquire Now</div>
         </div>
         <div class="tc si" style="--d:.58s">
           <div class="tc-rib rg"></div>
@@ -1599,7 +1608,7 @@ body.chov #cur-ring{width:54px;height:54px}
             <li>Podium logo placement</li>
             <li class="off">Post-season recap video</li>
           </ul>
-          <div class="tc-btn" onclick="goTo(11)" style="cursor:pointer">Inquire Now</div>
+          <div class="tc-btn" onclick="inquireTier('Gold', 12)" style="cursor:pointer">Inquire Now</div>
         </div>
         <div class="tc si" style="--d:.66s">
           <div class="tc-rib rs"></div>
@@ -1615,7 +1624,7 @@ body.chov #cur-ring{width:54px;height:54px}
             <li class="off">Podium logo placement</li>
             <li class="off">Post-season recap video</li>
           </ul>
-          <div class="tc-btn" onclick="goTo(11)" style="cursor:pointer">Inquire Now</div>
+          <div class="tc-btn" onclick="inquireTier('Silver', 12)" style="cursor:pointer">Inquire Now</div>
         </div>
         <div class="tc si" style="--d:.74s">
           <div class="tc-rib rb"></div>
@@ -1631,7 +1640,7 @@ body.chov #cur-ring{width:54px;height:54px}
             <li class="off">Podium logo placement</li>
             <li class="off">Post-season recap video</li>
           </ul>
-          <div class="tc-btn" onclick="goTo(11)" style="cursor:pointer">Inquire Now</div>
+          <div class="tc-btn" onclick="inquireTier('Bronze', 12)" style="cursor:pointer">Inquire Now</div>
         </div>
         <div class="tc si" style="--d:.82s">
           <div class="tc-rib rw"></div>
@@ -1647,7 +1656,7 @@ body.chov #cur-ring{width:54px;height:54px}
             <li class="off">Podium logo placement</li>
             <li class="off">Post-season recap video</li>
           </ul>
-          <div class="tc-btn" onclick="goTo(11)" style="cursor:pointer">Inquire Now</div>
+          <div class="tc-btn" onclick="inquireTier('Event', 12)" style="cursor:pointer">Inquire Now</div>
         </div>
       </div>
       <div class="mob-swipe-x si" style="--d:.88s">
@@ -1745,6 +1754,10 @@ body.chov #cur-ring{width:54px;height:54px}
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_next" value="https://partzilla-arenacross.vercel.app">
         <input type="text" name="_honey" style="display:none">
+        <div class="cf-field" id="cf-tier-row" style="display:none">
+          <label>Targeted Tier (Auto-Filled)</label>
+          <input type="text" name="Targeted Tier" id="targeted_tier" readonly style="background:rgba(255,255,255,0.02);color:var(--red);font-weight:700;letter-spacing:0.1em;text-transform:uppercase" tabindex="-1">
+        </div>
         <div class="cf-field">
           <label>Name</label>
           <input type="text" name="name" placeholder="Your name" required>
@@ -1936,6 +1949,20 @@ let busy = false;
 const DUR = 920;
 
 slides.forEach((s,i)=>{ s.dataset.s = i===0?'active':'below'; });
+
+function inquireTier(tier, idx) {
+  const row = document.getElementById('cf-tier-row');
+  const input = document.getElementById('targeted_tier');
+  if (row && input) {
+    row.style.display = 'block';
+    input.value = tier;
+  }
+  goTo(idx);
+  setTimeout(() => {
+    const fn = document.querySelector('input[name="name"]');
+    if (fn) fn.focus();
+  }, 1200);
+}
 
 function goTo(idx){
   if(busy || idx===cur_s || idx<0 || idx>=N) return;
