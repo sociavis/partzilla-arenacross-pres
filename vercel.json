@@ -1,9 +1,8 @@
 {
-  "redirects": [
+  "rewrites": [
     {
       "source": "/admin/:path*",
-      "destination": "https://gridline-dashboard.vercel.app/admin/:path*",
-      "permanent": false
+      "destination": "https://gridline-dashboard.vercel.app/admin/:path*"
     }
   ]
 }
