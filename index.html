@@ -295,13 +295,13 @@ body.chov #cur-ring{width:54px;height:54px}
 .coast-tab:hover{background:rgba(255,255,255,.08);color:rgba(255,255,255,.6)}
 .coast-tab.active{background:rgba(232,0,29,.15);border-color:rgba(232,0,29,.4);color:var(--red)}
 .coast-pane{display:none}
-.coast-pane.active{display:contents}
+.coast-pane.active{display:block}
 /* S07 tab bar floats over top of the two-pane layout */
 .s07-tab-bar{position:absolute;top:20px;left:50%;transform:translateX(-50%);z-index:10;display:flex;gap:2px;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);padding:4px;border-radius:3px;border:1px solid rgba(255,255,255,.08)}
 #s07{position:relative}
-#s07 > .coast-pane{display:none;position:absolute;inset:0;top:0}
-#s07 > .coast-pane.active{display:flex}
-#s07 > .coast-pane > .si-wrap{flex:1;height:100%}
+#s07 > .coast-pane{display:none;position:absolute;inset:0}
+#s07 > .coast-pane.active{display:block}
+#s07 > .coast-pane > .si-wrap{width:100%;height:100%}
 
 /* ════════════════════════════════════════════════
    SLIDE 06 — BROADCAST
@@ -423,8 +423,7 @@ body.chov #cur-ring{width:54px;height:54px}
 /* ════════════════════════════════════════════════
    SLIDE 09 — CHAMPIONS
 ════════════════════════════════════════════════ */
-#s09{background:var(--blk);overflow:hidden}
-#s09 .si-wrap{padding:0;gap:0;flex-direction:row}
+#s09{background:var(--blk);overflow:hidden;display:flex;flex-direction:column}
 
 .champ-split{display:flex;flex:1;min-height:0;position:relative;z-index:2}
 
@@ -1491,40 +1490,36 @@ body.chov #cur-ring{width:54px;height:54px}
   <!-- S09 — CHAMPIONS -->
   <div class="slide" id="s09" data-s="below">
     <div class="s-bnum">09</div>
-    <div class="si-wrap" style="padding:0;gap:0;flex-direction:row">
+    <div class="champ-top">
+      <div class="s-label si" style="--d:.3s">2025 Champions</div>
+      <div class="s-title si" style="--d:.4s;margin-top:10px">Defending <em>Champions</em></div>
+    </div>
 
-      <div class="champ-top">
-        <div class="s-label si" style="--d:.3s">2025 Champions</div>
-        <div class="s-title si" style="--d:.4s;margin-top:10px">Defending <em>Champions</em></div>
-      </div>
-
-      <div class="champ-split">
-        <div class="champ-side west">
-          <div class="champ-info si" style="--d:.5s">
-            <div class="champ-num">#200</div>
-            <div class="champ-name">Ryan Breece</div>
-            <div class="champ-title">2025 West Coast Arenacross Champion</div>
-            <img src="Photos/PZA_26Plate-W.png" class="champ-plate" alt="West Coast Championship Plate">
-          </div>
-        </div>
-
-        <div class="champ-divider si" style="--d:.55s"></div>
-
-        <div class="champ-side east">
-          <div class="champ-info si" style="--d:.6s">
-            <div class="champ-num">#74</div>
-            <div class="champ-name">Gage Linville</div>
-            <div class="champ-title">2025 East Coast Arenacross Champion</div>
-            <img src="Photos/PZA_26Plate-E.png" class="champ-plate" alt="East Coast Championship Plate">
-          </div>
+    <div class="champ-split">
+      <div class="champ-side west">
+        <div class="champ-info si" style="--d:.5s">
+          <div class="champ-num">#200</div>
+          <div class="champ-name">Ryan Breece</div>
+          <div class="champ-title">2025 West Coast Arenacross Champion</div>
+          <img src="Photos/PZA_26Plate-W.png" class="champ-plate" alt="West Coast Championship Plate">
         </div>
       </div>
 
-      <div class="champ-bottom si" style="--d:.7s">
-        <img src="Photos/PZA_26PlateNational.png" class="champ-nat-plate" alt="National Championship Plate">
-        <div class="champ-callout">Can they defend their plates?<br>Who will we crown National Champion in 2027?</div>
-      </div>
+      <div class="champ-divider si" style="--d:.55s"></div>
 
+      <div class="champ-side east">
+        <div class="champ-info si" style="--d:.6s">
+          <div class="champ-num">#74</div>
+          <div class="champ-name">Gage Linville</div>
+          <div class="champ-title">2025 East Coast Arenacross Champion</div>
+          <img src="Photos/PZA_26Plate-E.png" class="champ-plate" alt="East Coast Championship Plate">
+        </div>
+      </div>
+    </div>
+
+    <div class="champ-bottom si" style="--d:.7s">
+      <img src="Photos/PZA_26PlateNational.png" class="champ-nat-plate" alt="National Championship Plate">
+      <div class="champ-callout">Can they defend their plates?<br>Who will we crown National Champion in 2027?</div>
     </div>
   </div>
 
