@@ -1927,12 +1927,15 @@ document.querySelectorAll('a,button,.sni,.tc,.dc,.p-card,.mc,.rc,.s04p,.hl,.spot
 })();
 
 // ─── LOADER ──────────────────────────────────
-window.addEventListener('load',()=>{
-  setTimeout(()=>{
-    document.getElementById('loader').classList.add('out');
-    fireCounters(slides[0]);
-  },1400);
-});
+let loaderDone=false;
+function dismissLoader(){
+  if(loaderDone)return;loaderDone=true;
+  document.getElementById('loader').classList.add('out');
+  fireCounters(slides[0]);
+}
+window.addEventListener('load',()=>setTimeout(dismissLoader,1400));
+// fallback: dismiss after 5s even if assets still loading
+setTimeout(dismissLoader,5000);
 
 // ─── SLIDE ENGINE ─────────────────────────────
 const slides = Array.from(document.querySelectorAll('.slide'));
