@@ -348,10 +348,10 @@ body.chov #cur-ring{width:54px;height:54px}
 #s08{background:var(--blk);overflow:hidden}
 #s08 .si-wrap{padding:0;gap:0;flex-direction:column}
 
-.s08-top{padding:28px 72px 20px;padding-right:152px;flex-shrink:0;position:relative;z-index:4;background:linear-gradient(to bottom,var(--blk) 0%,var(--blk) 40%,transparent 100%)}
+.s08-top{padding:20px 72px 10px;padding-right:152px;flex-shrink:0;position:relative;z-index:4;background:linear-gradient(to bottom,var(--blk) 0%,var(--blk) 40%,transparent 100%)}
 
-.s08-split{display:flex;flex:1;min-height:0;position:relative;z-index:2;margin-top:-10px}
-.s08-coast{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;padding:40px 40px;overflow:hidden;gap:16px}
+.s08-split{display:flex;flex:1;min-height:0;position:relative;z-index:2;margin-top:-6px}
+.s08-coast{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;padding:16px 40px;overflow:hidden;gap:8px}
 .s08-coast::before{content:'';position:absolute;inset:0;opacity:.04;background-size:cover;background-position:center;transition:opacity .6s}
 .s08-coast.west::before{background-image:url('Photos/188 (1 of 1)-9.jpg')}
 .s08-coast.east::before{background-image:url('Photos/83 battle (1 of 1).jpg')}
@@ -359,26 +359,27 @@ body.chov #cur-ring{width:54px;height:54px}
 
 .s08-divider{width:1px;background:linear-gradient(to bottom,transparent,rgba(232,0,29,.4),rgba(232,0,29,.15),transparent);flex-shrink:0;position:relative;z-index:3}
 
-.s08-count{font-family:var(--race);font-size:clamp(120px,18vw,220px);line-height:.7;color:var(--wh);letter-spacing:.02em;position:relative;z-index:2;text-shadow:0 0 40px rgba(232,0,29,.3),0 0 80px rgba(232,0,29,.15),0 4px 30px rgba(0,0,0,.6);animation:s08numGlow 3s ease-in-out infinite}
-.s08-count-lbl{font-family:var(--race);font-size:clamp(16px,2vw,28px);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);position:relative;z-index:2}
+.s08-count{font-family:var(--race);font-size:clamp(72px,12vw,140px);line-height:.7;color:var(--wh);letter-spacing:.02em;position:relative;z-index:2;text-shadow:0 0 40px rgba(232,0,29,.3),0 0 80px rgba(232,0,29,.15),0 4px 30px rgba(0,0,0,.6);animation:s08numGlow 3s ease-in-out infinite}
+.s08-count-lbl{font-family:var(--race);font-size:clamp(14px,1.6vw,22px);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);position:relative;z-index:2}
 
-.s08-coast-tag{font-family:var(--race);font-size:clamp(26px,3.6vw,46px);letter-spacing:.06em;text-transform:uppercase;color:var(--wh);position:relative;z-index:2;line-height:.95}
+.s08-coast-tag{font-family:var(--race);font-size:clamp(20px,2.8vw,36px);letter-spacing:.06em;text-transform:uppercase;color:var(--wh);position:relative;z-index:2;line-height:.95}
 .s08-coast-tag em{color:var(--red);font-style:normal}
 
 /* playoff banner */
-.s08-playoff{flex-shrink:0;position:relative;z-index:3;background:linear-gradient(180deg,rgba(232,0,29,.16) 0%,rgba(232,0,29,.04) 100%);border-top:2px solid rgba(232,0,29,.45);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:32px 72px;min-height:210px}
+.s08-playoff{flex-shrink:0;position:relative;z-index:3;background:linear-gradient(180deg,rgba(232,0,29,.16) 0%,rgba(232,0,29,.04) 100%);border-top:2px solid rgba(232,0,29,.45);display:flex;flex-direction:row;align-items:center;justify-content:center;gap:24px;padding:16px 72px}
 .s08-playoff::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 60px,rgba(232,0,29,.03) 60px,rgba(232,0,29,.03) 61px);pointer-events:none}
 .s08-playoff::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(232,0,29,.15),transparent 60%);pointer-events:none}
 
 /* big 2 — matches the 7s */
-.s08-po-count{font-family:var(--race);font-size:clamp(120px,18vw,220px);color:var(--wh);letter-spacing:.02em;line-height:.65;text-shadow:0 0 40px rgba(232,0,29,.3),0 0 80px rgba(232,0,29,.15),0 4px 30px rgba(0,0,0,.6);position:relative;z-index:1;animation:s08numGlow 3s ease-in-out infinite}
+.s08-po-count{font-family:var(--race);font-size:clamp(60px,8vw,100px);color:var(--wh);letter-spacing:.02em;line-height:.7;text-shadow:0 0 40px rgba(232,0,29,.3),0 0 80px rgba(232,0,29,.15),0 4px 30px rgba(0,0,0,.6);position:relative;z-index:1;animation:s08numGlow 3s ease-in-out infinite}
 
 /* logo row */
+.s08-po-mid{display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;z-index:1}
 .s08-po-logos{display:flex;align-items:center;gap:14px;position:relative;z-index:1}
-.s08-po-logos img{height:30px;display:block;filter:brightness(1.1)}
+.s08-po-logos img{height:24px;display:block;filter:brightness(1.1)}
 
 /* PLAY-OFFS — white, matches coast tag size */
-.s08-po-title{font-family:var(--race);font-size:clamp(26px,3.6vw,46px);letter-spacing:.08em;text-transform:uppercase;color:var(--wh);position:relative;z-index:1;text-align:center;line-height:.95}
+.s08-po-title{font-family:var(--race);font-size:clamp(18px,2.4vw,32px);letter-spacing:.08em;text-transform:uppercase;color:var(--wh);position:relative;z-index:1;text-align:center;line-height:.95}
 
 /* purse badge */
 .s08-po-purse{display:inline-flex;align-items:center;gap:12px;position:relative;z-index:1;padding:10px 28px;background:rgba(245,255,0,.06);border:1px solid rgba(245,255,0,.18);border-radius:3px;backdrop-filter:blur(4px)}
@@ -392,9 +393,9 @@ body.chov #cur-ring{width:54px;height:54px}
 
 .s08-coast::after{content:'';position:absolute;top:-100%;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(232,0,29,.15),transparent);animation:s08scan 6s linear infinite;pointer-events:none;z-index:1}
 .s08-coast.east::after{animation-delay:-3s}
-.s08-rounds{display:flex;align-items:center;justify-content:center;gap:18px;padding:16px 72px;background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.06);flex-shrink:0;position:relative;z-index:3}
-.s08-rounds-num{font-family:var(--race);font-size:clamp(36px,5vw,56px);color:var(--yellow);letter-spacing:.02em;line-height:1;text-shadow:0 0 20px rgba(245,255,0,.2)}
-.s08-rounds-lbl{font-family:var(--race);font-size:clamp(16px,2vw,24px);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.s08-rounds{display:flex;align-items:center;justify-content:center;gap:14px;padding:10px 72px;background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.06);flex-shrink:0;position:relative;z-index:3}
+.s08-rounds-num{font-family:var(--race);font-size:clamp(28px,4vw,44px);color:var(--yellow);letter-spacing:.02em;line-height:1;text-shadow:0 0 20px rgba(245,255,0,.2)}
+.s08-rounds-lbl{font-family:var(--race);font-size:clamp(14px,1.6vw,20px);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5)}
 @keyframes s08scan{0%{top:-5%}100%{top:105%}}
 @keyframes s08numGlow{0%,100%{text-shadow:0 0 30px rgba(232,0,29,.2),0 0 60px rgba(232,0,29,.1),0 4px 30px rgba(0,0,0,.6)}50%{text-shadow:0 0 50px rgba(232,0,29,.45),0 0 100px rgba(232,0,29,.25),0 4px 30px rgba(0,0,0,.6)}}
 
@@ -849,18 +850,18 @@ body.chov #cur-ring{width:54px;height:54px}
   /* ════ S08 — SCHEDULE ═════════════════════ */
   .s08-split{flex-direction:column!important}
   .s08-divider{width:100%!important;height:1px!important;background:linear-gradient(90deg,transparent,rgba(232,0,29,.4),transparent)!important}
-  .s08-coast{padding:20px 24px!important}
-  .s08-count{font-size:clamp(72px,20vw,120px)!important}
-  .s08-coast-tag{font-size:clamp(20px,6vw,36px)!important}
-  .s08-playoff{padding:18px 24px!important;min-height:140px!important;gap:10px!important}
-  .s08-po-count{font-size:clamp(72px,20vw,120px)!important}
-  .s08-po-title{font-size:clamp(20px,5vw,32px)!important}
-  .s08-po-purse{padding:6px 16px!important}
-  .s08-po-purse{width:100%}
-  .s08-rounds{padding:10px 24px!important;gap:12px!important}
-  .s08-rounds-num{font-size:clamp(28px,8vw,42px)!important}
-  .s08-rounds-lbl{font-size:clamp(12px,4vw,18px)!important}
-  .s08-top{padding:28px 24px 0!important;padding-right:24px!important}
+  .s08-coast{padding:10px 24px!important;gap:4px!important}
+  .s08-count{font-size:clamp(48px,14vw,80px)!important}
+  .s08-count-lbl{font-size:12px!important}
+  .s08-coast-tag{font-size:clamp(16px,5vw,28px)!important}
+  .s08-playoff{flex-direction:row!important;padding:12px 18px!important;gap:14px!important}
+  .s08-po-count{font-size:clamp(40px,10vw,60px)!important}
+  .s08-po-title{font-size:clamp(14px,4vw,22px)!important}
+  .s08-po-purse{padding:5px 12px!important}
+  .s08-rounds{padding:8px 18px!important;gap:10px!important}
+  .s08-rounds-num{font-size:clamp(22px,6vw,32px)!important}
+  .s08-rounds-lbl{font-size:clamp(10px,3vw,14px)!important}
+  .s08-top{padding:18px 24px 0!important;padding-right:24px!important}
 
   /* ════ S09 — CHAMPIONS ═══════════════════ */
   .champ-body{flex-direction:row!important;flex-wrap:wrap!important}
@@ -1452,7 +1453,7 @@ body.chov #cur-ring{width:54px;height:54px}
 
       <div class="s08-top">
         <div class="s-label si" style="--d:.3s">2026–2027 Season</div>
-        <div class="s-title si" style="--d:.4s;margin-top:10px">National <em>Schedule</em></div>
+        <div class="s-title si" style="--d:.4s;margin-top:4px">National <em>Schedule</em></div>
       </div>
 
       <div class="s08-split">
@@ -1478,11 +1479,12 @@ body.chov #cur-ring{width:54px;height:54px}
 
       <div class="s08-playoff si" style="--d:.7s">
         <div class="s08-po-count">2</div>
-        <div class="s08-po-logos">
-          <img src="Logos/pz_logo_65a6a2b8c4_443e3934ec.png" alt="Partzilla">
+        <div class="s08-po-mid">
+          <div class="s08-po-logos">
+            <img src="Logos/pz_logo_65a6a2b8c4_443e3934ec.png" alt="Partzilla">
+          </div>
+          <div class="s08-po-title">Progressive Play-Offs</div>
         </div>
-        <div class="s08-po-title">Progressive</div>
-        <div class="s08-po-title">Play-Offs</div>
         <div class="s08-po-purse">
           <div class="s08-po-diamond"></div>
           <div class="s08-purse-val">Largest Purse in Arenacross History</div>
