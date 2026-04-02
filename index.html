@@ -276,16 +276,17 @@ body.chov #cur-ring{width:54px;height:54px}
 ════════════════════════════════════════════════ */
 #s05{background:var(--d1)}
 #s05 .s-bg{background-image:url('Photos/Optimized/83 battle (1 of 1).jpg');opacity:.07}
-.hl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:18px;flex:1}
-.hl{padding:30px 24px;background:rgba(17,17,17,.94);position:relative;overflow:hidden;transition:background .3s;display:flex;flex-direction:column;gap:12px;justify-content:center}
+#s05 .si-wrap{padding:36px 56px 28px 72px}
+.hl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:12px;flex:1}
+.hl{padding:18px 20px;background:rgba(17,17,17,.94);position:relative;overflow:hidden;transition:background .3s;display:flex;flex-direction:column;gap:8px;justify-content:center}
 .hl:hover{background:rgba(22,22,22,.98)}
 .hl-n{font-family:var(--race);position:absolute;top:-12px;right:8px;font-size:90px;color:rgba(245,255,0,.05);pointer-events:none}
 .hl-icon{font-size:32px;color:var(--red)}
 .hl-icon svg{width:36px;height:36px}
-.hl-stat{font-family:var(--race);font-size:clamp(40px,4.5vw,56px);color:var(--wh);line-height:1;letter-spacing:.02em}
+.hl-stat{font-family:var(--race);font-size:clamp(32px,3.8vw,46px);color:var(--wh);line-height:1;letter-spacing:.02em}
 .hl-stat .r{color:var(--wh)}
-.hl-title{font-family:var(--race);font-size:18px;color:var(--wh);letter-spacing:.03em;line-height:1.1;margin-bottom:2px}
-.hl-txt{font-size:12px;line-height:1.6;color:rgba(255,255,255,.6)}
+.hl-title{font-family:var(--race);font-size:14px;color:var(--wh);letter-spacing:.03em;line-height:1.1;margin-bottom:1px}
+.hl-txt{font-size:10.5px;line-height:1.55;color:rgba(255,255,255,.6)}
 
 /* ════════════════════════════════════════════════
    COAST TABS (shared by S06 + S07)
@@ -499,24 +500,25 @@ body.chov #cur-ring{width:54px;height:54px}
    SLIDE 12 — À LA CARTE SPOTS
 ════════════════════════════════════════════════ */
 #s12{background:var(--blk)}
-.alc-wrap{display:flex;gap:3px;flex:1;min-height:0;margin-top:14px}
-.alc-left{width:38%;display:flex;flex-direction:column;gap:3px}
-.alc-right{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:3px}
-.alc-support{padding:20px 18px;background:var(--d2);display:flex;flex-direction:column;gap:7px;border-left:2px solid var(--red)}
-.alc-sup-icon{font-size:18px;color:var(--red)}
-.alc-sup-icon svg{width:24px;height:24px}
-.alc-sup-name{font-family:var(--race);font-size:15px;letter-spacing:.04em}
-.alc-sup-desc{font-size:10px;color:rgba(255,255,255,.42);line-height:1.55}
-.alc-sup-tag{display:inline-flex;margin-top:4px;padding:3px 9px;background:rgba(232,0,29,.1);border:1px solid rgba(232,0,29,.2);border-radius:2px;font-size:7px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);width:fit-content}
-.spot-card{padding:18px 16px;background:var(--d2);position:relative;overflow:hidden;display:flex;flex-direction:column;gap:6px;transition:background .3s}
+#s12 .si-wrap{padding:32px 56px 24px 72px}
+.alc-wrap{display:flex;gap:2px;flex:1;min-height:0;margin-top:10px}
+.alc-left{width:38%;display:flex;flex-direction:column;gap:2px}
+.alc-right{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.alc-support{padding:14px 16px;background:var(--d2);display:flex;flex-direction:column;gap:5px;border-left:2px solid var(--red)}
+.alc-sup-icon{font-size:16px;color:var(--red)}
+.alc-sup-icon svg{width:20px;height:20px}
+.alc-sup-name{font-family:var(--race);font-size:13px;letter-spacing:.04em}
+.alc-sup-desc{font-size:9px;color:rgba(255,255,255,.42);line-height:1.45}
+.alc-sup-tag{display:inline-flex;margin-top:2px;padding:2px 8px;background:rgba(232,0,29,.1);border:1px solid rgba(232,0,29,.2);border-radius:2px;font-size:7px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);width:fit-content}
+.spot-card{padding:12px 14px;background:var(--d2);position:relative;overflow:hidden;display:flex;flex-direction:column;gap:4px;transition:background .3s}
 .spot-card::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:var(--red);transition:width .4s}
 .spot-card:hover{background:var(--d3)}
 .spot-card:hover::before{width:100%}
-.spot-icon{color:var(--red);margin-bottom:4px}
-.spot-icon svg{width:22px;height:22px}
-.spot-name{font-family:var(--race);font-size:13px;letter-spacing:.04em}
-.spot-desc{font-size:10px;color:rgba(255,255,255,.38);line-height:1.5}
-.spot-badge{display:inline-flex;margin-top:2px;padding:2px 8px;background:rgba(232,0,29,.08);border:1px solid rgba(232,0,29,.15);border-radius:2px;font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:rgba(232,0,29,.7);width:fit-content}
+.spot-icon{color:var(--red);margin-bottom:2px}
+.spot-icon svg{width:18px;height:18px}
+.spot-name{font-family:var(--race);font-size:12px;letter-spacing:.04em}
+.spot-desc{font-size:9px;color:rgba(255,255,255,.38);line-height:1.45}
+.spot-badge{display:inline-flex;margin-top:1px;padding:2px 8px;background:rgba(232,0,29,.08);border:1px solid rgba(232,0,29,.15);border-radius:2px;font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:rgba(232,0,29,.7);width:fit-content}
 
 /* ════════════════════════════════════════════════
    SLIDE 13 — CTA / CONTACT
@@ -1254,7 +1256,7 @@ body.chov #cur-ring{width:54px;height:54px}
     <div class="s-bnum">05</div>
     <div class="si-wrap rpad">
       <div class="s-label si" style="--d:.3s">2025–2026 Highlights</div>
-      <div class="s-title si" style="--d:.4s;margin-top:10px">Season <em>Highlights</em></div>
+      <div class="s-title si" style="--d:.4s;margin-top:6px">Season <em>Highlights</em></div>
 
       <div class="coast-tabs si" style="--d:.44s" data-group="highlights">
         <div class="coast-tab active" data-coast="east">East Coast</div>
@@ -1663,7 +1665,7 @@ body.chov #cur-ring{width:54px;height:54px}
     </div>
     <div class="si-wrap rpad">
       <div class="s-label si" style="--d:.3s">Customize Your Package</div>
-      <div class="s-title si" style="--d:.4s;margin-top:10px">Individual <em>Spots</em></div>
+      <div class="s-title si" style="--d:.4s;margin-top:6px">Individual <em>Spots</em></div>
       <div class="alc-wrap">
         <div class="alc-left">
           <div class="alc-support si" style="--d:.5s;flex:1;background:var(--red);border:none;color:white;justify-content:center">
