@@ -229,17 +229,17 @@ body.chov #cur-ring{width:54px;height:54px}
 .s03-founder-tag{background:rgba(8,8,8,.85);border:1px solid rgba(232,0,29,.2);padding:12px 16px;border-radius:3px;backdrop-filter:blur(10px)}
 .s03-ft-name{font-family:var(--race);font-size:16px;letter-spacing:.06em}
 .s03-ft-title{font-size:9px;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;margin-top:2px}
-.s03-r{width:58%;padding:52px 52px 48px 52px;padding-right:148px;display:flex;flex-direction:column;justify-content:center;gap:0;overflow:hidden}
-.s03-logo{width:clamp(180px,26vw,340px);margin:24px 0;filter:drop-shadow(0 4px 16px rgba(0,0,0,.5))}
-.s03-body{font-size:11.5px;line-height:1.85;color:rgba(255,255,255,.5);margin:10px 0 20px}
-.s03-milestones{display:flex;flex-direction:column;gap:1px;margin-bottom:22px}
-.ms-item{display:flex;align-items:flex-start;gap:14px;padding:11px 14px;background:var(--d2)}
-.ms-year{font-family:var(--race);font-size:12px;color:var(--yellow);letter-spacing:.06em;flex-shrink:0;min-width:54px}
-.ms-text{font-size:10px;color:rgba(255,255,255,.55);line-height:1.5}
+.s03-r{width:58%;padding:36px 48px 32px 48px;padding-right:148px;display:flex;flex-direction:column;justify-content:center;gap:0;overflow:hidden}
+.s03-logo{width:clamp(140px,20vw,260px);margin:14px 0;filter:drop-shadow(0 4px 16px rgba(0,0,0,.5))}
+.s03-body{font-size:11px;line-height:1.7;color:rgba(255,255,255,.5);margin:6px 0 14px}
+.s03-milestones{display:flex;flex-direction:column;gap:1px;margin-bottom:14px}
+.ms-item{display:flex;align-items:flex-start;gap:14px;padding:9px 14px;background:var(--d2)}
+.ms-year{font-family:var(--race);font-size:11px;color:var(--yellow);letter-spacing:.06em;flex-shrink:0;min-width:54px}
+.ms-text{font-size:10px;color:rgba(255,255,255,.55);line-height:1.45}
 .ms-text strong{color:rgba(255,255,255,.82)}
-.s03-pull{padding:16px 18px;border-left:2px solid var(--red);background:rgba(232,0,29,.04);margin-top:4px}
-.s03-pull-q{font-size:12px;color:rgba(255,255,255,.72);line-height:1.7;font-style:italic}
-.s03-pull-attr{font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-top:7px}
+.s03-pull{padding:12px 16px;border-left:2px solid var(--red);background:rgba(232,0,29,.04);margin-top:2px}
+.s03-pull-q{font-size:11px;color:rgba(255,255,255,.72);line-height:1.6;font-style:italic}
+.s03-pull-attr{font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin-top:5px}
 
 /* ════════════════════════════════════════════════
    SLIDE 04 — AT THE EVENT
@@ -290,17 +290,13 @@ body.chov #cur-ring{width:54px;height:54px}
 /* ════════════════════════════════════════════════
    COAST TABS (shared by S06 + S07)
 ════════════════════════════════════════════════ */
-.coast-tabs{display:flex;gap:2px;margin-bottom:16px;flex-shrink:0}
-.coast-tab{padding:7px 16px;font-family:var(--race);font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.35);cursor:pointer;transition:all .3s;border-radius:2px;white-space:nowrap}
-.coast-tab:hover{background:rgba(255,255,255,.08);color:rgba(255,255,255,.6)}
-.coast-tab.active{background:rgba(232,0,29,.15);border-color:rgba(232,0,29,.4);color:var(--red)}
+.coast-tabs{display:flex;gap:3px;margin-bottom:16px;flex-shrink:0}
+.coast-tab{padding:9px 20px;font-family:var(--race);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.45);cursor:pointer;transition:all .3s;border-radius:2px;white-space:nowrap}
+.coast-tab:hover{background:rgba(255,255,255,.1);color:rgba(255,255,255,.7)}
+.coast-tab.active{background:rgba(232,0,29,.2);border-color:rgba(232,0,29,.5);color:var(--red);box-shadow:0 0 12px rgba(232,0,29,.15)}
 .coast-pane{display:none}
 .coast-pane.active{display:block}
-/* S07 tab bar floats over top of the two-pane layout */
-.s07-tab-bar{position:absolute;top:20px;left:50%;transform:translateX(-50%);z-index:10;display:flex;gap:2px;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);padding:4px;border-radius:3px;border:1px solid rgba(255,255,255,.08)}
-#s07 > .coast-pane{display:none!important;flex:1;min-height:0}
-#s07 > .coast-pane.active{display:flex!important}
-#s07 > .coast-pane > .si-wrap{flex:1;width:100%}
+/* S07 — now a single combined view, no tabs */
 
 /* ════════════════════════════════════════════════
    SLIDE 06 — BROADCAST
@@ -316,10 +312,10 @@ body.chov #cur-ring{width:54px;height:54px}
 .s06-fs-logo{font-family:var(--race);font-size:13px;letter-spacing:.06em;padding:5px 12px;background:rgba(245,255,0,.1);border:1px solid rgba(245,255,0,.3);border-radius:2px;color:var(--yellow)}
 .s06-bt{font-family:var(--race);font-size:17px;letter-spacing:.06em}
 .s06-bs{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-top:3px}
-.s06-r{width:50%;padding:60px 52px 52px 52px;padding-right:150px;display:flex;flex-direction:column;justify-content:center}
-.s06-body{font-size:12px;line-height:1.8;color:rgba(255,255,255,.5);margin:12px 0 22px}
+.s06-r{width:50%;padding:36px 48px 32px 48px;padding-right:150px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.s06-body{font-size:11px;line-height:1.7;color:rgba(255,255,255,.5);margin:8px 0 14px}
 .s06-metrics{display:grid;grid-template-columns:1fr 1fr;gap:2px}
-.mc{background:var(--d2);padding:20px 18px;border:1px solid rgba(255,255,255,.04);transition:border-color .3s,background .3s}
+.mc{background:var(--d2);padding:16px 16px;border:1px solid rgba(255,255,255,.04);transition:border-color .3s,background .3s}
 .mc:hover{border-color:rgba(232,0,29,.22);background:var(--d3)}
 .mc-n{font-family:var(--race);font-size:clamp(22px,2.4vw,36px);color:var(--wh)}
 .mc-n .r{color:var(--wh)}
@@ -395,6 +391,9 @@ body.chov #cur-ring{width:54px;height:54px}
 
 .s08-coast::after{content:'';position:absolute;top:-100%;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(232,0,29,.15),transparent);animation:s08scan 6s linear infinite;pointer-events:none;z-index:1}
 .s08-coast.east::after{animation-delay:-3s}
+.s08-rounds{display:flex;align-items:center;justify-content:center;gap:18px;padding:16px 72px;background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.06);flex-shrink:0;position:relative;z-index:3}
+.s08-rounds-num{font-family:var(--race);font-size:clamp(36px,5vw,56px);color:var(--yellow);letter-spacing:.02em;line-height:1;text-shadow:0 0 20px rgba(245,255,0,.2)}
+.s08-rounds-lbl{font-family:var(--race);font-size:clamp(16px,2vw,24px);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5)}
 @keyframes s08scan{0%{top:-5%}100%{top:105%}}
 @keyframes s08numGlow{0%,100%{text-shadow:0 0 30px rgba(232,0,29,.2),0 0 60px rgba(232,0,29,.1),0 4px 30px rgba(0,0,0,.6)}50%{text-shadow:0 0 50px rgba(232,0,29,.45),0 0 100px rgba(232,0,29,.25),0 4px 30px rgba(0,0,0,.6)}}
 
@@ -455,7 +454,7 @@ body.chov #cur-ring{width:54px;height:54px}
   .champ-side::before { background-size: contain; background-repeat: no-repeat; filter: brightness(1) drop-shadow(0 10px 20px #000); }
   .champ-center { width: auto; margin: 10px 0; padding: 15px; border-radius: 8px; }
   .champ-plate, .champ-nat-plate { height: auto; width: 60%; max-width: 200px; transform: scale(1.05); }
-  .s07-tab-bar { margin-top: 24px; }
+  /* s07 tab bar removed — combined view only */
 }
 
 .champ-top{position:absolute;top:0;left:0;right:0;z-index:4;padding:28px 72px 20px;padding-right:152px;background:linear-gradient(to bottom,var(--blk) 0%,var(--blk) 40%,transparent 100%)}
@@ -824,11 +823,8 @@ body.chov #cur-ring{width:54px;height:54px}
 
   /* ════ COAST TABS (mobile) ════════════════ */
   .coast-tabs{margin-bottom:8px!important}
-  .coast-tab{font-size:7px!important;padding:5px 10px!important;letter-spacing:.08em!important}
-  .s07-tab-bar{top:8px!important;padding:3px!important}
-
+  .coast-tab{font-size:8px!important;padding:6px 12px!important;letter-spacing:.08em!important;font-weight:700!important}
   /* ════ S07 — SOCIAL ═══════════════════════ */
-  #s07 > .coast-pane > .si-wrap{padding-top:0!important}
   #s07 .si-wrap{
     flex-direction:row!important;padding:0!important;
     overflow:hidden!important;gap:0!important;
@@ -859,6 +855,9 @@ body.chov #cur-ring{width:54px;height:54px}
   .s08-po-title{font-size:clamp(20px,5vw,32px)!important}
   .s08-po-purse{padding:6px 16px!important}
   .s08-po-purse{width:100%}
+  .s08-rounds{padding:10px 24px!important;gap:12px!important}
+  .s08-rounds-num{font-size:clamp(28px,8vw,42px)!important}
+  .s08-rounds-lbl{font-size:clamp(12px,4vw,18px)!important}
   .s08-top{padding:28px 24px 0!important;padding-right:24px!important}
 
   /* ════ S09 — CHAMPIONS ═══════════════════ */
@@ -1115,7 +1114,7 @@ body.chov #cur-ring{width:54px;height:54px}
       </div>
       <div class="s03-r">
         <div class="s-label si" style="--d:.36s">About the Company <span style="opacity:.45;margin:0 3px">•</span> Owner</div>
-        <div class="s-title si" style="--d:.46s;margin:10px 0 4px">Built for <em>Racers</em>,<br>by Racers</div>
+        <div class="s-title si" style="--d:.46s;margin:6px 0 0">Built for <em>Racers</em>,<br>by Racers</div>
         <img src="Tristar MX Logo.png" alt="TriStar MX" class="s03-logo si" style="--d:.50s">
         <p class="s03-body si" style="--d:.54s">Bobby Snyder started racing his two young sons at amateur events, frustrated watching kids work so hard for cheap trophies. He created TriStar to give amateur and pro riders alike a professional-caliber experience.</p>
         <div class="s03-milestones si" style="--d:.62s">
@@ -1256,44 +1255,96 @@ body.chov #cur-ring{width:54px;height:54px}
     <div class="si-wrap rpad">
       <div class="s-label si" style="--d:.3s">2025–2026 Highlights</div>
       <div class="s-title si" style="--d:.4s;margin-top:10px">Season <em>Highlights</em></div>
-      <div class="hl-grid">
-        <div class="hl si" style="--d:.48s">
-          <div class="hl-n">01</div>
-          <div class="hl-stat">2</div>
-          <div class="hl-title">AMA East Coast #1 Plates Awarded to Gage Linville</div>
-          <div class="hl-txt">Dirt Legal / WMR KTM rider swept both Open Pro &amp; 250 Pro championships with multiple 1-1 finishes.</div>
-        </div>
-        <div class="hl si" style="--d:.54s">
-          <div class="hl-n">02</div>
-          <div class="hl-stat"><span class="ctr" data-t="2300">2,300</span><span style="font-size:.6em;color:rgba(255,255,255,.5)">+</span></div>
-          <div class="hl-title">Fans Per Event</div>
-          <div class="hl-txt">Record attendance across packed arenas in 8 states every race weekend.</div>
-        </div>
-        <div class="hl si" style="--d:.60s">
-          <div class="hl-n">03</div>
-          <div class="hl-stat"><span class="ctr" data-t="346">346</span></div>
-          <div class="hl-title">National TV Airings</div>
-          <div class="hl-txt">On FS1 &amp; FS2 — the most televised Arenacross series in the country, same platform as NFL &amp; NASCAR.</div>
-        </div>
-        <div class="hl si" style="--d:.66s">
-          <div class="hl-n">04</div>
-          <div class="hl-stat" style="font-size:clamp(18px,2.8vw,38px);line-height:1;white-space:nowrap">MACON, GA</div>
-          <div class="hl-title">Record Breaker</div>
-          <div class="hl-txt">Single-event record of 2.1M Facebook views. Largest fan attendance in series history.</div>
-        </div>
-        <div class="hl si" style="--d:.72s">
-          <div class="hl-n">05</div>
-          <div class="hl-stat" style="font-size:clamp(20px,3.5vw,44px);white-space:nowrap">DEEPEST</div>
-          <div class="hl-title">Pro Field in Arenacross</div>
-          <div class="hl-txt">More Supercross main-event racers than any competitor. 7 major OEMs represented in pit lane.</div>
-        </div>
-        <div class="hl si" style="--d:.78s">
-          <div class="hl-n">06</div>
-          <div class="hl-stat"><span class="ctr" data-t="2432">2,432</span><span style="font-size:.5em;color:rgba(255,255,255,.5)">%</span></div>
-          <div class="hl-title">Social Media Explosion</div>
-          <div class="hl-txt">Facebook views grew from 522K to 13.2M. 92% organic reach. Instagram up +87.5% accounts reached.</div>
+
+      <div class="coast-tabs si" style="--d:.44s" data-group="highlights">
+        <div class="coast-tab active" data-coast="east">East Coast</div>
+        <div class="coast-tab" data-coast="west">West Coast</div>
+      </div>
+
+      <!-- EAST COAST HIGHLIGHTS -->
+      <div class="coast-pane active" data-group="highlights" data-coast="east">
+        <div class="hl-grid">
+          <div class="hl si" style="--d:.48s">
+            <div class="hl-n">01</div>
+            <div class="hl-stat">2</div>
+            <div class="hl-title">AMA East Coast #1 Plates Awarded to Gage Linville</div>
+            <div class="hl-txt">Dirt Legal / WMR KTM rider swept both Open Pro &amp; 250 Pro championships with multiple 1-1 finishes.</div>
+          </div>
+          <div class="hl si" style="--d:.54s">
+            <div class="hl-n">02</div>
+            <div class="hl-stat"><span class="ctr" data-t="2300">2,300</span><span style="font-size:.6em;color:rgba(255,255,255,.5)">+</span></div>
+            <div class="hl-title">Fans Per Event</div>
+            <div class="hl-txt">Record attendance across packed arenas in 8 states every race weekend.</div>
+          </div>
+          <div class="hl si" style="--d:.60s">
+            <div class="hl-n">03</div>
+            <div class="hl-stat"><span class="ctr" data-t="346">346</span></div>
+            <div class="hl-title">National TV Airings</div>
+            <div class="hl-txt">On FS1 &amp; FS2 — the most televised Arenacross series in the country, same platform as NFL &amp; NASCAR.</div>
+          </div>
+          <div class="hl si" style="--d:.66s">
+            <div class="hl-n">04</div>
+            <div class="hl-stat" style="font-size:clamp(18px,2.8vw,38px);line-height:1;white-space:nowrap">MACON, GA</div>
+            <div class="hl-title">Record Breaker</div>
+            <div class="hl-txt">Single-event record of 2.1M Facebook views. Largest fan attendance in series history.</div>
+          </div>
+          <div class="hl si" style="--d:.72s">
+            <div class="hl-n">05</div>
+            <div class="hl-stat" style="font-size:clamp(20px,3.5vw,44px);white-space:nowrap">DEEPEST</div>
+            <div class="hl-title">Pro Field in Arenacross</div>
+            <div class="hl-txt">More Supercross main-event racers than any competitor. 7 major OEMs represented in pit lane.</div>
+          </div>
+          <div class="hl si" style="--d:.78s">
+            <div class="hl-n">06</div>
+            <div class="hl-stat"><span class="ctr" data-t="2432">2,432</span><span style="font-size:.5em;color:rgba(255,255,255,.5)">%</span></div>
+            <div class="hl-title">Social Media Explosion</div>
+            <div class="hl-txt">Facebook views grew from 522K to 13.2M. 92% organic reach. Instagram up +87.5% accounts reached.</div>
+          </div>
         </div>
       </div>
+
+      <!-- WEST COAST HIGHLIGHTS -->
+      <div class="coast-pane" data-group="highlights" data-coast="west">
+        <div class="hl-grid">
+          <div class="hl si" style="--d:.48s">
+            <div class="hl-n">01</div>
+            <div class="hl-stat">3.7M<span style="font-size:.5em;color:rgba(255,255,255,.5)">+</span></div>
+            <div class="hl-title">MAVTV National Viewers</div>
+            <div class="hl-txt">AMA FIM Arenacross broadcast on MAVTV reached 3.7M+ viewers and 1.68M households across the West Coast season.</div>
+          </div>
+          <div class="hl si" style="--d:.54s">
+            <div class="hl-n">02</div>
+            <div class="hl-stat">2.5M<span style="font-size:.5em;color:rgba(255,255,255,.5)">+</span></div>
+            <div class="hl-title">RydeTV Streaming Views</div>
+            <div class="hl-txt">26M+ minutes of watch time on the RydeTV streaming platform. Massive digital reach beyond traditional broadcast.</div>
+          </div>
+          <div class="hl si" style="--d:.60s">
+            <div class="hl-n">03</div>
+            <div class="hl-stat">5.2M</div>
+            <div class="hl-title">Instagram Views in 30 Days</div>
+            <div class="hl-txt">+352% views and +540% reach. 3.5M accounts reached with 474.8K interactions in a single month.</div>
+          </div>
+          <div class="hl si" style="--d:.66s">
+            <div class="hl-n">04</div>
+            <div class="hl-stat" style="font-size:clamp(20px,3.5vw,44px);white-space:nowrap">#200</div>
+            <div class="hl-title">Ryan Breece — West Coast Champion</div>
+            <div class="hl-txt">Dominated the West Coast AMA FIM Arenacross Championship aboard his factory ride.</div>
+          </div>
+          <div class="hl si" style="--d:.72s">
+            <div class="hl-n">05</div>
+            <div class="hl-stat"><span class="ctr" data-t="670">670</span><span style="font-size:.5em;color:rgba(255,255,255,.5)">%</span></div>
+            <div class="hl-title">Facebook Growth YOY</div>
+            <div class="hl-txt">West Coast Facebook views hit 3.1M with 970K unique viewers. Link clicks up +931% year over year.</div>
+          </div>
+          <div class="hl si" style="--d:.78s">
+            <div class="hl-n">06</div>
+            <div class="hl-stat" style="font-size:clamp(20px,3.5vw,44px);white-space:nowrap">AMA · FIM</div>
+            <div class="hl-title">Nationally Sanctioned Series</div>
+            <div class="hl-txt">Full AMA and FIM sanctioning with professional-grade tracks, multi-camera production, and deep pro fields across every round.</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -1315,16 +1366,16 @@ body.chov #cur-ring{width:54px;height:54px}
       </div>
       <div class="s06-r">
         <div class="s-label si" style="--d:.38s">Broadcast</div>
-        <div class="s-title si" style="--d:.48s;margin:10px 0;font-size:clamp(24px,3.5vw,46px)">The <em>Most Televised</em><br>Arenacross Series in the Nation</div>
+        <div class="s-title si" style="--d:.48s;margin:6px 0 8px;font-size:clamp(24px,3.5vw,46px)">The <em>Most Televised</em><br>Arenacross Series in the Nation</div>
 
         <div class="coast-tabs si" style="--d:.52s" data-group="broadcast">
-          <div class="coast-tab active" data-coast="east">East Coast</div>
+          <div class="coast-tab active" data-coast="full">Full 25–26 Season</div>
+          <div class="coast-tab" data-coast="east">East Coast</div>
           <div class="coast-tab" data-coast="west">West Coast</div>
-          <div class="coast-tab" data-coast="full">Full 25–26 Season</div>
         </div>
 
         <!-- EAST COAST -->
-        <div class="coast-pane active" data-group="broadcast" data-coast="east">
+        <div class="coast-pane" data-group="broadcast" data-coast="east">
           <p class="s06-body si" style="--d:.56s">FS1 reaches ~90M U.S. households — the same platform as NFL and NASCAR. 346 airings means constant, compounding brand impressions with professional multi-camera production and Supercross programming integration.</p>
           <div class="s06-metrics">
             <div class="mc si" style="--d:.62s"><div class="mc-n"><span class="ctr" data-t="346">346</span></div><div class="mc-l">Total Airings</div><div class="mc-s">238 Oct–Jan + 108 Jan–present</div></div>
@@ -1335,7 +1386,7 @@ body.chov #cur-ring{width:54px;height:54px}
         </div>
 
         <!-- WEST COAST -->
-        <div class="coast-pane active" data-group="broadcast" data-coast="west">
+        <div class="coast-pane" data-group="broadcast" data-coast="west">
           <p class="s06-body">MAVTV broadcast and RydeTV streaming deliver massive West Coast reach. 3.7M+ TV viewers and 2.5M+ streaming views with 26M+ minutes of watch time across the season.</p>
           <div class="s06-metrics">
             <div class="mc"><div class="mc-n">3.7M</div><div class="mc-l">MAVTV Viewers</div><div class="mc-s">TV &amp; online broadcasts</div></div>
@@ -1346,7 +1397,7 @@ body.chov #cur-ring{width:54px;height:54px}
         </div>
 
         <!-- FULL SEASON -->
-        <div class="coast-pane" data-group="broadcast" data-coast="full">
+        <div class="coast-pane active" data-group="broadcast" data-coast="full">
           <p class="s06-body">Combined East + West Coast reach across FS1, MAVTV, and RydeTV streaming. Dual-coast coverage delivers unmatched brand visibility across every major broadcast and streaming platform in Arenacross.</p>
           <div class="s06-metrics">
             <div class="mc"><div class="mc-n">5.5M+</div><div class="mc-l">Total Viewers</div><div class="mc-s">FS1 + MAVTV combined</div></div>
@@ -1360,105 +1411,36 @@ body.chov #cur-ring{width:54px;height:54px}
     </div>
   </div>
 
-  <!-- S07 — SOCIAL MEDIA -->
+  <!-- S07 — SOCIAL MEDIA (Combined National) -->
   <div class="slide" id="s07" data-s="below">
-    <div class="s07-tab-bar si" style="--d:.25s" data-group="social">
-      <div class="coast-tab active" data-coast="west">West Coast</div>
-      <div class="coast-tab" data-coast="east">East Coast</div>
-    </div>
-
-    <!-- EAST COAST -->
-    <div class="coast-pane" data-group="social" data-coast="east">
-      <div class="si-wrap" style="flex-direction:row;padding:0;gap:0;padding-top:0">
-        <div class="s07c ig si" style="--d:.32s">
-          <div class="s07-watermark"><svg viewBox="0 0 24 24" fill="currentColor" style="color:#fff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C16.67.014 16.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
-          <div class="s07-plat">Instagram · Jan 2026 (Last 30 Days)</div>
-          <div class="s07-num">1.05M</div>
-          <div class="s07-nlbl">Total Views</div>
-          <div class="s07-growth">↑ +87.5% accounts reached</div>
-          <div class="s07-detail">
-            242,642 accounts reached · 64.1% driven by posts<br>
-            22% followers · 78% non-followers (explosive discovery)<br>
-            500,000+ impressions per event weekend
-          </div>
-          <div class="s07-org">✓ 91.9% Organic</div>
+    <div class="si-wrap" style="flex-direction:row;padding:0;gap:0">
+      <div class="s07c ig" style="background:linear-gradient(148deg,#6c1f9a 0%,#c9133a 48%,#f0932b 100%)">
+        <div class="s07-watermark"><svg viewBox="0 0 24 24" fill="currentColor" style="color:#fff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C16.67.014 16.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
+        <div class="s07-plat">Instagram · Combined National · 25–26 Season</div>
+        <div class="s07-num">6.25M</div>
+        <div class="s07-nlbl">Total Views</div>
+        <div class="s07-growth">↑ 3.7M+ combined reach</div>
+        <div class="s07-detail">
+          East Coast: 1.05M views · 91.9% organic<br>
+          West Coast: 5.2M views · 3.5M reach<br>
+          497K+ combined interactions · 5.4K new follows
         </div>
-        <div class="s07c fb si" style="--d:.42s">
-          <div class="s07-watermark"><svg viewBox="0 0 24 24" fill="currentColor" style="color:#fff"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div>
-          <div class="s07-plat">Facebook · Oct 1, 2025 – Jan 22, 2026</div>
-          <div class="s07-num">13.2M</div>
-          <div class="s07-nlbl">Total Views</div>
-          <div class="s07-growth">↑ +2,432% YOY</div>
-          <div class="s07-detail">
-            Record single-event reach: 2.1M views (Macon, GA)<br>
-            82 messaging conversations started · ↑ 583%<br>
-            Perfect for authentic, cost-efficient brand reach
-          </div>
-          <div class="s07-org">✓ 92% Organic</div>
+        <div class="s07-org">✓ 90%+ Organic</div>
+      </div>
+      <div class="s07c fb" style="background:linear-gradient(148deg,#1a73e8 0%,#0c47a1 100%);padding-right:148px">
+        <div class="s07-watermark"><svg viewBox="0 0 24 24" fill="currentColor" style="color:#fff"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div>
+        <div class="s07-plat">Facebook · Combined National · 25–26 Season</div>
+        <div class="s07-num">16.3M</div>
+        <div class="s07-nlbl">Total Views</div>
+        <div class="s07-growth">↑ 1.9M+ combined viewers</div>
+        <div class="s07-detail">
+          East Coast: 13.2M views · +2,432% YOY<br>
+          West Coast: 3.1M views · +670% YOY<br>
+          56.6K combined visits · 3.8K new follows
         </div>
+        <div class="s07-org">✓ 92% Organic</div>
       </div>
     </div>
-
-    <!-- WEST COAST -->
-    <div class="coast-pane active" data-group="social" data-coast="west">
-      <div class="si-wrap" style="flex-direction:row;padding:0;gap:0;padding-top:0">
-        <div class="s07c ig" style="background:linear-gradient(148deg,#6c1f9a 0%,#c9133a 48%,#f0932b 100%)">
-          <div class="s07-watermark"><svg viewBox="0 0 24 24" fill="currentColor" style="color:#fff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C16.67.014 16.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
-          <div class="s07-plat">Instagram · Jan 2026 (Last 30 Days)</div>
-          <div class="s07-num">5.2M</div>
-          <div class="s07-nlbl">Total Views</div>
-          <div class="s07-growth">↑ +352% views · +540% reach</div>
-          <div class="s07-detail">
-            3.5M accounts reached · 474.8K interactions<br>
-            2.7K new follows · ↑ 237.5% follower growth<br>
-            26.9K profile visits · ↑ 237.3%
-          </div>
-        </div>
-        <div class="s07c fb" style="background:linear-gradient(148deg,#1a73e8 0%,#0c47a1 100%);padding-right:148px">
-          <div class="s07-watermark"><svg viewBox="0 0 24 24" fill="currentColor" style="color:#fff"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div>
-          <div class="s07-plat">Facebook · Oct 1, 2025 – Jan 22, 2026</div>
-          <div class="s07-num">3.1M</div>
-          <div class="s07-nlbl">Total Views</div>
-          <div class="s07-growth">↑ +670% YOY</div>
-          <div class="s07-detail">
-            970.1K unique viewers · 22.2K interactions<br>
-            16.4K link clicks · ↑ 931% YOY<br>
-            1.9K new follows · ↑ 373%
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- FULL SEASON -->
-    <div class="coast-pane" data-group="social" data-coast="full">
-      <div class="si-wrap" style="flex-direction:row;padding:0;gap:0;padding-top:0">
-        <div class="s07c ig" style="background:linear-gradient(148deg,#6c1f9a 0%,#c9133a 48%,#f0932b 100%)">
-          <div class="s07-watermark"><svg viewBox="0 0 24 24" fill="currentColor" style="color:#fff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C16.67.014 16.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div>
-          <div class="s07-plat">Instagram · Combined National · 25–26 Season</div>
-          <div class="s07-num">6.25M</div>
-          <div class="s07-nlbl">Total Views</div>
-          <div class="s07-growth">↑ 3.7M+ combined reach</div>
-          <div class="s07-detail">
-            East Coast: 1.05M views · 91.9% organic<br>
-            West Coast: 5.2M views · 3.5M reach<br>
-            497K+ combined interactions · 5.4K new follows
-          </div>
-        </div>
-        <div class="s07c fb" style="background:linear-gradient(148deg,#1a73e8 0%,#0c47a1 100%);padding-right:148px">
-          <div class="s07-watermark"><svg viewBox="0 0 24 24" fill="currentColor" style="color:#fff"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div>
-          <div class="s07-plat">Facebook · Combined National · 25–26 Season</div>
-          <div class="s07-num">16.3M</div>
-          <div class="s07-nlbl">Total Views</div>
-          <div class="s07-growth">↑ 1.9M+ combined viewers</div>
-          <div class="s07-detail">
-            East Coast: 13.2M views · +2,432% YOY<br>
-            West Coast: 3.1M views · +670% YOY<br>
-            56.6K combined visits · 3.8K new follows
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 
   <!-- S08 — SCHEDULE -->
@@ -1474,7 +1456,7 @@ body.chov #cur-ring{width:54px;height:54px}
       <div class="s08-split">
         <div class="s08-coast west si" style="--d:.5s">
           <div class="s08-count">7</div>
-          <div class="s08-count-lbl">Rounds</div>
+          <div class="s08-count-lbl">Stops</div>
           <div class="s08-coast-tag"><em>West</em> Coast</div>
         </div>
 
@@ -1482,9 +1464,14 @@ body.chov #cur-ring{width:54px;height:54px}
 
         <div class="s08-coast east si" style="--d:.6s">
           <div class="s08-count">7</div>
-          <div class="s08-count-lbl">Rounds</div>
+          <div class="s08-count-lbl">Stops</div>
           <div class="s08-coast-tag"><em>East</em> Coast</div>
         </div>
+      </div>
+
+      <div class="s08-rounds si" style="--d:.65s">
+        <div class="s08-rounds-num">14</div>
+        <div class="s08-rounds-lbl">Rounds</div>
       </div>
 
       <div class="s08-playoff si" style="--d:.7s">
@@ -1523,8 +1510,8 @@ body.chov #cur-ring{width:54px;height:54px}
       </div>
 
       <div class="champ-center si" style="--d:.55s">
-        <div class="champ-vs">National</div>
-        <img src="Logos/PZA_26PlateNational v2.png" class="champ-nat-plate" alt="National Championship Plate">
+        <div class="champ-vs">Series</div>
+        <img src="Photos/PZA_26PlateNational.png" class="champ-nat-plate" alt="Series Championship Plate">
         <div class="champ-vs">Champion</div>
       </div>
 
@@ -1540,7 +1527,7 @@ body.chov #cur-ring{width:54px;height:54px}
 
     <div class="champ-bottom si" style="--d:.7s">
       <div class="champ-callout">Can they <em>defend</em> their plates?</div>
-      <div class="champ-callout-sub">Who will we crown National Champion in 2027?</div>
+      <div class="champ-callout-sub">Who will we crown Series Champion in 2027?</div>
     </div>
   </div>
 
@@ -2125,14 +2112,27 @@ document.querySelectorAll('.coast-tab').forEach(tab=>{
   tab.addEventListener('click',()=>{
     const group = tab.closest('[data-group]').dataset.group;
     const coast = tab.dataset.coast;
-    // update tab active states within same group
     tab.closest('[data-group]').querySelectorAll('.coast-tab').forEach(t=>t.classList.toggle('active',t.dataset.coast===coast));
-    // update panes - find all panes for this group
     document.querySelectorAll('.coast-pane[data-group="'+group+'"]').forEach(p=>{
       p.classList.toggle('active',p.dataset.coast===coast);
     });
+    // pause broadcast auto-rotate on manual click, resume after 12s
+    if(group==='broadcast'){clearInterval(s06Auto);clearTimeout(s06Resume);s06Resume=setTimeout(()=>{s06Auto=setInterval(s06Rotate,5000)},12000)}
   });
 });
+
+// ─── S06 AUTO-ROTATE ─────────────────────────
+const s06Order=['full','east','west'];
+let s06Idx=0,s06Auto,s06Resume;
+function s06Rotate(){
+  s06Idx=(s06Idx+1)%s06Order.length;
+  const coast=s06Order[s06Idx];
+  const tabBar=document.querySelector('[data-group="broadcast"].coast-tabs');
+  if(!tabBar)return;
+  tabBar.querySelectorAll('.coast-tab').forEach(t=>t.classList.toggle('active',t.dataset.coast===coast));
+  document.querySelectorAll('.coast-pane[data-group="broadcast"]').forEach(p=>p.classList.toggle('active',p.dataset.coast===coast));
+}
+s06Auto=setInterval(s06Rotate,5000);
 
 </script>
 
