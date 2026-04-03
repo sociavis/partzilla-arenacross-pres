@@ -403,17 +403,19 @@ body.chov #cur-ring{width:54px;height:54px}
    SLIDE 10 — ROSTER
 ════════════════════════════════════════════════ */
 #s10{background:var(--d1)}
-.roster-g{display:grid;grid-template-columns:repeat(3,1fr);column-gap:2px;row-gap:24px;margin-top:14px;flex:1;min-height:0}
-.rc{position:relative;overflow:hidden;background:var(--d2);display:flex;flex-direction:column;transition:transform .3s}
-.rc:hover{transform:translateY(-3px);z-index:2}
-.rc-img{width:100%;flex:1;object-fit:cover;object-position:center top;display:block;filter:saturate(.6) brightness(.68);transition:filter .4s,transform .4s;min-height:0}
-.rc:hover .rc-img{filter:saturate(1) brightness(.85);transform:scale(1.04)}
-.rc-info{padding:12px 14px;background:var(--d2);border-top:2px solid var(--red);flex-shrink:0}
-.rc-num{position:absolute;top:6px;right:8px;font-family:var(--race);font-size:32px;color:rgba(245,255,0,.1);pointer-events:none;line-height:1}
-.rc-name{font-family:var(--race);font-size:14px;letter-spacing:.05em}
-.rc-team{font-size:9px;color:var(--gr);margin-top:2px}
-.rc-cls{display:inline-flex;background:rgba(232,0,29,.1);color:var(--red);padding:3px 8px;border-radius:2px;font-size:8px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-top:6px}
-.roster-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;flex-shrink:0;margin-top:36px}
+#s10 .coast-pane.active{display:flex;flex-direction:column;flex:1;min-height:0}
+.roster-g{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:10px;flex:1;min-height:0;align-content:center}
+.rc{position:relative;overflow:hidden;background:var(--d2);display:flex;flex-direction:row;transition:transform .3s}
+.rc:hover{transform:translateY(-2px);z-index:2}
+.rc-img{width:clamp(70px,8vw,110px);flex-shrink:0;object-fit:cover;object-position:center top;display:block;filter:saturate(.6) brightness(.68);transition:filter .4s,transform .4s;aspect-ratio:1/1}
+.rc:hover .rc-img{filter:saturate(1) brightness(.85);transform:scale(1.06)}
+.rc-info{padding:10px 14px;background:var(--d2);border-left:2px solid var(--red);flex:1;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.rc-num{position:absolute;top:4px;left:clamp(52px,6.5vw,90px);font-family:var(--race);font-size:24px;color:rgba(245,255,0,.12);pointer-events:none;line-height:1;z-index:1}
+.rc-name{font-family:var(--race);font-size:clamp(11px,1.1vw,15px);letter-spacing:.05em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rc-team{font-size:clamp(7px,.75vw,9px);color:var(--gr);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rc-cls{display:inline-flex;background:rgba(232,0,29,.1);color:var(--red);padding:2px 7px;border-radius:2px;font-size:clamp(6px,.65vw,8px);letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-top:4px;width:fit-content}
+.rc-img.rc-logo{object-fit:contain;object-position:center center;background:#fff;padding:10px}
+.roster-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;flex-shrink:0;margin-top:10px}
 .rs-item{padding:14px 18px;background:var(--red);border-left:none}
 .rs-n{font-family:var(--race);font-size:22px;color:var(--wh)}
 .rs-n span{color:var(--wh)}
@@ -450,12 +452,22 @@ body.chov #cur-ring{width:54px;height:54px}
 .champ-vs{font-family:var(--race);font-size:clamp(10px,1.2vw,14px);letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.35)}
 
 @media (max-width: 768px) {
-  .champ-body { flex-direction: column; align-items: center; justify-content: flex-start; gap: 20px; overflow-y: auto; overflow-x: hidden; padding-top: 20px; padding-bottom: 20px; }
-  .champ-side { padding: 0 !important; width: 100%; min-height: 250px; justify-content: center; overflow: visible; }
-  .champ-side::after { display: none; }
-  .champ-side::before { background-size: contain; background-repeat: no-repeat; filter: brightness(1) drop-shadow(0 10px 20px #000); }
-  .champ-center { width: auto; margin: 10px 0; padding: 15px; border-radius: 8px; }
-  .champ-plate, .champ-nat-plate { height: auto; width: 60%; max-width: 200px; transform: scale(1.05); }
+  /* Keep the row layout like desktop, just scale everything down */
+  .champ-body { flex-direction: row !important; align-items: stretch; gap: 0; }
+  .champ-side { padding: 0 8px 60px !important; gap: 4px !important; justify-content: flex-end; }
+  .champ-side::before { filter: brightness(.9) saturate(1) !important; }
+  .champ-plate { height: clamp(70px,18vw,120px); }
+  .champ-num { font-size: clamp(26px,6vw,40px) !important; margin-top: 4px; }
+  .champ-name { font-size: clamp(10px,2.6vw,15px) !important; }
+  .champ-title { font-size: clamp(6px,1.4vw,9px) !important; }
+  .champ-center { width: clamp(100px,18vw,160px); padding: 16px 8px; gap: 8px; }
+  .champ-nat-plate { height: clamp(80px,18vw,140px); }
+  .champ-vs { font-size: clamp(7px,1.2vw,10px); }
+  .champ-top { padding: 14px 16px 8px !important; padding-right: 16px !important; }
+  .champ-bottom { padding: 10px 16px 16px !important; gap: 3px; }
+  .champ-callout { font-size: clamp(10px,2.4vw,16px) !important; }
+  .champ-callout-sub { font-size: clamp(7px,1.6vw,11px) !important; }
+  .champ-info { gap: 3px; }
   /* s07 tab bar removed — combined view only */
 }
 
@@ -864,35 +876,29 @@ body.chov #cur-ring{width:54px;height:54px}
   .s08-top{padding:18px 24px 0!important;padding-right:24px!important}
 
   /* ════ S09 — CHAMPIONS ═══════════════════ */
-  .champ-body{flex-direction:row!important;flex-wrap:wrap!important}
-  .champ-top{padding:20px 18px 10px!important;padding-right:18px!important}
-  .champ-side{padding:10px 12px!important;gap:6px!important}
-  .champ-plate{height:clamp(60px,14vw,90px)!important}
-  .champ-num{font-size:clamp(28px,7vw,44px)!important}
-  .champ-name{font-size:clamp(11px,3vw,16px)!important}
-  .champ-title{font-size:clamp(6px,1.6vw,8px)!important}
-  .champ-center{width:100%!important;flex:0 0 auto!important;flex-direction:row!important;padding:8px 18px!important;gap:12px!important}
-  .champ-center::before,.champ-center::after{display:none!important}
-  .champ-nat-plate{height:clamp(50px,12vw,70px)!important}
-  .champ-bottom{padding:10px 18px 16px!important;gap:4px!important}
-  .champ-callout{font-size:clamp(10px,2.8vw,14px)!important}
-  .champ-callout-sub{font-size:clamp(7px,2vw,10px)!important}
+  .champ-top{padding:16px 18px 8px!important;padding-right:18px!important}
+  .champ-side{padding:0 10px 50px!important;gap:4px!important}
+  .champ-plate{height:clamp(60px,12vw,100px)!important}
+  .champ-num{font-size:clamp(24px,5.5vw,36px)!important}
+  .champ-name{font-size:clamp(9px,2.4vw,14px)!important}
+  .champ-title{font-size:clamp(5px,1.3vw,8px)!important}
+  .champ-center{width:clamp(80px,16vw,140px)!important;padding:12px 6px!important;gap:8px!important}
+  .champ-nat-plate{height:clamp(60px,14vw,110px)!important}
+  .champ-vs{font-size:clamp(6px,1vw,9px)!important}
+  .champ-bottom{padding:8px 18px 14px!important;gap:3px!important}
+  .champ-callout{font-size:clamp(9px,2.4vw,13px)!important}
+  .champ-callout-sub{font-size:clamp(6px,1.8vw,9px)!important}
 
   /* ════ S10 — ROSTER ═══════════════════════ */
-  #s10 .si-wrap{gap:0!important}
-  .roster-g{
-    display:grid!important;grid-template-columns:repeat(3,1fr)!important;
-    column-gap:2px!important;row-gap:6px!important;
-    flex:1;min-height:0;margin-top:8px!important;
-  }
-  .rc{overflow:hidden;min-height:0}
-  .rc-img{object-position:center top!important;flex:1!important;min-height:50px!important}
-  #s10 .rc:nth-child(5) .rc-img{object-position:center center!important}
-  .rc-info{padding:5px 8px!important}
-  .rc-name{font-size:10px!important}
-  .rc-team{font-size:7px!important;margin-top:1px!important}
-  .rc-cls{font-size:6px!important;padding:2px 4px!important;margin-top:3px!important}
-  .rc-num{font-size:18px!important}
+  #s10 .si-wrap{gap:0!important;padding:42px 18px 42px 18px!important}
+  .roster-g{grid-template-columns:repeat(3,1fr)!important;gap:2px!important;margin-top:6px!important}
+  .rc-img{width:clamp(48px,12vw,72px)!important;aspect-ratio:1/1!important}
+  .rc-img.rc-logo{padding:6px!important}
+  .rc-info{padding:6px 8px!important}
+  .rc-name{font-size:clamp(8px,2vw,11px)!important}
+  .rc-team{font-size:clamp(5px,1.4vw,7px)!important;margin-top:1px!important}
+  .rc-cls{font-size:clamp(5px,1.2vw,6px)!important;padding:2px 4px!important;margin-top:2px!important}
+  .rc-num{font-size:14px!important;left:clamp(34px,10vw,56px)!important}
   .roster-strip{
     display:grid!important;grid-template-columns:repeat(3,1fr)!important;
     gap:2px!important;margin-top:6px!important;flex-shrink:0;
@@ -1015,6 +1021,11 @@ body.chov #cur-ring{width:54px;height:54px}
   .cf-check{padding:7px 8px!important}
   .cf-check-lbl{font-size:8px!important}
   .tc{flex:0 0 85vw!important}
+  /* Roster — 2 cols on tiny screens */
+  .roster-g{grid-template-columns:repeat(2,1fr)!important}
+  .rc-img{width:44px!important}
+  .rc-img.rc-logo{padding:4px!important}
+  .roster-strip{grid-template-columns:1fr!important}
 }
 </style>
 </head>
@@ -1093,7 +1104,7 @@ body.chov #cur-ring{width:54px;height:54px}
       </div>
       <div style="width:58%;display:grid;grid-template-columns:1fr 1fr;gap:2px">
         <div class="p-card si" style="--d:.38s"><div class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="1"/><path d="M8 21h8M12 19v2"/></svg></div><div class="p-num">346</div><div class="p-lbl">TV Airings</div><div class="p-desc">FS1 &amp; FS2 — same distribution as NFL &amp; NASCAR</div></div>
-        <div class="p-card si" style="--d:.48s;padding:0;overflow:hidden"><div class="p-card-split"><div class="p-split-half"><div class="p-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div><div class="p-num">13.2M</div><div class="p-lbl">Facebook Views</div><div class="p-desc">+2,432% YOY · 92% organic</div></div><div class="p-split-divider"></div><div class="p-split-half"><div class="p-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div><div class="p-num">1M+</div><div class="p-lbl">Monthly IG Views</div><div class="p-desc">+87.5% accounts reached</div></div></div></div>
+        <div class="p-card si" style="--d:.48s;padding:0;overflow:hidden"><div class="p-card-split"><div class="p-split-half"><div class="p-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div><div class="p-num">16.3M</div><div class="p-lbl">Facebook Views</div><div class="p-desc">East + West combined · 92% organic</div></div><div class="p-split-divider"></div><div class="p-split-half"><div class="p-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div><div class="p-num">6.25M</div><div class="p-lbl">Instagram Views</div><div class="p-desc">497K+ interactions · 90%+ organic</div></div></div></div>
         <div class="p-card si" style="--d:.58s"><div class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><div class="p-num">2,300+</div><div class="p-lbl">Fans Per Event</div><div class="p-desc">Packed arenas across 8 states every weekend</div></div>
         <div class="p-card si" style="--d:.68s"><div class="p-icon" style="font-family:var(--race);font-size:32px;line-height:1;margin-bottom:10px">$</div><div class="p-num">$16K+</div><div class="p-lbl">Pro Purse / Weekend</div><div class="p-desc">+ Progressive Championship Bonus from $10k</div></div>
       </div>
@@ -1131,7 +1142,7 @@ body.chov #cur-ring{width:54px;height:54px}
           </div>
           <div class="ms-item">
             <div class="ms-year">YEAR 3</div>
-            <div class="ms-text"><strong>Partzilla title sponsorship · AMA East Coast Regional plates.</strong> Record attendance, 346 national TV airings, and 13.2M social views.</div>
+            <div class="ms-text"><strong>Partzilla title sponsorship · AMA East Coast Regional plates.</strong> Record attendance, 346 national TV airings, and 22.5M+ combined social views.</div>
           </div>
         </div>
         <div class="s03-pull si" style="--d:.74s">
@@ -1307,25 +1318,25 @@ body.chov #cur-ring{width:54px;height:54px}
             <div class="hl-n">01</div>
             <div class="hl-stat">3.7M<span style="font-size:.5em;color:rgba(255,255,255,.5)">+</span></div>
             <div class="hl-title">MAVTV National Viewers</div>
-            <div class="hl-txt">AMA FIM Arenacross broadcast on MAVTV reached 3.7M+ viewers and 1.68M households across the West Coast season.</div>
+            <div class="hl-txt">MAVTV broadcast reached 3.7M+ viewers across 1.68M households — national exposure across the full West Coast season.</div>
           </div>
           <div class="hl si" style="--d:.54s">
             <div class="hl-n">02</div>
-            <div class="hl-stat">2.5M<span style="font-size:.5em;color:rgba(255,255,255,.5)">+</span></div>
-            <div class="hl-title">RydeTV Streaming Views</div>
-            <div class="hl-txt">26M+ minutes of watch time on the RydeTV streaming platform. Massive digital reach beyond traditional broadcast.</div>
+            <div class="hl-stat">26M<span style="font-size:.5em;color:rgba(255,255,255,.5)">+</span></div>
+            <div class="hl-title">Minutes Streamed on RydeTV</div>
+            <div class="hl-txt">2.5M+ views and 26M+ minutes of watch time on RydeTV — deep, engaged digital viewership beyond traditional broadcast.</div>
           </div>
           <div class="hl si" style="--d:.60s">
             <div class="hl-n">03</div>
-            <div class="hl-stat">26M<span style="font-size:.5em;color:rgba(255,255,255,.5)">+</span></div>
-            <div class="hl-title">Minutes of Watch Time</div>
-            <div class="hl-txt">RydeTV streaming audiences logged 26M+ minutes across the West Coast season — deep, engaged viewership.</div>
-          </div>
-          <div class="hl si" style="--d:.66s">
-            <div class="hl-n">04</div>
             <div class="hl-stat" style="font-size:clamp(20px,3.5vw,44px);white-space:nowrap">#200</div>
             <div class="hl-title">Ryan Breece — West Coast Champion</div>
             <div class="hl-txt">Dominated the West Coast AMA FIM Arenacross Championship aboard his factory ride.</div>
+          </div>
+          <div class="hl si" style="--d:.66s">
+            <div class="hl-n">04</div>
+            <div class="hl-stat">5.2M</div>
+            <div class="hl-title">West Coast Instagram Views</div>
+            <div class="hl-txt">3.5M+ accounts reached with 90%+ organic delivery — massive awareness without paid spend.</div>
           </div>
           <div class="hl si" style="--d:.72s">
             <div class="hl-n">05</div>
@@ -1335,9 +1346,9 @@ body.chov #cur-ring{width:54px;height:54px}
           </div>
           <div class="hl si" style="--d:.78s">
             <div class="hl-n">06</div>
-            <div class="hl-stat">1.68M</div>
-            <div class="hl-title">Total Households Reached</div>
-            <div class="hl-txt">MAVTV national broadcast delivered West Coast Arenacross into 1.68M households across the season.</div>
+            <div class="hl-stat"><span class="ctr" data-t="931">931</span><span style="font-size:.5em;color:rgba(255,255,255,.5)">%</span></div>
+            <div class="hl-title">Link Click Growth YOY</div>
+            <div class="hl-txt">Facebook link clicks surged +931% — proving West Coast fans aren't just watching, they're taking action.</div>
           </div>
         </div>
       </div>
@@ -1399,7 +1410,7 @@ body.chov #cur-ring{width:54px;height:54px}
           <div class="s06-metrics">
             <div class="mc"><div class="mc-n">5.5M+</div><div class="mc-l">Total Viewers</div><div class="mc-s">FS1 + MAVTV combined</div></div>
             <div class="mc"><div class="mc-n">2.4M+</div><div class="mc-l">Total Households</div><div class="mc-s">East + West coast reach</div></div>
-            <div class="mc"><div class="mc-n">346+</div><div class="mc-l">Total TV Airings</div><div class="mc-s">FS1 · FS2 · MAVTV</div></div>
+            <div class="mc"><div class="mc-n">346+</div><div class="mc-l">FS1 / FS2 Airings</div><div class="mc-s">East Coast national broadcast</div></div>
             <div class="mc"><div class="mc-n">2.5M+</div><div class="mc-l">Streaming Views</div><div class="mc-yoy">+ 26M min watch time</div></div>
           </div>
         </div>
@@ -1535,18 +1546,43 @@ body.chov #cur-ring{width:54px;height:54px}
     <div class="si-wrap rpad" style="gap:0">
       <div class="s-label si" style="--d:.3s">Pro Roster</div>
       <div class="s-title si" style="--d:.4s;margin:8px 0 12px">Who's <em>Racing</em></div>
-      <div class="roster-g">
-        <div class="rc si" style="--d:.48s"><img src="Photos/Optimized/Linville.png" class="rc-img" alt="Gage Linville"><div class="rc-num">1</div><div class="rc-info"><div class="rc-name">Gage Linville</div><div class="rc-team">Dirt Legal / WMR KTM</div><div class="rc-cls">Dual-Class Champion ★</div></div></div>
-        <div class="rc si" style="--d:.54s"><img src="Photos/Optimized/Neese.png" class="rc-img" alt="Luke Neese"><div class="rc-num">32</div><div class="rc-info"><div class="rc-name">Luke Neese</div><div class="rc-team">SLH Buddy Brooks Honda</div><div class="rc-cls">Former Champion</div></div></div>
-        <div class="rc si" style="--d:.60s"><img src="Photos/Optimized/hill.jpg" class="rc-img" style="object-position:38% center" alt="Josh Hill"><div class="rc-num">581</div><div class="rc-info"><div class="rc-name">Josh Hill</div><div class="rc-team">Monster Energy Yamaha</div><div class="rc-cls">Open Pro</div></div></div>
-        <div class="rc si" style="--d:.66s"><img src="Photos/Optimized/32 (1 of 1)-2.jpg" class="rc-img" alt="Partzilla Kawasaki"><div class="rc-num">69</div><div class="rc-info"><div class="rc-name">Partzilla Kawasaki</div><div class="rc-team">PRMX / Partzilla Kawasaki</div><div class="rc-cls">Open Pro</div></div></div>
-        <div class="rc si" style="--d:.72s"><img src="Photos/Optimized/ClubMX.jpg" class="rc-img" style="object-position:center center;object-fit:contain;background:#fff" alt="ClubMX NXT LVL"><div class="rc-num">74</div><div class="rc-info"><div class="rc-name">ClubMX / NXT LVL</div><div class="rc-team">Muc-Off FXR ClubMX Yamaha</div><div class="rc-cls">250 Pro</div></div></div>
-        <div class="rc si" style="--d:.78s"><img src="Photos/Optimized/Suzuki Pits (1 of 1)-2.jpg" class="rc-img" style="object-position:center center" alt="MotoNation Suzuki"><div class="rc-num">188</div><div class="rc-info"><div class="rc-name">MotoNation Suzuki</div><div class="rc-team">MotoNation Suzuki Racing</div><div class="rc-cls">Open Pro</div></div></div>
+      <div class="coast-tabs si" style="--d:.44s" data-group="roster">
+        <div class="coast-tab active" data-coast="east">East Coast</div>
+        <div class="coast-tab" data-coast="west">West Coast</div>
       </div>
-      <div class="roster-strip si" style="--d:.86s">
-        <div class="rs-item"><div class="rs-n"><span>+</span> SX</div><div class="rs-l">Supercross Pipeline</div><div class="rs-d">Gibson, Kessler, Ferry, Clason, Hudson &amp; more former or future SX racers</div></div>
-        <div class="rs-item"><div class="rs-n"><span>7</span> OEMs</div><div class="rs-l">Full Industry</div><div class="rs-d">Honda · Kawasaki · Yamaha · KTM · Suzuki · GasGas · Husqvarna</div></div>
-        <div class="rs-item"><div class="rs-n"><span>15</span>+</div><div class="rs-l">States Represented</div><div class="rs-d">National draw every weekend — East Coast's premier championship</div></div>
+
+      <!-- EAST COAST ROSTER -->
+      <div class="coast-pane active" data-group="roster" data-coast="east">
+        <div class="roster-g">
+          <div class="rc si" style="--d:.48s"><img src="Photos/Optimized/Linville.png" class="rc-img" alt="Gage Linville"><div class="rc-num">1</div><div class="rc-info"><div class="rc-name">Gage Linville</div><div class="rc-team">Dirt Legal / WMR KTM</div><div class="rc-cls">Dual-Class Champion ★</div></div></div>
+          <div class="rc si" style="--d:.54s"><img src="Photos/Optimized/Neese.png" class="rc-img" alt="Luke Neese"><div class="rc-num">32</div><div class="rc-info"><div class="rc-name">Luke Neese</div><div class="rc-team">SLH Buddy Brooks Honda</div><div class="rc-cls">Former Champion</div></div></div>
+          <div class="rc si" style="--d:.60s"><img src="Photos/Optimized/hill.jpg" class="rc-img" style="object-position:38% center" alt="Josh Hill"><div class="rc-num">581</div><div class="rc-info"><div class="rc-name">Josh Hill</div><div class="rc-team">Monster Energy Yamaha</div><div class="rc-cls">Open Pro</div></div></div>
+          <div class="rc si" style="--d:.66s"><img src="Photos/Optimized/32 (1 of 1)-2.jpg" class="rc-img" alt="Partzilla Kawasaki"><div class="rc-num">69</div><div class="rc-info"><div class="rc-name">Partzilla Kawasaki</div><div class="rc-team">PRMX / Partzilla Kawasaki</div><div class="rc-cls">Open Pro</div></div></div>
+          <div class="rc si" style="--d:.72s"><img src="Photos/Optimized/ClubMX.jpg" class="rc-img" style="object-position:center center;object-fit:contain;background:#fff" alt="ClubMX NXT LVL"><div class="rc-num">74</div><div class="rc-info"><div class="rc-name">ClubMX / NXT LVL</div><div class="rc-team">Muc-Off FXR ClubMX Yamaha</div><div class="rc-cls">250 Pro</div></div></div>
+          <div class="rc si" style="--d:.78s"><img src="Photos/Optimized/Suzuki Pits (1 of 1)-2.jpg" class="rc-img" style="object-position:center center" alt="MotoNation Suzuki"><div class="rc-num">188</div><div class="rc-info"><div class="rc-name">MotoNation Suzuki</div><div class="rc-team">MotoNation Suzuki Racing</div><div class="rc-cls">Open Pro</div></div></div>
+        </div>
+        <div class="roster-strip si" style="--d:.86s">
+          <div class="rs-item"><div class="rs-n"><span>+</span> SX</div><div class="rs-l">Supercross Pipeline</div><div class="rs-d">Gibson, Kessler, Ferry, Clason, Hudson &amp; more former or future SX racers</div></div>
+          <div class="rs-item"><div class="rs-n"><span>7</span> OEMs</div><div class="rs-l">Full Industry</div><div class="rs-d">Honda · Kawasaki · Yamaha · KTM · Suzuki · GasGas · Husqvarna</div></div>
+          <div class="rs-item"><div class="rs-n"><span>15</span>+</div><div class="rs-l">States Represented</div><div class="rs-d">National draw every weekend — East Coast's premier championship</div></div>
+        </div>
+      </div>
+
+      <!-- WEST COAST ROSTER -->
+      <div class="coast-pane" data-group="roster" data-coast="west">
+        <div class="roster-g">
+          <div class="rc si" style="--d:.48s"><img src="Photos/Breece2.jpg" class="rc-img" alt="Ryan Breece"><div class="rc-num">200</div><div class="rc-info"><div class="rc-name">Ryan Breece</div><div class="rc-team">MotoConcepts Racing Honda</div><div class="rc-cls">2025 AMA AX Champion ★</div></div></div>
+          <div class="rc si" style="--d:.54s"><img src="Photos/politelli.jpg" class="rc-img" alt="Austin Politelli"><div class="rc-num">98</div><div class="rc-info"><div class="rc-name">Austin Politelli</div><div class="rc-team">MotoConcepts Racing Honda</div><div class="rc-cls">Open Pro</div></div></div>
+          <div class="rc si" style="--d:.60s"><img src="Photos/thompson.webp" class="rc-img" alt="Cole Thompson"><div class="rc-num">16</div><div class="rc-info"><div class="rc-name">Cole Thompson</div><div class="rc-team">Heartbeat Hot Sauce Yamaha</div><div class="rc-cls">Open Pro</div></div></div>
+          <div class="rc si" style="--d:.66s"><img src="Photos/wageman.jpg" class="rc-img" alt="Robbie Wageman"><div class="rc-num">14</div><div class="rc-info"><div class="rc-name">Robbie Wageman</div><div class="rc-team">Heartbeat Hot Sauce Yamaha</div><div class="rc-cls">Open Pro</div></div></div>
+          <div class="rc si" style="--d:.72s"><img src="Photos/MCR-Honda.svg" class="rc-img rc-logo" alt="MotoConcepts Racing Honda"><div class="rc-num"></div><div class="rc-info"><div class="rc-name">MotoConcepts Racing</div><div class="rc-team">Honda</div><div class="rc-cls">Factory Team</div></div></div>
+          <div class="rc si" style="--d:.78s"><img src="Photos/Heartbeat.png" class="rc-img rc-logo" alt="Heartbeat Hot Sauce Yamaha"><div class="rc-num"></div><div class="rc-info"><div class="rc-name">Heartbeat Hot Sauce</div><div class="rc-team">Nano XTreme Yamaha</div><div class="rc-cls">Factory Team</div></div></div>
+        </div>
+        <div class="roster-strip si" style="--d:.86s">
+          <div class="rs-item"><div class="rs-n"><span>+</span> SX</div><div class="rs-l">SX Veterans</div><div class="rs-d">Breece, Thompson, Politelli &amp; Wageman — all with Supercross main-event experience</div></div>
+          <div class="rs-item"><div class="rs-n"><span>2</span></div><div class="rs-l">Factory Teams</div><div class="rs-d">MotoConcepts Racing Honda · Heartbeat Hot Sauce Nano XTreme Yamaha</div></div>
+          <div class="rs-item"><div class="rs-n"><span>★</span></div><div class="rs-l">Defending Champion</div><div class="rs-d">Ryan Breece returns to defend the West Coast AMA Arenacross title</div></div>
+        </div>
       </div>
     </div>
   </div>
