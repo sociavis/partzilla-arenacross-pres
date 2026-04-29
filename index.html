@@ -39,9 +39,12 @@
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="shortcut icon" href="favicon-32.png">
 
+<!-- Critical asset preloads (fix FOUT + cover-image pop-in) -->
+<link rel="preload" href="Bring Race.otf" as="font" type="font/otf" crossorigin>
+<link rel="preload" href="PZAX-ChampionshipLogo.webp" as="image" type="image/webp" fetchpriority="high">
 
 <style>
-@font-face { font-family:'BringRace'; src:url('Bring Race.otf') format('opentype'); }
+@font-face { font-family:'BringRace'; src:url('Bring Race.otf') format('opentype'); font-display:swap; }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --red:#E8001D;--red-dk:#A80015;--red-glow:rgba(232,0,29,.35);
@@ -1222,7 +1225,7 @@ body.chov #cur-ring{width:54px;height:54px}
 
 <!-- LOADER -->
 <div id="loader">
-  <img src="PZAX-ChampionshipLogo.png" alt="Partzilla Arenacross" class="ld-img">
+  <img src="PZAX-ChampionshipLogo.webp" alt="Partzilla Arenacross" class="ld-img">
   <div class="ld-bar-wrap"><div class="ld-bar"></div></div>
 </div>
 
@@ -1234,7 +1237,7 @@ body.chov #cur-ring{width:54px;height:54px}
 <div id="flash"></div>
 
 <!-- GLOBAL BRAND MARK -->
-<div id="g-logo"><img src="PZAX-ChampionshipLogo.png" alt="Partzilla Arenacross"></div>
+<div id="g-logo"><img src="PZAX-ChampionshipLogo.webp" alt="Partzilla Arenacross"></div>
 
 <div id="slides">
 
@@ -1244,7 +1247,7 @@ body.chov #cur-ring{width:54px;height:54px}
     <div class="cv-grid"></div>
     <div class="cv-vignette"></div>
     <div class="cv-center">
-      <img src="PZAX-ChampionshipLogo.png" alt="Partzilla Arenacross" class="cv-logo-c si" style="--d:.3s">
+      <img src="PZAX-ChampionshipLogo.webp" alt="Partzilla Arenacross" class="cv-logo-c si" style="--d:.3s">
       <div class="cv-rule si" style="--d:.46s">
         <div class="cv-rule-line"></div>
         <div class="cv-rule-diamond"></div>
@@ -1704,7 +1707,7 @@ body.chov #cur-ring{width:54px;height:54px}
             </div>
 
             <div class="app-header">
-              <img src="app-img/championship-logo.png" alt="Partzilla Arenacross" class="app-logo-img" onerror="this.onerror=null;this.src='app-img/pzax.svg'">
+              <img src="app-img/championship-logo.webp" alt="Partzilla Arenacross" class="app-logo-img" onerror="this.onerror=null;this.src='app-img/pzax.svg'">
               <div class="app-header-r">
                 <div class="app-bell">
                   <svg viewBox="0 0 24 24"><path d="M10.27 21a2 2 0 0 0 3.46 0"/><path d="M3.26 15.33A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.67C19.41 13.96 18 12.5 18 8a6 6 0 0 0-12 0c0 4.5-1.41 5.96-2.74 7.33"/></svg>
@@ -1726,7 +1729,7 @@ body.chov #cur-ring{width:54px;height:54px}
               </div>
               <div class="app-story">
                 <div class="app-story-ring">
-                  <div class="app-story-inner"><img src="app-img/championship-logo.png" alt=""></div>
+                  <div class="app-story-inner"><img src="app-img/championship-logo.webp" alt=""></div>
                 </div>
                 <div class="app-story-lbl">Partzilla AX</div>
               </div>
@@ -1958,7 +1961,7 @@ body.chov #cur-ring{width:54px;height:54px}
     <div class="champ-body">
       <div class="champ-side west">
         <div class="champ-info si" style="-+-d:.5s">
-          <img src="Photos/PZA_26Plate-W.png" class="champ-plate" alt="West Coast Championship Plate">
+          <img src="Photos/PZA_26Plate-W.webp" class="champ-plate" alt="West Coast Championship Plate">
           <div class="champ-num">#200</div>
           <div class="champ-name">Ryan Breece</div>
           <div class="champ-title">25–26 West Coast Arenacross Champion</div>
@@ -1967,13 +1970,13 @@ body.chov #cur-ring{width:54px;height:54px}
 
       <div class="champ-center si" style="-+-d:.55s">
         <div class="champ-vs">Series</div>
-        <img src="Photos/PZA_26PlateNational.png" class="champ-nat-plate" alt="Series Championship Plate">
+        <img src="Photos/PZA_26PlateNational.webp" class="champ-nat-plate" alt="Series Championship Plate">
         <div class="champ-vs">Champion</div>
       </div>
 
       <div class="champ-side east">
         <div class="champ-info si" style="-+-d:.6s">
-          <img src="Photos/PZA_26Plate-E.png" class="champ-plate" alt="East Coast Championship Plate">
+          <img src="Photos/PZA_26Plate-E.webp" class="champ-plate" alt="East Coast Championship Plate">
           <div class="champ-num">#74</div>
           <div class="champ-name">Gage Linville</div>
           <div class="champ-title">25–26 East Coast Arenacross Champion</div>
@@ -2219,7 +2222,7 @@ body.chov #cur-ring{width:54px;height:54px}
     <div class="s-ov"></div>
     <div class="si-wrap" style="align-items:center;justify-content:flex-start;text-align:center;padding-right:150px;overflow:hidden;padding-bottom:30px;">
       <div style="margin:auto 0;width:100%;display:flex;flex-direction:column;align-items:center;padding-top:10px;">
-      <img src="PZAX-ChampionshipLogo.png" alt="Partzilla Arenacross" class="si" style="--d:.2s;width:180px;margin-bottom:10px;filter:drop-shadow(0 4px 24px rgba(0,0,0,.7))">
+      <img src="PZAX-ChampionshipLogo.webp" alt="Partzilla Arenacross" class="si" style="--d:.2s;width:180px;margin-bottom:10px;filter:drop-shadow(0 4px 24px rgba(0,0,0,.7))">
       <div class="cta-eye si" style="--d:.32s">The Most Televised · Deepest Field · Fastest-Growing</div>
       <div class="cta-h si" style="--d:.4s">YOUR BRAND<br><em>BELONGS HERE</em></div>
       <form class="contact-form si" style="--d:.62s" id="contactForm" action="https://formsubmit.co/info@tristarmx.com" method="POST">
