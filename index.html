@@ -216,11 +216,13 @@ body.chov #cur-ring{width:54px;height:54px}
 .p-lbl{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--wh);margin-top:6px;font-weight:600}
 .p-desc{font-size:10px;color:rgba(255,255,255,.38);margin-top:7px;line-height:1.5}
 /* split social card */
-.p-card-split{display:flex;flex-direction:row;height:100%}
-.p-split-half{flex:1;display:flex;flex-direction:column;justify-content:center;padding:22px 18px;gap:3px}
-.p-split-half .p-icon{margin-bottom:8px!important}
-.p-split-half .p-num{font-size:clamp(16px,2.2vw,26px)!important}
-.p-split-half .p-lbl{font-size:12px!important;letter-spacing:.06em}
+.p-card-split{display:flex;flex-direction:row;height:100%;min-width:0}
+.p-split-half{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;padding:18px 14px;gap:1px}
+.p-split-half .p-icon{margin-bottom:5px!important}
+.p-split-half .p-icon svg{width:24px!important;height:24px!important}
+.p-split-half .p-num{font-size:clamp(14px,1.9vw,22px)!important;line-height:1!important}
+.p-split-half .p-lbl{font-size:10.5px!important;letter-spacing:.04em;margin-top:4px!important}
+.p-split-half .p-desc{font-size:9px!important;margin-top:4px!important;line-height:1.4!important}
 .p-split-divider{width:1px;background:rgba(255,255,255,.09);flex-shrink:0;margin:10px 0}
 
 /* ════════════════════════════════════════════════
