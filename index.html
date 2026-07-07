@@ -1245,6 +1245,18 @@ body.chov #cur-ring{width:54px;height:54px}
   .s08-playoff{flex-wrap:wrap!important;padding:12px 16px!important;gap:8px 16px!important}
   .s08-po-fin{font-size:12px!important}
 }
+
+/* ════ S08 — CHAMPIONSHIP PLATES ═════════════════════ */
+.s08-ch{align-items:center}
+.s08-ch-l{display:flex;align-items:center;gap:clamp(9px,1vw,15px);min-width:0}
+.s08-plate{height:clamp(40px,4.8vw,60px);width:auto;display:block;flex-shrink:0;filter:drop-shadow(0 3px 10px rgba(0,0,0,.5));border-radius:4px}
+.s08-po-plate{height:clamp(48px,5.2vw,66px);width:auto;display:block;flex-shrink:0;position:relative;z-index:1;filter:drop-shadow(0 4px 14px rgba(0,0,0,.55));border-radius:5px}
+.s08-playoff{padding-top:12px;padding-bottom:12px}
+@media(max-width:900px){
+  .s08-plate{height:44px!important}
+  .s08-po-plate{height:56px!important}
+  .s08-playoff{flex-wrap:wrap!important;justify-content:center!important}
+}
 </style>
 </head>
 <body>
@@ -1932,7 +1944,7 @@ body.chov #cur-ring{width:54px;height:54px}
 
       <div class="s08-board si" style="--d:.5s">
         <div class="s08-col">
-          <div class="s08-ch"><span class="s08-ch-coast"><em>East</em> Coast</span><span class="s08-ch-meta">7 Stops · 14 Rounds</span></div>
+          <div class="s08-ch"><div class="s08-ch-l"><img class="s08-plate" src="plates/plate-east.webp" alt="AMA East Coast Regional Champion — #1E plate"><span class="s08-ch-coast"><em>East</em> Coast</span></div><span class="s08-ch-meta">7 Stops · 14 Rounds</span></div>
           <div class="s08-rows">
             <div class="s08-row"><span class="s08-rd">1·2</span><span class="s08-dt">Oct 16–17</span><span class="s08-loc"><b>Clarksville, TN</b><i>F&amp;M Bank Arena</i></span></div>
             <div class="s08-row"><span class="s08-rd">3·4</span><span class="s08-dt">Nov 6–7</span><span class="s08-loc"><b>Florence, SC</b><i>Florence Center</i></span></div>
@@ -1945,7 +1957,7 @@ body.chov #cur-ring{width:54px;height:54px}
         </div>
         <div class="s08-vdiv"></div>
         <div class="s08-col">
-          <div class="s08-ch"><span class="s08-ch-coast"><em>West</em> Coast</span><span class="s08-ch-meta">7 Stops · 14 Rounds</span></div>
+          <div class="s08-ch"><div class="s08-ch-l"><img class="s08-plate" src="plates/plate-west.webp" alt="AMA West Coast Regional Champion — #1W plate"><span class="s08-ch-coast"><em>West</em> Coast</span></div><span class="s08-ch-meta">7 Stops · 14 Rounds</span></div>
           <div class="s08-rows">
             <div class="s08-row"><span class="s08-rd">1·2</span><span class="s08-dt">Feb 19–20</span><span class="s08-loc"><b>Prescott Valley, AZ</b><i>Findlay Toyota Center</i></span></div>
             <div class="s08-row"><span class="s08-rd">3·4</span><span class="s08-dt">Mar 12–13</span><span class="s08-loc"><b>Las Vegas, NV</b><i>Orleans Arena</i></span></div>
@@ -1959,6 +1971,7 @@ body.chov #cur-ring{width:54px;height:54px}
       </div>
 
       <div class="s08-playoff si" style="--d:.66s">
+        <img class="s08-po-plate" src="plates/plate-national.webp" alt="AMA 2027 National Champion — #1 plate">
         <div class="s08-po-mid">
           <div class="s08-po-logos"><img src="Logos/pz_logo_65a6a2b8c4_443e3934ec.png" alt="Partzilla"></div>
           <div class="s08-po-title">Progressive Play-Offs · Championship Finale</div>
